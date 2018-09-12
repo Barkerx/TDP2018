@@ -1,5 +1,6 @@
 package misc;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.celda;
@@ -9,8 +10,7 @@ public class Gob {
 	     protected celda c;
 	     protected int profundidad;
 	     protected boolean isRunning=true;
-	     
-	     
+	 
 	     public JLabel getGrafico(){
 	    	 return grafico;
 	     }
@@ -22,7 +22,11 @@ public class Gob {
 	    	 grafico.setIcon(null);
 	    	 c.objlist()[profundidad]=null;
 	     }
-	     
+	 	public void initgraph(){
+	       	 grafico.setBounds(c.getposx()*32, c.getposy()*32, 100 , 100);
+	         c.addg(grafico);
+	 	}
+	 
 	     public int getProfundidad(){
 	    	 return profundidad;
 	     }

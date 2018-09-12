@@ -1,5 +1,7 @@
 package mapa;
 
+import javax.swing.JLabel;
+
 import misc.Gob;
 
 public class celda {
@@ -36,6 +38,11 @@ public class celda {
 
 	public void repaint() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void addg(JLabel grafico) {
+		m.addgraph(grafico);
 		
 	}
 }
