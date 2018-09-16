@@ -1,29 +1,53 @@
 package misc;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
+import mapa.Map;
 import mapa.celda;
 
 public abstract class Unidad extends Gob {
 
+	public static final int ARRIBA = 4;
+	public static final int ABAJO = 0;
+	public static final int IZQUIERDA = 2;
+	public static final int DERECHA = 6;
 	
-	public Unidad(celda ce){
-		c=ce;
+	public Unidad(celda ce,Map m){
+		super(ce,m);
 	}
+	
 	public void setCelda(celda c )
 	{
 		this.c=c;
 		c.objlist()[profundidad]=this;
 	}
 	public celda mover(int n){
-		celda w=c.mover(n);		
+		celda w=m.mover(c,n);
+		System.out.printf("estoy en x");
+		System.out.println(c.getposx());
+		System.out.printf("estoy en y");
+		System.out.println(c.getposy());
 		return w;
 	}
 	public void intercambiarceldas(celda d,int n){
-		d.setelem(profundidad, this);
+		boolean b=true;
+		if(d!=null){
+		for(int i=0;i<4&&b;i++){
+			if( d.objlist()[i]!=null)
+				if (!d.objlist()[i].Accept(visitor)){
+					b=false;
+				}
+		}
+		}
+		if(b){
+		d.setelem(profundidad,this);
 		c.setelem(profundidad,null);
 		c=d;
+		initgraph();
+		System.out.printf("me cambie a celda en x");
+		System.out.println(c.getposx());
+		System.out.printf("me cambie a celda en y");
+		System.out.println(c.getposy());
+		}
 	}
 	
 }

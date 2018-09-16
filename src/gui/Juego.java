@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import mapa.*;
+import misc.Unidad;
 import Player.jugador;
 
 public  class Juego {
@@ -27,7 +28,7 @@ public  class Juego {
 }
 	
 public Juego(){
-	   j=new jugador(null); 
+	   j=new jugador(null,null);
 	   frame=new gui(this);
 	   new Map(frame,this,j);
 	   frame.setVisible(true);
@@ -42,16 +43,16 @@ public void mover(int dir){
    int direccion = 0;
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
-			direccion = 4;
+			direccion = Unidad.ARRIBA;
 			break;
 		case KeyEvent.VK_LEFT : //Izquierda
-			direccion = 2;
+			direccion = Unidad.IZQUIERDA;
 			break;
 		case KeyEvent.VK_DOWN : //Abajo
-			direccion = 0;
+			direccion = Unidad.ABAJO;
 			break;	
 		case KeyEvent.VK_RIGHT : //Derecha
-			direccion = 6;
+			direccion = Unidad.DERECHA;
 			break;
 		case KeyEvent.VK_SPACE : //Espacio
 			direccion=-1;

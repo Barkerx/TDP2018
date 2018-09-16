@@ -49,7 +49,7 @@ public class gui extends JFrame implements Runnable {
 						else
 							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
 								keyBoardRightPressed=true;
-							}
+							}	
 							
 			}
 			public void keyReleased(KeyEvent arg0){
@@ -68,9 +68,9 @@ public class gui extends JFrame implements Runnable {
 							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
 								keyBoardRightPressed=false;
 							}
-						//	else
-						//		if(arg0.getKeyCode()==KeyEvent.VK_SPACE)
-						//			j.mover(KeyEvent.VK_SPACE);
+							else
+								if(arg0.getKeyCode()==KeyEvent.VK_SPACE)
+								j.mover(KeyEvent.VK_SPACE);
 							
 							
 			}
@@ -80,11 +80,10 @@ public class gui extends JFrame implements Runnable {
         
 		getContentPane().setLayout(null);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 256, 544);
+		setBounds(0, 0, 405, 765);
 		setLocationRelativeTo(null);
-		
 		contentPane = new JLayeredPane();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -97,29 +96,31 @@ public class gui extends JFrame implements Runnable {
 		
 	}
 	
-
+private void mover(){
+	 if(keyBoardLeftPressed){
+     	  j.mover(KeyEvent.VK_LEFT);
+       }
+       else
+     	  if(keyBoardRightPressed){
+     		  j.mover(KeyEvent.VK_RIGHT);
+           }
+           else
+         	  if(keyBoardDownPressed){
+         		  j.mover(KeyEvent.VK_DOWN);
+               }
+               else
+             	  if(keyBoardUpPressed){
+             		  j.mover(KeyEvent.VK_UP);
+                   }
+	
+}
 
 public void run() {
 	while(true){
-        if(keyBoardLeftPressed){
-      	  j.mover(KeyEvent.VK_LEFT);
-        }
-        else
-      	  if(keyBoardRightPressed){
-      		  j.mover(KeyEvent.VK_RIGHT);
-            }
-            else
-          	  if(keyBoardDownPressed){
-          		  j.mover(KeyEvent.VK_DOWN);
-                }
-                else
-              	  if(keyBoardUpPressed){
-              		  j.mover(KeyEvent.VK_UP);
-                    }
-              		  
+              mover();		  
                    
 		try {
-			Thread.sleep(40);
+			Thread.sleep(150);
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();

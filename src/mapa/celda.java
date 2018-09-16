@@ -6,9 +6,8 @@ import misc.Gob;
 
 public class celda {
 	protected Gob objects[];
-	protected Map m;
 	protected int x,y;
-	public celda(int x,int y,Map M){
+	public celda(int x,int y){
 		this.x=x;
 		this.y=y;
 		objects= new Gob[4];
@@ -16,7 +15,6 @@ public class celda {
 		objects[1]=null;
 		objects[2]=null;
 		objects[3]=null;
-		m=M;
 	}
 	
 	public Gob[] objlist(){
@@ -32,17 +30,10 @@ public class celda {
 	public int getposy(){
 		return y;	
 	}
-	public celda mover(int dir){
-		return m.mover(this,dir);
-		}
 
 	public void repaint() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void addg(JLabel grafico) {
-		m.addgraph(grafico);
-		
-	}
 }
