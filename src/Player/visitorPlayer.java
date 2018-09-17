@@ -28,7 +28,10 @@ public class visitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitenemigo(enemigo p) {
-		// TODO Auto-generated method stub
+		p.destruir();
+		jugador j=(jugador) objeto;
+		j.reducirVida(50);
+		
 		return false;
 	}
 
@@ -46,13 +49,18 @@ public class visitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		// TODO Auto-generated method stub
+		d.destruir();
+		jugador j=(jugador) objeto;
+		j.reducirVida(d.getdamage());
 		return false;
 	}
 
 	@Override
 	public boolean visitPowerUp(powerUp pw) {
-		// TODO Auto-generated method stub
+		jugador j=(jugador) objeto;
+		pw.accionar(j);
+		pw.destruir();
+		
 		return false;
 	}
 

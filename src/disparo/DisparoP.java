@@ -24,17 +24,25 @@ public abstract class DisparoP extends Disparo{
 	}
 	
 	public void mover(){
-		boolean sigo=true;
+	/*	boolean sigo=true;
 		while(sigo){
 			celda ce=super.mover(ARRIBA);
+			System.out.print("estoy aca e.e");
 			if (ce==null){
 				destruir();
 				sigo=false;
 				System.out.println("entre aca");
 				}
-				else
-				super.intercambiarceldas(ce, ARRIBA);	
 		}
+	}*/
+		System.out.println("Hola entre al mover de disparo p");
+		celda ce=super.mover(ARRIBA);
+		if (ce==null)
+		{
+			destruir();
+			System.out.print("me destrui");
+			isRunning=false;
+		}
+		
 	}
-
 }

@@ -7,8 +7,8 @@ import mapa.Map;
 import mapa.celda;
 
 public abstract class Gob {
-		protected Visitor visitor;
-	  	protected JLabel grafico;
+		 protected Visitor visitor;
+	  	 protected JLabel grafico;
 	     protected celda c;
 	     protected int vida;
 	     protected int profundidad;

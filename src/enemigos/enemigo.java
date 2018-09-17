@@ -26,4 +26,23 @@ public class enemigo extends nave{
 		return V.visitenemigo(this);
 	}
 
+	@Override
+	public void run() {
+		// while(isRunning)
+		// mover(a.getdir);
+		//thread.sleep(100);
+		
+	}
+	
+	public void destruir(){
+		m.desligar(this);
+		ataque.desvincular();
+		destruir();
+		
+	}
+
+	public int getpuntos() {
+		return puntos;
+	}
+
 }

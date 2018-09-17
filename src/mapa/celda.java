@@ -1,7 +1,5 @@
 package mapa;
 
-import javax.swing.JLabel;
-
 import misc.Gob;
 
 public class celda {

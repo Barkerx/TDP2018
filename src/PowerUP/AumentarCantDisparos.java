@@ -14,7 +14,7 @@ public class AumentarCantDisparos extends powerUp{
 
 	@Override
 	public void accionar(jugador j) {
-		//j.aumentar();
+		j.aumentar();
 		
 	}
 

@@ -19,5 +19,9 @@ public abstract class powerUp extends Unidad{
 	}
 	
 	public abstract void accionar(jugador j);
+	
+	public void run(){
+		
+	}
 
 }

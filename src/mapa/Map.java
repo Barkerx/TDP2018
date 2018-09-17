@@ -1,9 +1,12 @@
 package mapa;
 
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
+import enemigos.enemigo;
 import gui.Juego;
 import gui.gui;
 import misc.Unidad;
@@ -13,7 +16,7 @@ public class Map {
 	protected gui g;
 	protected JLabel fondo;
 //	protected IA[] EIA;
-//	protected linkedList<Enemigos> lEnemy;
+	protected LinkedList<enemigo> lEnemy;
 	protected Juego j;
 	public Map(gui gu,Juego ju,jugador p){
 		int x=8;
@@ -28,7 +31,7 @@ public class Map {
 		celdas[5][5].setelem(p.getProfundidad(), p);
 		g.setResizable(false);
 		p.setMap(this);
-		
+		lEnemy=new LinkedList<enemigo>();
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo.png")));
    	 	fondo.setBounds(0, 0, 405, 765);
    	 	g.add(fondo,new Integer(0));
@@ -60,6 +63,11 @@ public class Map {
 	public void addgraph(JLabel grafico) {
 		fondo.add(grafico);
 		fondo.repaint();
+		
+	}
+	public void desligar(enemigo enemigo) {
+		j.addpuntos(enemigo.getpuntos());
+		lEnemy.remove(enemigo);
 		
 	}
 	

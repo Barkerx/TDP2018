@@ -61,5 +61,10 @@ public void mover(int dir){
 	j.mover(direccion);
 }
 
+public void addpuntos(int getpuntos) {
+	j.sumarEnemigo(getpuntos);
+	
+}
+
 
 }

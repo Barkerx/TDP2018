@@ -3,8 +3,6 @@ package PowerUP;
 import Player.jugador;
 import mapa.Map;
 import mapa.celda;
-import misc.Visitor;
-
 public class pocion extends powerUp{
 
 	public pocion(celda ce, Map m) {

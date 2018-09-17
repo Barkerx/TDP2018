@@ -2,7 +2,6 @@ package disparo;
 
 import mapa.Map;
 import mapa.celda;
-import misc.Unidad;
 import misc.Visitor;
 
 public class DisparoE extends Disparo{
@@ -26,10 +25,7 @@ public class DisparoE extends Disparo{
 			if (ce==null){
 				destruir();
 				sigo=false;
-				}
-				else
-				super.intercambiarceldas(ce, ABAJO);	
+				}	
 		}
 	}
-
 }
