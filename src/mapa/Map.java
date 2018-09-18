@@ -22,16 +22,21 @@ public class Map {
 		int x=8;
 		int y=15;
 		g=gu;
+		//inicializo la matriz de celdas
 		celdas=new celda[x][y];
 		for(int i=0;i<x;i++)
 			for(int j=0;j<y;j++)
 				celdas[i][j]=new celda(i,j);
 		
+		//agrego el personaje a la posicion 5 5
 		p.setCelda(celdas[5][5]);
 		celdas[5][5].setelem(p.getProfundidad(), p);
-		g.setResizable(false);
 		p.setMap(this);
+		//creo la lista de enemigos 
 		lEnemy=new LinkedList<enemigo>();
+		enemigo e=new enemigo(celdas[1][1],this,null);
+		lEnemy.add(e);
+		g.setResizable(false);
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo.png")));
    	 	fondo.setBounds(0, 0, 405, 765);
    	 	g.add(fondo,new Integer(0));
