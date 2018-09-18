@@ -13,6 +13,7 @@ public class enemigo extends nave{
 		super(c,m);
 		ataque = a;
 		visitor=new visitorEnemigo(this);
+		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
 	}
 
 	@Override
