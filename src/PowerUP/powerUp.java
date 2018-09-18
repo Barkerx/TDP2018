@@ -9,7 +9,8 @@ import misc.Visitor;
 public abstract class powerUp extends Unidad{
 
 	public powerUp(celda ce, Map m) {
-		super(ce, m);
+		c=ce;
+		this.m=m;
 		visitor=new visitorPowerUp(this);
 		profundidad=3;
 	}

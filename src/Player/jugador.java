@@ -3,6 +3,8 @@ package Player;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import arma.arma;
+import arma.basico;
 import disparo.Basico;
 import disparo.DisparoP;
 import mapa.celda;
@@ -13,12 +15,15 @@ public class jugador extends nave{
      protected int disparos;
      protected JLabel shieldL;
      protected int shield;
+     protected arma arma;
      public jugador(celda c,Map m) {
-    	 super(c,m);
+    	 this.c=c;
+    	 this.m=m;
     	 visitor=new visitorPlayer(this);
     	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/JugadorImagen2.png")));
     	 puntos=0;
     	 disparos=1;
+    	 arma=new basico(this);
     	 
      }
      public void reducirVida(int n){
@@ -42,12 +47,17 @@ public class jugador extends nave{
      }
 	@Override
 	public void disparar() {
-		//cambiar por arma cuando este implementada;ya que la idea esrecuperar el disparo del arma, la cantidad de disparos estan en el player
-		DisparoP e=new Basico(c,m,this);
-		e.mover();
+		System.out.println("estoy disparando en");
+		System.out.println(arma);
+		DisparoP e=arma.getDisparo();
 	}
 	public void setMap(Map map) {
 		m=map;	
+	}
+	public void setCelda(celda c )
+	{
+		this.c=c;
+		c.objlist()[profundidad]=this;
 	}
 	@Override
 	public boolean Accept(Visitor V) {
@@ -65,6 +75,7 @@ public class jugador extends nave{
 		
 	}
 	public void congelatiempo() {
+	//congelar tiempo
 		puntos=puntos+300;
 		
 	}
@@ -79,6 +90,18 @@ public class jugador extends nave{
 		disparos++;
 		
 		puntos=puntos+300;
+	}
+	public void mejorarDisparo() {
+		arma=arma.levelUP();
+		
+	}
+	public celda getcelda() {
+		// TODO Auto-generated method stub
+		return c;
+	}
+	public Map getmap() {
+		// TODO Auto-generated method stub
+		return m;
 	}
      
 }

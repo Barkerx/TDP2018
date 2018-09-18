@@ -5,16 +5,21 @@ import mapa.Map;
 import mapa.celda;
 import misc.Visitor;
 import misc.nave;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 
 public class enemigo extends nave{
 	private FormaDeAtacar ataque;
 	
 	public enemigo(celda c,Map m,FormaDeAtacar a) {
-		super(c,m);
-		c.setelem(profundidad, this);
-		ataque = a;
+		this.c=c;
+		this.m=m;
+		//ataque = a;
+		puntos=300;
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
+		//run();
 	}
 
 	@Override
@@ -25,23 +30,28 @@ public class enemigo extends nave{
 
 	@Override
 	public boolean Accept(Visitor V) {
-		return V.visitenemigo(this);
+		System.out.println(V);
+			return V.visitenemigo(this);
 	}
 
 	@Override
 	public void run() {
-		// while(isRunning)
-		// mover(a.getdir);
-		//thread.sleep(100);
+	//	 while(isRunning)
+		//	try {
+		//		Thread.sleep(100);
+		//	} catch (InterruptedException e) {
+			//	// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//}
 		
 	}
 	
 	public void destruir(){
 		m.desligar(this);
-		ataque.desvincular();
-		destruir();
-		
+		//ataque.desvincular();
+		super.destruir();
 	}
+	
 
 	public int getpuntos() {
 		return puntos;

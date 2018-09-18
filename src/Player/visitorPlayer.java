@@ -61,7 +61,7 @@ public class visitorPlayer extends Visitor{
 		pw.accionar(j);
 		pw.destruir();
 		
-		return false;
+		return true;
 	}
 
 }

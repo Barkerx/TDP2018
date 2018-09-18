@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
+import PowerUP.MejorarDisparo;
+import PowerUP.powerUp;
 import enemigos.enemigo;
 import gui.Juego;
 import gui.gui;
@@ -34,15 +36,25 @@ public class Map {
 		p.setMap(this);
 		//creo la lista de enemigos 
 		lEnemy=new LinkedList<enemigo>();
-		enemigo e=new enemigo(celdas[1][1],this,null);
-		lEnemy.add(e);
 		g.setResizable(false);
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo.png")));
    	 	fondo.setBounds(0, 0, 405, 765);
    	 	g.add(fondo,new Integer(0));
-   	 	
+   	 	this.j=ju;
    	 	p.initgraph();
+   	 	//creo un enemigo
    	 	
+   	 	enemigo e=new enemigo(celdas[1][1],this,null);
+   	 	celdas[1][1].setelem(e.getProfundidad(),e);
+   	 	lEnemy.add(e);
+   	 	e.initgraph();
+		//creo 2 power ups
+   	 	powerUp po=new MejorarDisparo(celdas[3][3],this);
+   	    celdas[3][3].setelem(po.getProfundidad(), po);
+   	    powerUp p1=new MejorarDisparo(celdas[6][6],this);
+	    celdas[6][6].setelem(p1.getProfundidad(), p1);
+	
+	
 	}
 	public celda mover(celda celda, int dir) {
 		// TODO Auto-generated method stub
@@ -71,9 +83,9 @@ public class Map {
 		
 	}
 	public void desligar(enemigo enemigo) {
-		j.addpuntos(enemigo.getpuntos());
+
 		lEnemy.remove(enemigo);
-		
+		j.addpuntos(enemigo.getpuntos());
 	}
 	
 }

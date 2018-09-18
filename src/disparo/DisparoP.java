@@ -7,12 +7,6 @@ import misc.Visitor;
 
 public abstract class DisparoP extends Disparo{
 	protected jugador j;
-	public DisparoP(celda ce, Map m,jugador j) {
-		super(ce, m);
-		this.j=j;
-		visitor=new visitorDisparoP(this,j);
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Override
 	public boolean Accept(Visitor V) {
@@ -35,6 +29,7 @@ public abstract class DisparoP extends Disparo{
 				}
 		}
 	}*/
+		if(isRunning){
 		System.out.println("Hola entre al mover de disparo p");
 		celda ce=super.mover(ARRIBA);
 		if (ce==null)
@@ -45,4 +40,6 @@ public abstract class DisparoP extends Disparo{
 		}
 		
 	}
+}
+	
 }

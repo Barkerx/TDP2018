@@ -2,6 +2,7 @@ package misc;
 
 import javax.swing.JLabel;
 
+
 import misc.Visitor;
 import mapa.Map;
 import mapa.celda;
@@ -14,10 +15,7 @@ public abstract class Gob {
 	     protected int profundidad;
 	     protected boolean isRunning=true;
 	 	 protected Map m;
-	 	 public Gob(celda c,Map m){
-	 		 this.c=c;
-	 		 this.m=m;
-	 	 }
+	 	 
 	 	 public void reducirVida(int n){
 	 		 vida=vida-n;
 	 		 if (vida<=0)
@@ -34,6 +32,7 @@ public abstract class Gob {
 	    	 isRunning=false;
 	    	 grafico.setIcon(null);
 	    	 c.objlist()[profundidad]=null;
+	    	 initgraph();
 	     }
 	 	public void initgraph(){
 	       	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 100 , 100);

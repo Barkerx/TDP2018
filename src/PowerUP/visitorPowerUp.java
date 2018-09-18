@@ -37,7 +37,7 @@ public class visitorPowerUp extends Visitor {
 		powerUp p=(powerUp)objeto;
 		p.accionar(j);
 		objeto.destruir();
-		return false;
+		return true;
 	}
 
 	@Override
