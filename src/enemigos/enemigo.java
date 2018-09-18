@@ -11,6 +11,7 @@ public class enemigo extends nave{
 	
 	public enemigo(celda c,Map m,FormaDeAtacar a) {
 		super(c,m);
+		c.setelem(profundidad, this);
 		ataque = a;
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
