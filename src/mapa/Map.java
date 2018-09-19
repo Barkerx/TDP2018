@@ -20,6 +20,13 @@ public class Map {
 //	protected IA[] EIA;
 	protected LinkedList<enemigo> lEnemy;
 	protected Juego j;
+	
+	/**
+	 * Crea el mapa con una gui, un juego y un jugador
+	 * @param gu Gui donde se pondran los objetos graficos del mapa
+	 * @param ju Juego que maneja al mapa
+	 * @param p jugador del mapa
+	 */
 	public Map(gui gu,Juego ju,jugador p){
 		int x=8;
 		int y=15;
@@ -56,6 +63,12 @@ public class Map {
 	
 	
 	}
+	/**
+	 * Metodo que a partir de una celda C y una direccion dir retorna la celda que esta al lado de C
+	 * @param celda celda de origen
+	 * @param dir direccion a la cual se desea mover
+	 * @return La celda a moverse, si es una celda permitida, null si es invalida.
+	 */
 	public celda mover(celda celda, int dir) {
 		// TODO Auto-generated method stub
 		celda c;
@@ -70,18 +83,27 @@ public class Map {
 //		case 5:x=x+1;y=y-1; break;
 		case Unidad.DERECHA:x=x+1;break;
 //		case 7:x=x+1;y=y+1; break;
+		case -1:break;
 		}
-		if(x==celdas.length || y==celdas[0].length || y<0 || x<0)	
+		if(x==celdas.length || y==celdas[0].length || y<0 || x<0 )	
 			c=null;
 			else
 				c=celdas[x][y];
 		return c;
 	}
+	/**
+	 * Agrega al mapa el JLabel grafico  
+	 * @param grafico Jlabel que se agregara al mapa
+	 */
 	public void addgraph(JLabel grafico) {
 		fondo.add(grafico);
 		fondo.repaint();
 		
 	}
+	/**
+	 * Separa el enemigo del mapa, asi ya no hay mas relacion entre ellos, es usado al eliminar un enemigo.
+	 * @param enemigo enemigo al que se desea separar del mapa.
+	 */
 	public void desligar(enemigo enemigo) {
 
 		lEnemy.remove(enemigo);

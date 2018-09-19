@@ -5,6 +5,9 @@ import Player.jugador;
 import obstaculos.*;
 import PowerUP.*;
 public abstract  class Visitor {
+	/**
+	 * objeto asociado al visitor
+	 */
    protected Gob objeto;
    
    public abstract boolean VisitDestruible(ParedTodos r);

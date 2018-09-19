@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import mapa.*;
 import misc.Unidad;
+import misc.nave;
 import Player.jugador;
 
 public  class Juego {
@@ -26,7 +27,9 @@ public  class Juego {
 		
 	
 }
-	
+/**
+ * constructor de juego, crea el jugador en nulo crea el mapa y pone la gui visible.	
+ */
 public Juego(){
 	   j=new jugador(null,null);
 	   frame=new gui(this);
@@ -37,7 +40,10 @@ public Juego(){
    
    
   
-  
+  /**
+   * metodo usado para mover el jugador a partir de un n desde la gui
+   * @param dir direccion donde se movera el jugador
+   */
 
 public void mover(int dir){
    int direccion = 0;
@@ -55,12 +61,17 @@ public void mover(int dir){
 			direccion = Unidad.DERECHA;
 			break;
 		case KeyEvent.VK_SPACE : //Espacio
-			direccion=-1;
+			direccion= nave.DISPARAR;
 			break;
 	}
+	
 	j.mover(direccion);
+	
 }
-
+/**
+ * metodo usado para aumentar los puntos del jugador
+ * @param getpuntos puntos a sumar en el jugador
+ */
 public void addpuntos(int getpuntos) {
 	j.sumarEnemigo(getpuntos);
 	

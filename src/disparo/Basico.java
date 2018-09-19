@@ -10,12 +10,9 @@ import mapa.celda;
 public class Basico extends DisparoP{
 
 	public Basico(celda c, Map m,jugador j) {
-		this.c=c;
-		this.m=m;
-		this.j=j;
+		super(c,m,j);
 		damage=20;
 		velocidad=40;
-		visitor=new visitorDisparoP(this,j);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/disparo.png")));
 		initgraph();
 		run();

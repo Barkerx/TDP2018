@@ -11,7 +11,12 @@ import javax.swing.JLabel;
 
 public class enemigo extends nave{
 	private FormaDeAtacar ataque;
-	
+	/**
+	 * constructor del enemigo, lo crea y pone los graficos.
+	 * @param c celda donde va a estar el enemigo
+	 * @param m mapa donde va a estar el enemigo
+	 * @param a forma de atacar que tendra el enemigo
+	 */
 	public enemigo(celda c,Map m,FormaDeAtacar a) {
 		this.c=c;
 		this.m=m;
@@ -30,7 +35,6 @@ public class enemigo extends nave{
 
 	@Override
 	public boolean Accept(Visitor V) {
-		System.out.println(V);
 			return V.visitenemigo(this);
 	}
 
@@ -45,14 +49,19 @@ public class enemigo extends nave{
 			//}
 		
 	}
-	
+	/**
+	 * redefine el metodo eliminar de Gob, lo desrelaciona con el mapa, se desvincula de la IA que lo maneja, y luego se destruye.
+	 */
 	public void destruir(){
 		m.desligar(this);
 		//ataque.desvincular();
 		super.destruir();
 	}
 	
-
+/**
+ * retorna la cantidad de puntos asociada al enemigo
+ * @return puntos del enemigo
+ */
 	public int getpuntos() {
 		return puntos;
 	}

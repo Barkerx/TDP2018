@@ -22,6 +22,7 @@ public class jugador extends nave{
     	 visitor=new visitorPlayer(this);
     	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/JugadorImagen2.png")));
     	 puntos=0;
+    	 vida=100;
     	 disparos=1;
     	 arma=new basico(this);
     	 
@@ -36,19 +37,18 @@ public class jugador extends nave{
     	 else
     		super.reducirVida(n);    	  
     	 
+    	 System.out.println(vida);
      }
      public void sumarEnemigo(int n){
     	 puntos=puntos+n;
      }
-     public celda mover(int n){
-    	 celda c2=super.mover(n);
-    	 disparar();
-    	 return c2;
+     public celda mover(int n){ 	
+    	celda c2=super.mover(n);
+    	disparar(); 	
+    	return c2;
      }
 	@Override
 	public void disparar() {
-		System.out.println("estoy disparando en");
-		System.out.println(arma);
 		DisparoP e=arma.getDisparo();
 	}
 	public void setMap(Map map) {

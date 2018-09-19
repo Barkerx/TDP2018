@@ -28,13 +28,10 @@ public class DisparoE extends Disparo{
 		return V.visitDisparoEnemigo(this);
 	}
 	public void mover(){
-		boolean sigo=true;
-		while(sigo){
 			celda ce=super.mover(ABAJO);
 			if (ce==null){
 				destruir();
-				sigo=false;
 				}	
 		}
 	}
-}
+
