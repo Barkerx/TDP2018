@@ -41,6 +41,7 @@ public class jugador extends nave{
      }
      public void sumarEnemigo(int n){
     	 puntos=puntos+n;
+	 System.out.println(puntos);
      }
      public celda mover(int n){ 	
     	celda c2=super.mover(n);
