@@ -13,6 +13,7 @@ public class ParedTodos extends obstaculo {
 		super(ce, m);
 		visitor=new visitorDestruibleTodos(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredtodos.png")));
+		initgraph();
 	}
 
 	@Override
