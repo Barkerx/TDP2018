@@ -183,4 +183,25 @@ public abstract class Map extends Thread {
 		stopSound();
 		j.win();
 	}
+	public void crearObstaculo() {
+		Random r=new Random();
+		int i=0;
+		while(i<8)
+			{
+			int x=r.nextInt(12)+4;
+			int y=r.nextInt(5)+5;
+			if(celdas[x][y].objlist()[0]==null)
+				{	
+				obstaculo p;
+				int c=r.nextInt(2);
+				switch(c){
+					case 0:p=new ParedPlayer(celdas[x][y],this);break;
+					case 1:p=new ParedTodos(celdas[x][y],this);break;
+					}
+				i++;
+				}
+			}
+	}
+	
+	
 }
