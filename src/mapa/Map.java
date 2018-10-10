@@ -144,11 +144,18 @@ public abstract class Map extends Thread {
 	public void restart(enemigoAbstract enemigoAbstract) {
 		celda c=enemigoAbstract.getcelda();
 		Random r= new Random();
+		boolean b=true;
+		while(b){
 		int x=r.nextInt(17)+2;
-		enemigoAbstract.setCelda(celdas[x][1]);
-		celdas[x][1].setelem(enemigoAbstract.getProfundidad(), enemigoAbstract);
+		int y=r.nextInt(3)+1;
+		if(celdas[x][y].objlist()[1]==null){
+		enemigoAbstract.setCelda(celdas[x][y]);
+		celdas[x][y].setelem(enemigoAbstract.getProfundidad(), enemigoAbstract);
 		c.setelem(enemigoAbstract.getProfundidad(), null);
 		enemigoAbstract.initgraph();
+		b=false;
+			}
+		}
 		
 	}
 	
