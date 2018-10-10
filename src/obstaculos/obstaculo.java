@@ -9,10 +9,11 @@ public abstract class obstaculo extends Gob{
 		this.c=c;
 		this.m=m;
 		profundidad=0;
+		vida=100;
 	}
 	
 	public void destruir(){
-		//c.explotar();
+		explotar();
 		super.destruir();
 	}
 	
