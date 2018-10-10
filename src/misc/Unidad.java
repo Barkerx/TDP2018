@@ -23,13 +23,11 @@ public abstract class Unidad extends Gob implements Runnable{
  * @return la celda a d onde se movera(si no se puede mover retorna null y no hace el cambio de celdas)(usado para metodos que lo redefinen)
  */
 	public celda mover(int n){
-		celda w=c;
-		
+		celda w=c;	
 		if(!moviendo){
 			w=m.mover(c,n);
 		if(w!=null)
 			intercambiarceldas(w,n);
-		
 		}
 		
 		
@@ -39,7 +37,7 @@ public abstract class Unidad extends Gob implements Runnable{
 	 * realiza la colision en el caso que hallan haciendo el accept aca objeto existente en la celda y tambien el intercambio de celdas.
 	 * @param d celda a la cual nos deseamos mover
 	 */
-	private void intercambiarceldas(celda d,int n){
+	private void intercambiarceldas(celda d,int n){	
 		boolean b=true;
 		for(int i=0;i<4&&b&&isRunning;i++){
 			if( d.objlist()[i]!=null){
@@ -48,12 +46,13 @@ public abstract class Unidad extends Gob implements Runnable{
 				}
 		}
 		
-		if(b){	
+		if(b&&isRunning){	
 		moviendo=true;
-		System.out.println(profundidad);
 		d.setelem(profundidad,this);
 		c.setelem(profundidad,null);
 		c=d;
+		x=d.getposx();
+		y=d.getposy();
 		dir=n;
 		moverGrafico();
 		}

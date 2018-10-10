@@ -32,6 +32,8 @@ public class enemigo extends enemigoAbstract{
 		shieldL=null;
 		vida=maxVida;
 		velocidad=16;
+		x=c.getposx();
+		y=c.getposy();
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
 		initgraph();
@@ -49,7 +51,8 @@ public class enemigo extends enemigoAbstract{
 			
 	}
 	public void disparar() {
-		new disparoEnemy(c,m);
+		if(isRunning)
+			new disparoEnemy(c,m);
 	}
 
 	

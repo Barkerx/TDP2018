@@ -20,6 +20,8 @@ public abstract class powerUp extends Unidad{
 		shieldL=null;
 		visitor=new visitorPowerUp(this);
 		profundidad=3;
+		x=c.getposx();
+		y=c.getposy();
 		
 	}
 	

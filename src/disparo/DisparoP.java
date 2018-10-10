@@ -23,6 +23,8 @@ public abstract class DisparoP extends Disparo{
 		profundidad=2;
 		visitor=new visitorDisparoP(this,j);
 		pasos=0;
+		x=c.getposx();
+		y=c.getposy();
 	}
 	
 	@Override

@@ -18,8 +18,9 @@ public class visitorDisparoE extends Visitor{
 	public boolean VisitDestruible(ParedTodos r) {
 		if(r.getIsRunning()&&objeto.getIsRunning()){
 		DisparoE aux=(DisparoE) objeto;
-		r.reducirVida(aux.getdamage());
-		objeto.destruir();}
+		int t=aux.getdamage();
+		objeto.destruir();
+		r.reducirVida(t);}
 		return false;
 	}
 

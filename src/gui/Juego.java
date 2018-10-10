@@ -79,8 +79,6 @@ public void addpuntos(int getpuntos) {
  * Metodo usado cuando se gana el juego
  */
 public void win() {
-	System.out.println(n);
-	System.out.println("gane un nivel");
 		n=n+1;
 	if(!gane){	
 		if(n==2)

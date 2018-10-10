@@ -20,6 +20,8 @@ public class Boss extends enemigoAbstract{
 		puntos=300;
 		shieldL=null;
 		vida=200;
+		x=c.getposx();
+		y=c.getposy();
 		velocidad=16;
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));

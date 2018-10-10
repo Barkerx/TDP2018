@@ -15,6 +15,8 @@ public class DisparoBoss extends DisparoE{
 		profundidad=2;
 		velocidad=30;
 		damage=50;
+		x=c.getposx();
+		y=c.getposy();
 		this.dir=dir;
 		shieldL=null;
 		moviendo=false;

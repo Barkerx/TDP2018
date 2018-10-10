@@ -14,6 +14,8 @@ public class disparoEnemy extends DisparoE{
 		profundidad=2;
 		velocidad=50;
 		damage=30;
+ 
+		y=c.getposy();
 		shieldL=null;
 		moviendo=false;
 		visitor=new visitorDisparoE(this);

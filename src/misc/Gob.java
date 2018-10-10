@@ -12,6 +12,7 @@ public abstract class Gob {
 		 protected Visitor visitor;
 	  	 protected JLabel grafico;
 	     protected celda c;
+	     protected int x,y;
 	     protected int vida;
 	     protected int profundidad;
 	     protected  volatile boolean isRunning=true;
@@ -50,13 +51,16 @@ public abstract class Gob {
 	      * Metodo usado para eliminar un Gob(tanto logica como graficamente)
 	      */
 	     public void destruir(){
-	    	 if(isRunning){
-	    	 isRunning=false;
+	    	 if(isRunning&&c!=null){
+	         isRunning=false;
+	         int x=c.getposx();
+	    	 int y=c.getposy();
+	         c.setelem(profundidad,null);
+	         c=null;
 	    	 grafico.setIcon(null);
-	    	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+	    	 grafico.setBounds(x*45, y*45, 45 , 45);
 	    	 m.addgraph(grafico);
-	    	 c.setelem(profundidad,null);
-	    	 }
+	    	}
 	     }
 	     
 	     /**
@@ -86,8 +90,10 @@ public abstract class Gob {
  *Metodo usado para Explotar el gob(mas que nada hace una explosion grafica 
  */
 		public void explotar(){
+		if(isRunning){
+	    c.setelem(profundidad,null);		
 		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
-		grafico.setBounds(c.getposx()*45, c.getposy()*45, 45, 45);
+		grafico.setBounds(x*45, y*45, 45, 45);
 		m.addgraph(grafico);
 		try {
 			Thread.sleep(200);
@@ -96,7 +102,7 @@ public abstract class Gob {
 			e.printStackTrace();
 		}
 		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
-		grafico.setBounds(c.getposx()*45, c.getposy()*45, 45, 45);
+		grafico.setBounds(x*45, y*45, 45, 45);
 		m.addgraph(grafico);
 		try {
 			Thread.sleep(200);
@@ -104,8 +110,6 @@ public abstract class Gob {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		grafico.setIcon(null);
-		m.addgraph(grafico);
-	}	
+		}	
+		}	
 }

@@ -18,6 +18,8 @@ public class FinalBOSS extends enemigoAbstract {
 		this.m=m;
 		this.dir=dir;
 		puntos=300;
+		x=c.getposx();
+		y=c.getposy();
 		grafico=new JLabel();
 		shieldL=null;
 		velocidad=16;
@@ -62,7 +64,7 @@ public class FinalBOSS extends enemigoAbstract {
 	celda n=c;
 	while(i<12){
 	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1d.png")));
-	grafico.setBounds(n.getposx()*45,n.getposy()*45,45,45);
+	grafico.setBounds(x*45,y*45,45,45);
 	m.addgraph(grafico,2);
 	try {
 		Thread.sleep(100);

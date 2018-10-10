@@ -19,8 +19,10 @@ public class visitorDisparoP extends Visitor {
 	public boolean VisitDestruible(ParedTodos r) {
 		if(r.getIsRunning()&&objeto.getIsRunning()){
 		DisparoP aux=(DisparoP) objeto;
-		r.reducirVida(aux.getdamage());
-		objeto.destruir();}
+		int t=aux.getdamage();
+		objeto.destruir();
+		r.reducirVida(t);
+		}
 		return false;
 	}
 
@@ -28,8 +30,9 @@ public class visitorDisparoP extends Visitor {
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
 		if(w.getIsRunning() && objeto.getIsRunning()){
 		DisparoP aux=(DisparoP) objeto;
-		w.reducirVida(aux.getdamage());
-		objeto.destruir();}
+		int t=aux.getdamage();
+		objeto.destruir();
+		w.reducirVida(t);}
 		return false;
 	}
 
@@ -37,8 +40,9 @@ public class visitorDisparoP extends Visitor {
 	public boolean visitenemigo(enemigoAbstract p) {
 		if(objeto.getIsRunning()&&p.getIsRunning()){
 			DisparoP aux=(DisparoP) objeto;
-			p.reducirVida(aux.getdamage());
+			int t=aux.getdamage();
 			objeto.destruir();
+			p.reducirVida(t);
 			}
 		return true;
 	}

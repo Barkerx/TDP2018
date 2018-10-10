@@ -15,8 +15,7 @@ public class DisparoRun implements Runnable{
     	 boolean isRunnable=d.getIsRunning();
     	 while(isRunnable){
           isRunnable=d.getIsRunning();
-           if(isRunnable ){
-        	   if (!moviendo){
+           if(isRunnable &&!moviendo){
   		            d.mover();
   		          
   		          try{
@@ -25,7 +24,6 @@ public class DisparoRun implements Runnable{
   		          catch (Exception e){;}
   		            }
            }
-  	   }
     	 t.interrupt();
      }
 }
