@@ -13,6 +13,7 @@ public class ParedPlayer extends obstaculo {
 		super(ce, m);
 		visitor=new visitorDestruibleplayer(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredplayer.png")));
+		initgraph();
 	}
 
 	@Override
