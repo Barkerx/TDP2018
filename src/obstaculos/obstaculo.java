@@ -11,5 +11,10 @@ public abstract class obstaculo extends Gob{
 		profundidad=0;
 	}
 	
+	public void destruir(){
+		//c.explotar();
+		super.destruir();
+	}
+	
 	
 }

@@ -4,7 +4,7 @@ import Player.jugador;
 import PowerUP.powerUp;
 import disparo.DisparoE;
 import disparo.DisparoP;
-import enemigos.enemigo;
+import enemigos.enemigoAbstract;
 import misc.Visitor;
 
 public class visitorDestruibleplayer extends Visitor {
@@ -26,7 +26,7 @@ public class visitorDestruibleplayer extends Visitor {
 	}
 
 	@Override
-	public boolean visitenemigo(enemigo p) {
+	public boolean visitenemigo(enemigoAbstract p) {
 		// TODO Auto-generated method stub
 		return true;
 	}

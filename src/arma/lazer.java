@@ -1,7 +1,6 @@
 package arma;
 
 import Player.jugador;
-import disparo.DisparoP;
 import disparo.Laser;
 
 public class lazer extends arma{
@@ -18,8 +17,26 @@ public class lazer extends arma{
 	}
 
 	@Override
-	public DisparoP getDisparo() {
-		return new Laser(j.getcelda(),j.getmap(),j);
-	}
+	public void getDisparo() {
+		if(j.cantDisparos()==1)
+			new Laser(j.getcelda(),j.getmap(),j);
+			else
+				if(j.cantDisparos()==2)
+				{	
+					if(j.getceldaizq()!=null)
+						new Laser(j.getceldaizq(),j.getmap(),j);
+					if(j.getceldader()!=null)
+						new Laser(j.getceldader(),j.getmap(),j);
+				}
+				else
+					if(j.cantDisparos()==3){
+						if(j.getceldaizq()!=null)
+							new Laser(j.getceldaizq(),j.getmap(),j);
+						if(j.getceldader()!=null)
+							new Laser(j.getceldader(),j.getmap(),j);
+						new Laser(j.getcelda(),j.getmap(),j);
+					}
+		
+		}
 
 }

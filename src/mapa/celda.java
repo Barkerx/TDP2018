@@ -1,18 +1,21 @@
 package mapa;
 
+
 import misc.Gob;
 
 public class celda {
 	protected Gob objects[];
+	protected Map m;
 	protected int x,y;
 	/**
 	 * Crea una celda con todos sus elementos en nulo
 	 * @param x posicion x de la celda
 	 * @param y posicion y de la celda
 	 */
-	public celda(int x,int y){
+	public celda(int x,int y,Map m){
 		this.x=x;
 		this.y=y;
+		this.m=m;
 		objects= new Gob[4];
 		objects[0]=null;
 		objects[1]=null;
@@ -48,6 +51,4 @@ public class celda {
 	public int getposy(){
 		return y;	
 	}
-
-
 }

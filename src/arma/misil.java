@@ -1,8 +1,6 @@
 package arma;
 
 import Player.jugador;
-import disparo.Basico;
-import disparo.DisparoP;
 import disparo.Misil;
 
 public class misil extends arma{
@@ -18,8 +16,26 @@ public class misil extends arma{
 	}
 
 	@Override
-	public DisparoP getDisparo() {
-		return new Misil(j.getcelda(),j.getmap(),j);
-	}
+	public void getDisparo() {
+		if(j.cantDisparos()==1)
+			new Misil(j.getcelda(),j.getmap(),j);
+			else
+				if(j.cantDisparos()==2)
+				{
+					if(j.getceldaizq()!=null)
+						new Misil(j.getceldaizq(),j.getmap(),j);
+					if(j.getceldader()!=null)
+						new Misil(j.getceldader(),j.getmap(),j);
+				}
+				else
+					if(j.cantDisparos()==3){
+						if(j.getceldaizq()!=null)
+							new Misil(j.getceldaizq(),j.getmap(),j);
+						if(j.getceldader()!=null)
+							new Misil(j.getceldader(),j.getmap(),j);
+						new Misil(j.getcelda(),j.getmap(),j);
+					}
+		
+		}
 
 }

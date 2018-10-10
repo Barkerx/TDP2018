@@ -1,69 +1,56 @@
 package enemigos;
 
-import iAenemigos.FormaDeAtacar;
+import iAenemigos.*;
 import mapa.Map;
 import mapa.celda;
-import misc.Visitor;
-import misc.nave;
+import misc.Unidad;
+
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import disparo.disparoEnemy;
+import gui.Juego;
 
 
-public class enemigo extends nave{
-	private FormaDeAtacar ataque;
+public class enemigo extends enemigoAbstract{
+	private static final int maxVida=100;
 	/**
 	 * constructor del enemigo, lo crea y pone los graficos.
 	 * @param c celda donde va a estar el enemigo
 	 * @param m mapa donde va a estar el enemigo
 	 * @param a forma de atacar que tendra el enemigo
 	 */
-	public enemigo(celda c,Map m,FormaDeAtacar a) {
+		
+	
+	public enemigo(celda c,Map m,Juego j) {
+		profundidad=1;
 		this.c=c;
+		c.setelem(profundidad,this);
 		this.m=m;
-		//ataque = a;
 		puntos=300;
+		shieldL=null;
+		vida=maxVida;
+		velocidad=16;
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
-		//run();
+		initgraph();
+		Random r=new Random();
+		int a=r.nextInt(3);
+		switch (a){
+		
+		case 0:ataque = new Buscador(j,this);
+				break;
+		case 1:ataque = new Kamikaze(j,this);
+				break;
+		case 2:ataque = new BuscadorTemporal(j,this);		
+				break;	
+		}
+			
 	}
-
-	@Override
 	public void disparar() {
-		// TODO Auto-generated method stub
-		
+		new disparoEnemy(c,m);
 	}
 
-	@Override
-	public boolean Accept(Visitor V) {
-			return V.visitenemigo(this);
-	}
-
-	@Override
-	public void run() {
-	//	 while(isRunning)
-		//	try {
-		//		Thread.sleep(100);
-		//	} catch (InterruptedException e) {
-			//	// TODO Auto-generated catch block
-			//	e.printStackTrace();
-			//}
-		
-	}
-	/**
-	 * redefine el metodo eliminar de Gob, lo desrelaciona con el mapa, se desvincula de la IA que lo maneja, y luego se destruye.
-	 */
-	public void destruir(){
-		m.desligar(this);
-		//ataque.desvincular();
-		super.destruir();
-	}
 	
-/**
- * retorna la cantidad de puntos asociada al enemigo
- * @return puntos del enemigo
- */
-	public int getpuntos() {
-		return puntos;
-	}
-
 }

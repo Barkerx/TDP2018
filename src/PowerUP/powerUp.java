@@ -12,11 +12,15 @@ public abstract class powerUp extends Unidad{
 	 * @param ce celda donde se encuntra el powerUP
 	 * @param m Mapa donde se encuentra el PowerUP
 	 */
+	
 	public powerUp(celda ce, Map m) {
 		c=ce;
 		this.m=m;
+		velocidad=50;
+		shieldL=null;
 		visitor=new visitorPowerUp(this);
 		profundidad=3;
+		
 	}
 	
 	public boolean Accept(Visitor V){
@@ -28,8 +32,16 @@ public abstract class powerUp extends Unidad{
 	 */
 	public abstract void accionar(jugador j);
 	
-	public void run(){
-		
+	public void mover(){
+		if(isRunning){
+		//	while(isRunning){
+			celda ce=super.mover(ABAJO);
+				if (ce==null)
+				{	
+					destruir();
+				}
+		//	}	
+		}
 	}
 
 }

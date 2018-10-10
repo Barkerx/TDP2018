@@ -11,8 +11,9 @@ public class MejorarDisparo extends powerUp{
 
 	public MejorarDisparo(celda ce, Map m) {
 		super(ce, m);
-		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredplayer.png")));
+		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/mejorarDisparo.png")));
 		initgraph();
+		new powerUpRun(this);
 		// TODO Auto-generated constructor stub
 	}
 

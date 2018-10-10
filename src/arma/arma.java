@@ -1,7 +1,6 @@
 package arma;
 
 import Player.jugador;
-import disparo.DisparoP;
 
 public abstract class arma {
 	protected jugador j;
@@ -21,5 +20,6 @@ public abstract class arma {
 	 * Obtiene el disparo asociado al arma
 	 * @return el disparo asociado al arma
 	 */
-	public abstract DisparoP getDisparo();
+	
+	public abstract void getDisparo();
 }

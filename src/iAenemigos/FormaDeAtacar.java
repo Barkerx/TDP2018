@@ -1,10 +1,22 @@
 package iAenemigos;
 
-public abstract class FormaDeAtacar {
+import enemigos.enemigoAbstract;
+import gui.Juego;
 
-	public void desvincular() {
-		// TODO Auto-generated method stub
-		
+public abstract class FormaDeAtacar implements Runnable{
+	
+	protected Thread t1;
+	protected Juego j;
+	protected boolean waked=true;
+	protected enemigoAbstract e;
+	
+	protected FormaDeAtacar(Juego j,enemigoAbstract e){
+		this.j=j;
+		this.e=e;
 	}
-
+	
+	public void congelar() {
+		waked=false;
+	}
+	
 }

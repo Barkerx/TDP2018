@@ -1,14 +1,19 @@
 package PowerUP;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import Player.jugador;
 import mapa.Map;
 import mapa.celda;
-import misc.Visitor;
 
 public class AumentarCantDisparos extends powerUp{
 
-	public AumentarCantDisparos(celda ce, Map m, Visitor v) {
+	public AumentarCantDisparos(celda ce, Map m) {
 		super(ce, m);
+		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/aumentarDisparo.png")));
+		initgraph();
+		new powerUpRun(this);
 		// TODO Auto-generated constructor stub
 	}
 

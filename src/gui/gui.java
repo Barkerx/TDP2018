@@ -1,16 +1,10 @@
 package gui;
 import javax.swing.border.EmptyBorder;
 
-
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-
 import javax.swing.JLayeredPane;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 
@@ -28,7 +22,6 @@ public class gui extends JFrame implements Runnable {
 	protected boolean keyBoardRightPressed;
 	
 	protected boolean keyBoardSPACEPressed;
-	
 	private static Juego j;
 
 	public gui(final Juego j) {	
@@ -53,10 +46,7 @@ public class gui extends JFrame implements Runnable {
 							}
 							else
 								if(arg0.getKeyCode()==KeyEvent.VK_SPACE)
-								j.mover(KeyEvent.VK_SPACE);
-							
-				
-							
+								j.mover(KeyEvent.VK_SPACE);				
 			}
 			public void keyReleased(KeyEvent arg0){
 				if(arg0.getKeyCode()==KeyEvent.VK_UP){
@@ -83,14 +73,14 @@ public class gui extends JFrame implements Runnable {
         //crea la ventana de la gui.
 		getContentPane().setLayout(null);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 405, 765);
+		setBounds(0, 0, 910, 710);
 		setLocationRelativeTo(null);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//inicializa los oyentes y la gui
+		//inicializa la gui
 		
 		t=new Thread(this);
 		t.start();

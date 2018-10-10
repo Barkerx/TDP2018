@@ -3,7 +3,7 @@ package Player;
 import PowerUP.powerUp;
 import disparo.DisparoE;
 import disparo.DisparoP;
-import enemigos.enemigo;
+import enemigos.enemigoAbstract;
 import misc.*;
 import obstaculos.ParedPlayer;
 import obstaculos.ParedTodos;
@@ -27,7 +27,7 @@ public class visitorPlayer extends Visitor{
 	}
 
 	@Override
-	public boolean visitenemigo(enemigo p) {
+	public boolean visitenemigo(enemigoAbstract p) {
 		p.destruir();
 		jugador j=(jugador) objeto;
 		j.reducirVida(50);

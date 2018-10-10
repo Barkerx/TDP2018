@@ -3,13 +3,13 @@ package PowerUP;
 import Player.jugador;
 import disparo.DisparoE;
 import disparo.DisparoP;
-import enemigos.enemigo;
+import enemigos.enemigoAbstract;
 import misc.Visitor;
 import obstaculos.ParedPlayer;
 import obstaculos.ParedTodos;
 
 public class visitorPowerUp extends Visitor {
-
+;
 	public visitorPowerUp(powerUp o) {
 		objeto=o;
 	}
@@ -27,7 +27,7 @@ public class visitorPowerUp extends Visitor {
 	}
 
 	@Override
-	public boolean visitenemigo(enemigo p) {
+	public boolean visitenemigo(enemigoAbstract p) {
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -42,8 +42,11 @@ public class visitorPowerUp extends Visitor {
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
+		
 		powerUp p=(powerUp) objeto;
 		p.accionar(d.get());
+		d.destruir();
+		objeto.destruir();
 		return false;
 	}
 

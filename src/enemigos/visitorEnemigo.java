@@ -10,7 +10,7 @@ import obstaculos.ParedTodos;
 
 public class visitorEnemigo extends Visitor {
 
-	public visitorEnemigo(enemigo enemigo) {
+	public visitorEnemigo(enemigoAbstract enemigo) {
 		objeto=enemigo;
 	}
 
@@ -27,7 +27,7 @@ public class visitorEnemigo extends Visitor {
 	}
 
 	@Override
-	public boolean visitenemigo(enemigo p) {
+	public boolean visitenemigo(enemigoAbstract p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -35,6 +35,7 @@ public class visitorEnemigo extends Visitor {
 	@Override
 	public boolean visitPlayer(jugador j) {
 		j.reducirVida(50);
+		objeto.destruir();
 		return false;
 	}
 
@@ -42,7 +43,7 @@ public class visitorEnemigo extends Visitor {
 	public boolean visitDisparoPlayer(DisparoP d) {
 		objeto.reducirVida(d.getdamage());
 		d.destruir();
-		return false;
+		return true;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package misc;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
@@ -13,8 +14,9 @@ public abstract class Gob {
 	     protected celda c;
 	     protected int vida;
 	     protected int profundidad;
-	     protected boolean isRunning=true;
+	     protected  volatile boolean isRunning=true;
 	 	 protected Map m;
+	 	 protected volatile Thread t1;
 	 	 /**
 	 	  * metodo usado para reducir la vida en n del Gob
 	 	  * @param n vida a reducir del Gob
@@ -40,7 +42,7 @@ public abstract class Gob {
 	     /**
 	      * metodo para setear un grafico al Gob
 	      * @param graf el grafico que queremos setear
-	      */
+	      */    
 	     public void setGrafico(JLabel graf){
 	    	 grafico=graf;
 	     }
@@ -50,14 +52,16 @@ public abstract class Gob {
 	     public void destruir(){
 	    	 isRunning=false;
 	    	 grafico.setIcon(null);
-	    	 c.objlist()[profundidad]=null;
-	    	 initgraph();
+	    	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+	    	 m.addgraph(grafico);
+	    	 c.objlist()[profundidad]=null;    
 	     }
+	     
 	     /**
 	      * metodo usado para actualizar la grafica en el mapa.
 	      */
 	 	public void initgraph(){
-	       	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 100 , 100);
+	       	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
 	         m.addgraph(grafico);
 	 	}
 	 /**
@@ -74,5 +78,30 @@ public abstract class Gob {
 	     public boolean getIsRunning(){
 	    	 return isRunning;
 	     }
-	     
+		
+		//grafico.getVisibleRect().intersects(arg0)
+
+		public void explotar(){
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
+		grafico.setBounds(c.getposx()*45, c.getposy()*45, 45, 45);
+		m.addgraph(grafico);
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
+		grafico.setBounds(c.getposx()*45, c.getposy()*45, 45, 45);
+		m.addgraph(grafico);
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		grafico.setIcon(null);
+		m.addgraph(grafico);
+	}	
 }

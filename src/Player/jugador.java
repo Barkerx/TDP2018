@@ -5,104 +5,202 @@ import javax.swing.JLabel;
 
 import arma.arma;
 import arma.basico;
-import disparo.Basico;
-import disparo.DisparoP;
 import mapa.celda;
 import mapa.*;
 import misc.*;
 
 public class jugador extends nave{
      protected int disparos;
-     protected JLabel shieldL;
      protected int shield;
      protected arma arma;
+     protected int vidas;
+     protected boolean puede;
      public jugador(celda c,Map m) {
     	 this.c=c;
     	 this.m=m;
+    	 profundidad=1;
     	 visitor=new visitorPlayer(this);
-    	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/JugadorImagen2.png")));
+    	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/jugador.gif")));
     	 puntos=0;
-    	 vida=100;
+    	 vidas=3;
+    	 velocidad=16;
+    	 moviendo=false;
+    	 shieldL=new JLabel();
+    	 shieldL.setIcon(null);
+    	 vida=100; 
+    	 puede=true;
     	 disparos=1;
-    	 arma=new basico(this);
-    	 
+    	 arma=new basico(this); 
      }
+     
+     public void changeRunning(){
+    	 if(isRunning)
+    		 isRunning=false;
+    	 else
+    		 isRunning=true;
+     }
+     /**
+      * metodo que redefine al reducirVida de Gob, ya que aplica el escudo.
+      */
      public void reducirVida(int n){
-    	 if(shieldL!=null){
+    	 if(shieldL.getIcon()!=null){
     		 shield=shield-1;
-    		 if (shield==0)
-        		 shieldL=null;
+    		 if (shield==0){
+        		 shieldL.setIcon(null);
+        		 m.addgraph(shieldL,2);
+    		 }
         	
     	 }
-    	 else
-    		super.reducirVida(n);    	  
+    	 else{
+    		vida=vida-n;
+    		if(vidas==0)
+    			m.gameover(this);
+    		else
+    			if (vida<=0){
+    				vida=100;
+    				disparos=1;
+    				arma=new basico(this);
+    				vidas=vida-1;
+    				m.resetearJugador(this);
+    		} 
     	 
-    	 System.out.println(vida);
+    	 }
+    }
+     public void initgraph(){
+    	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+         m.addgraph(grafico);
+         if(shieldL.getIcon()!=null){
+         shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+         m.addgraph(shieldL,2);}
      }
+     /**
+      * metodo para sumar puntos al player usado por el juego
+      * @param n puntaje a sumar
+      */
      public void sumarEnemigo(int n){
-    	 puntos=puntos+n;
-	 System.out.println(puntos);
+    	 puntos=puntos+n;      
      }
+     /**
+      * metodo que redefine el mover de unidad ya que tiene en cuenta el disparo
+      */
      public celda mover(int n){ 	
-    	celda c2=super.mover(n);
-    	disparar(); 	
+    	celda c2=null;
+    	 if(n!=-1){
+    		c2=super.mover(n);
+    		puede=true; // al moverse uno habilita el disparo
+    	 }
+    	else{
+    		moviendo=false;
+    		disparar();
+    		moviendo=false;
+    	}
     	return c2;
+    	
      }
-	@Override
+	
+	/**
+	 * metodo usado para disparar,el disparo es obtenido por el arma
+	 */
 	public void disparar() {
-		DisparoP e=arma.getDisparo();
+		if(!moviendo && puede){
+			arma.getDisparo();
+			puede=false;
+			}
 	}
 	public void setMap(Map map) {
 		m=map;	
 	}
-	public void setCelda(celda c )
-	{
-		this.c=c;
-		c.objlist()[profundidad]=this;
-	}
+	
 	@Override
 	public boolean Accept(Visitor V) {
 		return V.visitPlayer(this);
 	}
+	/**
+	 * metodo usado para recuperar el puntaje del jugador y de esa forma escribirlo en la gui
+	 * @return puntaje del jugador
+	 */
+	public int getPoints(){
+		return puntos;
+	}
+	
+	public Map getmap() {
+		// TODO Auto-generated method stub
+		return m;
+	}
+	public int cantDisparos() {
+		return disparos;
+	}
+	//POWERUPS
+	/**
+	 * pocion
+	 */
 	public void pocion() {
 		vida=vida+30;
 		puntos = puntos+300;
 	}
-	public int getPoints(){
-		return puntos;
-	}
-	@Override
-	public void run() {
-		
-	}
+	/**
+	 * congela la IA de los enemigos.
+	 */
 	public void congelatiempo() {
-	//congelar tiempo
+		if(m!=null)
+			m.congelatiempo(this);
 		puntos=puntos+300;
 		
 	}
+	/**
+	 * setea un escudo en el jugador, con el cual evita 2 golpes
+	 */
 	public void setshield() {
-		shieldL=new JLabel(new ImageIcon(this.getClass().getResource("/resources/JugadorImagen2.png")));
+		if(shieldL.getIcon()==null)
+		{shieldL.setIcon(new ImageIcon(this.getClass().getResource("/resources/shield.png")));
+		m.addgraph(shieldL,2);}
 		shield=3;
-		
 		puntos=puntos+300;
 	}
+	/**
+	 * aumenta la cantidad de disparos del jugador(maximo 3)
+	 */
 	public void aumentar() {
 		if(disparos<3)
 		disparos++;
 		
 		puntos=puntos+300;
 	}
+	
+	/**
+	 * mejora el disparo a el siguiente(el maximo es el misil)
+	 */
 	public void mejorarDisparo() {
 		arma=arma.levelUP();
+		puntos=puntos+300;
+	}
+	/**
+	 * metodo que daña a todos los enemigos del mapa.
+	 */
+	public void supermisil() {
+		if(m!=null)
+			m.supermisil();
 		
 	}
-	public celda getcelda() {
-		// TODO Auto-generated method stub
-		return c;
+	public void candisparar() {
+		puede=true;
+		
 	}
-	public Map getmap() {
-		// TODO Auto-generated method stub
-		return m;
+	public celda getceldaizq() {
+		if(m!=null)
+		return m.mover(c,IZQUIERDA );
+		else
+			return null;
+	}
+	public celda getceldader() {
+		if(m!=null)
+		return m.mover(c,DERECHA);
+		else
+			return null;
+	}
+
+	public void setCelda(celda celda) {
+		c=celda;
 	}
      
 }
