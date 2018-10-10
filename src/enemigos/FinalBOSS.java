@@ -33,7 +33,7 @@ public class FinalBOSS extends enemigoAbstract {
 		mapaBoss ma=(mapaBoss) m;
 		ma.reducirVida(n);
 	}
-	public void destruir(){
+	public void destruir(    ){
 		isRunning=false;
 		c.setelem(profundidad, null);
 		c=null;

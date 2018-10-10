@@ -17,26 +17,30 @@ public class visitorDisparoP extends Visitor {
 
 	@Override
 	public boolean VisitDestruible(ParedTodos r) {
+		if(r.getIsRunning()&&objeto.getIsRunning()){
 		DisparoP aux=(DisparoP) objeto;
 		r.reducirVida(aux.getdamage());
-		objeto.destruir();
+		objeto.destruir();}
 		return false;
 	}
 
 	@Override
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
+		if(w.getIsRunning() && objeto.getIsRunning()){
 		DisparoP aux=(DisparoP) objeto;
 		w.reducirVida(aux.getdamage());
-		objeto.destruir();
+		objeto.destruir();}
 		return false;
 	}
 
 	@Override
 	public boolean visitenemigo(enemigoAbstract p) {
-		DisparoP aux=(DisparoP) objeto;
-		p.reducirVida(aux.getdamage());
-		objeto.destruir();
-		return false;
+		if(objeto.getIsRunning()&&p.getIsRunning()){
+			DisparoP aux=(DisparoP) objeto;
+			p.reducirVida(aux.getdamage());
+			objeto.destruir();
+			}
+		return true;
 	}
 
 	@Override
@@ -53,8 +57,9 @@ public class visitorDisparoP extends Visitor {
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		d.destruir();
-		objeto.destruir();
+		if(d.getIsRunning()&&objeto.getIsRunning()){
+			d.destruir();
+			objeto.destruir();}
 		return false;
 	}
 

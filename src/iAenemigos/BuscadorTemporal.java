@@ -21,7 +21,6 @@ public class BuscadorTemporal extends FormaDeAtacar{
 		if(e.getIsRunning()){
 			while(e.getIsRunning()){
 				if(waked){
-					
 					if(e.getVida()){
 						Random r=new Random();
 						int dir=r.nextInt(4);
@@ -73,14 +72,17 @@ public class BuscadorTemporal extends FormaDeAtacar{
 					waked=true;
 					}
 				
-					
+				
 				}
-			}
-			else
-				t1.interrupt();
+			t1.interrupt();
+			
+		}
+		else
+			t1.interrupt();
+		
+	}
 			
 
-		}
 		
 }
 

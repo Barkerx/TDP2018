@@ -39,15 +39,17 @@ public class visitorDestruibleTodos extends Visitor {
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
+		if(d.getIsRunning()&&objeto.getIsRunning()){
 		objeto.reducirVida(d.getdamage());
-		d.destruir();
+		d.destruir();}
 		return false;
 	}
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		objeto.reducirVida(d.getdamage());
-		d.destruir();
+		if(d.getIsRunning()&&objeto.getIsRunning()){
+			objeto.reducirVida(d.getdamage());
+			d.destruir();}
 		return false;
 	}
 

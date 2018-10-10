@@ -9,7 +9,8 @@ public abstract class obstaculo extends Gob{
 		this.c=c;
 		this.m=m;
 		profundidad=0;
-		vida=100;
+		vida=100;      
+		c.setelem(profundidad, this);
 	}
 	
 	public void destruir(){

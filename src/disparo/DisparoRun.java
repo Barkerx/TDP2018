@@ -14,7 +14,6 @@ public class DisparoRun implements Runnable{
     	 
     	 boolean isRunnable=d.getIsRunning();
     	 while(isRunnable){
-    		 
           isRunnable=d.getIsRunning();
            if(isRunnable ){
         	   if (!moviendo){

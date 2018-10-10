@@ -85,7 +85,7 @@ public class mapa2 extends Map{
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	crearObstaculo();
+	crearObstaculo();    
 	crearEnemigos();
 	}
 	

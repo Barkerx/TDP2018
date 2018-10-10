@@ -21,7 +21,6 @@ public mapa1(gui gu,Juego ju,jugador p){
 		int y=15;
 		horda=0;
 		g=gu;
-		
 		//inicializo la matriz de celdas
 		celdas=new celda[x][y];
 		for(int i=0;i<x;i++)
@@ -56,7 +55,7 @@ public void crearEnemigos(){
 				Random r=new Random();
 				int x=r.nextInt(18)+2;
 				int y=r.nextInt(3)+1;
-				if(celdas[x][y].objlist()[1]==null)
+				if(celdas[x][y].objlist()[1]==null&&celdas[x][y].objlist()[0]==null)
 				{
 					enemigo e=new enemigo(celdas[x][y],this,j);
 					lEnemy.add(e);
@@ -90,5 +89,6 @@ public void crearEnemigos(){
 	crearObstaculo();
 	crearEnemigos();
 	}
+	
 }
    

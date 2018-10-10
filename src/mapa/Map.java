@@ -12,7 +12,7 @@ import gui.Juego;
 import gui.gui;
 import misc.Unidad;
 import jaco.mp3.player.MP3Player;
-
+import obstaculos.*;
 public abstract class Map extends Thread {
 	protected celda[][] celdas; 
 	protected gui g;
@@ -119,6 +119,26 @@ public abstract class Map extends Thread {
 		}
 		creandoPW=false;
 	}
+	public void crearObstaculo() {
+		Random r=new Random();
+		int i=0;
+		while(i<8)
+			{
+			int x=r.nextInt(12)+4;
+			int y=r.nextInt(5)+5;
+			if(celdas[x][y].objlist()[0]==null)
+				{	
+				obstaculo p;
+				int c=r.nextInt(2);
+				switch(c){
+					case 0:p=new ParedPlayer(celdas[x][y],this);break;
+					case 1:p=new ParedTodos(celdas[x][y],this);break;
+					}
+				i++;
+				}
+			}
+	}
+	
 	public void supermisil() {
 	// agregar elemento grafico en celdas[5][5] de una bomba
 		LinkedList<enemigoAbstract> eliminar=new LinkedList<enemigoAbstract>();
@@ -149,9 +169,9 @@ public abstract class Map extends Thread {
 		int x=r.nextInt(17)+2;
 		int y=r.nextInt(3)+1;
 		if(celdas[x][y].objlist()[1]==null){
+		c.setelem(enemigoAbstract.getProfundidad(), null);
 		enemigoAbstract.setCelda(celdas[x][y]);
 		celdas[x][y].setelem(enemigoAbstract.getProfundidad(), enemigoAbstract);
-		c.setelem(enemigoAbstract.getProfundidad(), null);
 		enemigoAbstract.initgraph();
 		b=false;
 			}
@@ -183,25 +203,4 @@ public abstract class Map extends Thread {
 		stopSound();
 		j.win();
 	}
-	public void crearObstaculo() {
-		Random r=new Random();
-		int i=0;
-		while(i<8)
-			{
-			int x=r.nextInt(12)+4;
-			int y=r.nextInt(5)+5;
-			if(celdas[x][y].objlist()[0]==null)
-				{	
-				obstaculo p;
-				int c=r.nextInt(2);
-				switch(c){
-					case 0:p=new ParedPlayer(celdas[x][y],this);break;
-					case 1:p=new ParedTodos(celdas[x][y],this);break;
-					}
-				i++;
-				}
-			}
-	}
-	
-	
 }

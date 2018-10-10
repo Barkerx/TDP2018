@@ -88,7 +88,7 @@ public void win() {
 	/*	if(n==3)
 			MapaBoss();*/
 		if(n==3){
-			System.out.println("GANASTE n es 4");
+			System.out.println("GANASTE n es 3");
 			gane=true;
 		}
 	}

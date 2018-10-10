@@ -61,6 +61,7 @@ public class Kamikaze extends FormaDeAtacar{
 			
 				
 			}
+		t1.interrupt();
 		}
 		else
 			t1.interrupt();

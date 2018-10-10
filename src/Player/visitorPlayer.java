@@ -28,10 +28,11 @@ public class visitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitenemigo(enemigoAbstract p) {
+		if(p.getIsRunning()&&objeto.getIsRunning()){
 		p.destruir();
 		jugador j=(jugador) objeto;
 		j.reducirVida(50);
-		
+		}
 		return false;
 	}
 
@@ -49,9 +50,10 @@ public class visitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		d.destruir();
-		jugador j=(jugador) objeto;
-		j.reducirVida(d.getdamage());
+		if(d.getIsRunning()&&objeto.getIsRunning()){
+			d.destruir();
+			jugador j=(jugador) objeto;
+			j.reducirVida(d.getdamage());}
 		return false;
 	}
 

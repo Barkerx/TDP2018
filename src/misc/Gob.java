@@ -50,11 +50,13 @@ public abstract class Gob {
 	      * Metodo usado para eliminar un Gob(tanto logica como graficamente)
 	      */
 	     public void destruir(){
+	    	 if(isRunning){
 	    	 isRunning=false;
 	    	 grafico.setIcon(null);
 	    	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
 	    	 m.addgraph(grafico);
-	    	 c.objlist()[profundidad]=null;    
+	    	 c.setelem(profundidad,null);
+	    	 }
 	     }
 	     
 	     /**
@@ -80,7 +82,9 @@ public abstract class Gob {
 	     }
 		
 		//grafico.getVisibleRect().intersects(arg0)
-
+/**
+ *Metodo usado para Explotar el gob(mas que nada hace una explosion grafica 
+ */
 		public void explotar(){
 		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
 		grafico.setBounds(c.getposx()*45, c.getposy()*45, 45, 45);

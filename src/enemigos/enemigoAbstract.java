@@ -32,7 +32,6 @@ public abstract class enemigoAbstract extends nave{
 	public void destruir(){
 		if(isRunning){
 		m.desligar(this);
-		isRunning=false;
 		explotar();
 		super.destruir();
 		}

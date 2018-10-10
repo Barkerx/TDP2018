@@ -9,7 +9,7 @@ import misc.Visitor;
 
 public class ParedTodos extends obstaculo {
 
-	public ParedTodos(celda ce, Map m, Visitor v) {
+	public ParedTodos(celda ce, Map m) {
 		super(ce, m);
 		visitor=new visitorDestruibleTodos(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredtodos.png")));
