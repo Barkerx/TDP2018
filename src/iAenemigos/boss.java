@@ -1,14 +1,15 @@
 package iAenemigos;
 
+import Player.jugador;
 import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import mapa.celda;
 import misc.Unidad;
 
-public class boss extends FormaDeAtacar {
+public class boss extends Buscador {
 	protected int x=0;
-	public boss(Juego j, enemigoAbstract e) {
+	public boss(jugador j, enemigoAbstract e) {
 		super(j, e);
 		// TODO Auto-generated constructor stub
 	}
@@ -22,7 +23,7 @@ public class boss extends FormaDeAtacar {
 			salida=-1;
 		}
 		else
-			salida=j.getxy(e);
+			salida=getxy();
 		return salida;
 	}
 }

@@ -27,7 +27,7 @@ public Juego(){
 		n=1;
 		j=new jugador(null,null);
 		frame=new gui(this);
-		m=new mapaBoss(frame,this,j);
+		m=new mapa1(frame,this,j);
 		frame.setVisible(true);
 		j.setMap(m);
 		j.initgraph();
@@ -125,44 +125,16 @@ public void gamerover() {
 	System.out.println("Perdiste");
 	 
 }
-public int getxy(enemigoAbstract e) {
-	int salida=Unidad.ABAJO;
-	int x1=j.getcelda().getposx();
-	int y1=j.getcelda().getposy();
-	int x2=e.getcelda().getposx();
-	int y2=e.getcelda().getposy();
-	int x=Math.abs(x2-x1);
-	int y=Math.abs(y2-y1);
-	
-	if(x<y){
-		salida=Unidad.ABAJO;
-	}
-	else
-		if(x==y && y>=0){
-			if(x2>x1)
-				salida=Unidad.ABAJOIZQUIERDA;
-			else
-			if(x1>x2)
-				salida=Unidad.ABAJODERECHA;
-				
-			}
-		else
-			if(x>y){
-				if(x2>x1)
-				salida=Unidad.IZQUIERDA;
-				else
-					salida=Unidad.DERECHA;
-			}
-			
-	return salida;
-}
+
 public void habilitado(){
 	habilitado=true;
 }
 public boolean puedo() {
 	return habilitado;
 }
-
+public jugador getJugador(){
+	return j;
+}
 
 
 }

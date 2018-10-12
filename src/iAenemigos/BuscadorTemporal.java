@@ -2,7 +2,9 @@ package iAenemigos;
 
 import java.util.Random;
 
+import Player.jugador;
 import enemigos.enemigo;
+import enemigos.enemigoAbstract;
 import gui.Juego;
 import mapa.celda;
 import misc.Unidad;
@@ -11,7 +13,7 @@ public class BuscadorTemporal extends FormaDeAtacar{
 	
 	protected int dir;
 	protected Buscador p;
-	public BuscadorTemporal(Juego j, enemigo e) {
+	public BuscadorTemporal(jugador j, enemigoAbstract e) {
 		super(j, e);
 		dir=-1;
 		p=new Buscador(j,e);

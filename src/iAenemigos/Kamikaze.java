@@ -1,6 +1,7 @@
 package iAenemigos;
 
 import enemigos.enemigo;
+import enemigos.enemigoAbstract;
 import gui.Juego;
 import mapa.celda;
 import misc.Unidad;
@@ -10,8 +11,8 @@ public class Kamikaze extends FormaDeAtacar{
 	protected int n;
 	protected int piv;
 	protected int disparo;
-	public Kamikaze(Juego j, enemigo e) {
-		super(j, e);
+	public Kamikaze( enemigoAbstract e) {
+		super(e);
 		piv=0;
 		n=0;
 		disparo=0;

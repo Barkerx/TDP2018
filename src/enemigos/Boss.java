@@ -26,7 +26,7 @@ public class Boss extends enemigoAbstract{
 		visitor=new visitorEnemigo(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
 		initgraph();
-		ataque = new boss(j,this);
+		ataque = new boss(j.getJugador(),this);
 		}
 		
 		public void disparar(){

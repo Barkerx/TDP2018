@@ -40,11 +40,11 @@ public class enemigo extends enemigoAbstract {
 		int a=r.nextInt(3);
 		switch (a){
 		
-		case 0:ataque = new Buscador(j,this);
+		case 0:ataque = new Buscador(j.getJugador(),this);
 				break;
-		case 1:ataque = new Kamikaze(j,this);
+		case 1:ataque = new Kamikaze(this);
 				break;
-		case 2:ataque = new BuscadorTemporal(j,this);		
+		case 2:ataque = new BuscadorTemporal(j.getJugador(),this);		
 				break;	
 		}
 	}
