@@ -7,49 +7,22 @@ import mapa.celda;
 import misc.Unidad;
 
 public class boss extends FormaDeAtacar {
-
+	protected int x=0;
 	public boss(Juego j, enemigoAbstract e) {
 		super(j, e);
-		t1=new Thread(this);
-		t1.start();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void run() {
-		if(e.getIsRunning()){
-		while(e.getIsRunning()){
-		
-			if(waked){
-					e.disparar();
-					celda c=e.mover(j.getxy(e));
-					if (c==null){
-						e.restart();
-					}
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			else
-			{
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waked=true;
-				}
-			
-				
-			}
+	public int mover() {
+		int salida;
+		x=x+1;
+		if(x==2){
+			x=0;
+			salida=-1;
 		}
 		else
-			t1.interrupt();
-		
-
+			salida=j.getxy(e);
+		return salida;
 	}
 }

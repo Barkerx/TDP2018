@@ -12,15 +12,14 @@ public class disparoEnemy extends DisparoE{
 		this.c=c;
 		this.m=m;
 		profundidad=2;
-		velocidad=50;
+		velocidad=20;
 		damage=30;
- 
-		y=c.getposy();
-		shieldL=null;
+ 		shieldL=null;
 		moviendo=false;
 		visitor=new visitorDisparoE(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/disparo.png")));
 		initgraph();
-		new DisparoRun(this);
+		t1=new Thread(this);
+		t1.start();
 	}
 }

@@ -24,9 +24,6 @@ public class FinalBOSS extends enemigoAbstract {
 		shieldL=null;
 		velocidad=16;
 		visitor=new visitorEnemigo(this);
-		//ataque=new FinalBoss(null, this);
-		t1=new Thread(this);
-		t1.start();
 	}
 	public void disparar(int dir) {
 		new DisparoBoss(c,m,dir);
@@ -35,25 +32,12 @@ public class FinalBOSS extends enemigoAbstract {
 		mapaBoss ma=(mapaBoss) m;
 		ma.reducirVida(n);
 	}
-	public void destruir(    ){
+	public void destruir(){
 		isRunning=false;
 		c.setelem(profundidad, null);
 		c=null;
 	}
 		
-	public void run(){
-		while(isRunning){
-			disparar();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		explotar();
-	}
 	@Override
 	public void disparar() {
 		disparar(dir);
@@ -61,11 +45,10 @@ public class FinalBOSS extends enemigoAbstract {
 	}
 	public void explotar(){
 	int i=0;
-	celda n=c;
 	while(i<12){
 	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1d.png")));
 	grafico.setBounds(x*45,y*45,45,45);
-	m.addgraph(grafico,2);
+	m.addgraph(grafico,3);
 	try {
 		Thread.sleep(100);
 	} catch (InterruptedException e) {
@@ -73,7 +56,7 @@ public class FinalBOSS extends enemigoAbstract {
 		e.printStackTrace();
 	}
 	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2d.png")));
-	m.addgraph(grafico,2);
+	m.addgraph(grafico,3);
 	try {
 		Thread.sleep(100);
 	} catch (InterruptedException e) {
@@ -81,7 +64,7 @@ public class FinalBOSS extends enemigoAbstract {
 		e.printStackTrace();
 	}
 	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp3d.png")));
-	m.addgraph(grafico,2);
+	m.addgraph(grafico,3);
 	try {
 		Thread.sleep(100);
 	} catch (InterruptedException e) {
@@ -90,7 +73,7 @@ public class FinalBOSS extends enemigoAbstract {
 	}
 
 	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp4d.png")));
-	m.addgraph(grafico,2);
+	m.addgraph(grafico,3);
 	try {
 		Thread.sleep(100);
 	} catch (InterruptedException e) {
@@ -98,16 +81,19 @@ public class FinalBOSS extends enemigoAbstract {
 		e.printStackTrace();
 	}
 	grafico.setIcon(null);
-	m.addgraph(grafico,2);
+	m.addgraph(grafico,3);
 	
 	i=i+1;
 	
-	}
-	t1.interrupt();
+	}   
 	}
 	public void kill() {
 		isRunning=false;
 	}
+	@Override
+	public void mover() {
+		disparar(dir);
+		
+	}
 	
 }
-    

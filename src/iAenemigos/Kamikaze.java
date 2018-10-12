@@ -2,71 +2,45 @@ package iAenemigos;
 
 import enemigos.enemigo;
 import gui.Juego;
+import mapa.celda;
 import misc.Unidad;
 
 public class Kamikaze extends FormaDeAtacar{
 	
-	
-
+	protected int n;
+	protected int piv;
+	protected int disparo;
 	public Kamikaze(Juego j, enemigo e) {
 		super(j, e);
-		 t1=new Thread(this);
-    	 t1.start();
+		piv=0;
+		n=0;
+		disparo=0;
 	}
 	
 	
 
 	@Override
-	public void run() {
-		if(e.getIsRunning()){
-			int n=0;
-			int piv=0;
-		while(e.getIsRunning()){		
-			if(waked){
-				
+	public int mover(){
+		int salida=-1;
+			disparo=disparo+1;
+			if(disparo!=2){
 				if(n==0){
 					n=1;
-					e.disparar();
-					e.mover(Unidad.IZQUIERDA);
-					e.disparar();}
+					salida=Unidad.IZQUIERDA;}
 				else{
 					n=0;
-					e.disparar();
-					e.mover(Unidad.DERECHA);
-					e.disparar();
-				}
+					salida=Unidad.DERECHA;}
 				piv=piv+1;
 				if(piv==4){
 					piv=0;
-					e.mover(Unidad.ABAJO);
+					salida=Unidad.ABAJO;
 					}
+			}else{
+					disparo=0;
+					salida=-1;
+				}
+			return salida;
 				
-				try {
-					Thread.sleep(1500);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			else
-			{
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waked=true;
-				}
-			
-				
-			}
-		t1.interrupt();
-		}
-		else
-			t1.interrupt();
-		
-
 	}
 	
 }	

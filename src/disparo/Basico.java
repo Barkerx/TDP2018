@@ -12,11 +12,12 @@ public class Basico extends DisparoP{
 	public Basico(celda c, Map m,jugador j) {
 		super(c,m,j);
 		damage=30;
-		velocidad=30;
+		velocidad=18;
    	 	grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/disparo.png")));
 		moviendo=false;
 		initgraph();
-		new DisparoRun(this);
+		t1=new Thread(this);
+		t1.start();
 	}
 
 }

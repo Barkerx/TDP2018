@@ -18,7 +18,7 @@ public abstract class DisparoE extends Disparo{
 		if(isRunning){
 	//		while(isRunning){
 			ce=super.mover(Unidad.ABAJO);
-				if (ce==null)
+				if (ce.getposy()==m.getmaxY())
 				{	
 					destruir();
 				}
@@ -26,5 +26,6 @@ public abstract class DisparoE extends Disparo{
 		//	}
 		}	
 	}
+	
 }
 

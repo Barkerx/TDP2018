@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 
 import mapa.celda;
 
-public abstract class Unidad extends Gob implements Runnable{
+public abstract class Unidad extends Gob{
 
 	public static final int ARRIBA = 4;
 	public static final int ABAJO = 0;
@@ -26,10 +26,9 @@ public abstract class Unidad extends Gob implements Runnable{
 		celda w=c;	
 		if(!moviendo){
 			w=m.mover(c,n);
-		if(w!=null)
+		if(w!=c)
 			intercambiarceldas(w,n);
 		}
-		
 		
 		return w;
 	}
@@ -54,62 +53,55 @@ public abstract class Unidad extends Gob implements Runnable{
 		x=d.getposx();
 		y=d.getposy();
 		dir=n;
-		moverGrafico();
+		mover();
 		}
 
 	}
-	/**
-	 * metodo usado para mover el grafico en la gui
-	 */
-	protected void moverGrafico() {
-			t1=new Thread(this);
-			t1.start();
-	}
+	
 	/**
 	 * metodo usado cuando se hace un movimiento( ES EL MOVIMIENTO SUAVE ESTO)
 	 */
-	public void run(){
-		for(int i=0;i<5&&isRunning;i++){
+	private void mover(){
+		for(int i=0;i<9&&isRunning;i++){
 			  switch(dir){
 			  case ABAJO:
-				  grafico.setBounds(grafico.getX(), grafico.getY()+9, 45, 45);
+				  grafico.setBounds(grafico.getX(), grafico.getY()+5, 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX(), grafico.getY()+9, 45, 45);
+					  shieldL.setBounds(grafico.getX(), grafico.getY()+5, 45, 45);
 				  break;
 			  case IZQUIERDA:
-				  grafico.setBounds(grafico.getX()-9, grafico.getY(), 45, 45);
+				  grafico.setBounds(grafico.getX()-5, grafico.getY(), 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX()-9, grafico.getY(), 45, 45);
+					  shieldL.setBounds(grafico.getX()-5, grafico.getY(), 45, 45);
 				  break;
 			  case ARRIBA:
-				  grafico.setBounds(grafico.getX(), grafico.getY()-9, 45, 45);
+				  grafico.setBounds(grafico.getX(), grafico.getY()-5, 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX(), grafico.getY()-9, 45, 45);
+					  shieldL.setBounds(grafico.getX(), grafico.getY()-5, 45, 45);
 				  break;
 			  case DERECHA:
-				  grafico.setBounds(grafico.getX()+9, grafico.getY(), 45, 45);
+				  grafico.setBounds(grafico.getX()+5, grafico.getY(), 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX()+9, grafico.getY(), 45, 45);
+					  shieldL.setBounds(grafico.getX()+5, grafico.getY(), 45, 45);
 				  break;
 			  case ABAJOIZQUIERDA:
-				  grafico.setBounds(grafico.getX()-9, grafico.getY()+9, 45, 45);
+				  grafico.setBounds(grafico.getX()-5, grafico.getY()+5, 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX()-9, grafico.getY()+9, 45, 45);
+					  shieldL.setBounds(grafico.getX()-5, grafico.getY()+5, 45, 45);
 				  break;
 			  case ABAJODERECHA:
-				  grafico.setBounds(grafico.getX()+9, grafico.getY()+9, 45, 45);
+				  grafico.setBounds(grafico.getX()+5, grafico.getY()+5, 45, 45);
 				  if(shieldL!=null)
-					  shieldL.setBounds(grafico.getX()+9, grafico.getY()+9, 45, 45);
+					  shieldL.setBounds(grafico.getX()+5, grafico.getY()+5, 45, 45);
 				  break;	  
 			  }
 			  try{
-				  Thread.sleep(velocidad);
+				  Thread.sleep(velocidad/2);
 			  }catch(InterruptedException e){
 				  
 			  }
 			 moviendo=false;
 		  }
-		t1.interrupt();
 	}
 	
 	

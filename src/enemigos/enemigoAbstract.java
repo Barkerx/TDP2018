@@ -7,7 +7,8 @@ import misc.nave;
 
 public abstract class enemigoAbstract extends nave{
 	protected FormaDeAtacar ataque;
-	
+	protected boolean waked=true;
+	protected Thread t1;
 	public abstract void disparar();
 	
 	@Override
@@ -46,8 +47,10 @@ public abstract class enemigoAbstract extends nave{
 	}
 
 	public void congelar() {
-	ataque.congelar();
-	
+		if(waked)
+		waked=false;
+		else
+			waked=true;
 	}
 
 public celda getcelda() {
@@ -60,5 +63,6 @@ public void restart() {
 	
 }
 
+public abstract void mover();
 
 }

@@ -32,6 +32,22 @@ public class Boss extends enemigoAbstract{
 		public void disparar(){
 			new disparoEnemy(c,m);
 		}
+		@Override
+		public void mover() {
+			if(isRunning){
+				int direccion=ataque.mover();	
+				if(direccion!=-1)
+				{	celda ce=m.mover(c, direccion);
+					if(c!=ce){
+						mover(direccion);
+					}
+					else
+						if(ce.getposy()==14&&direccion==Unidad.ABAJO)
+							restart();
+				}
+					else
+						disparar();
+			
+				}
+			}
 }
-
-

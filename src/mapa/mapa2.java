@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
+import enemigos.EnemyMobiler;
 import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
@@ -41,6 +42,7 @@ public class mapa2 extends Map{
    	 	fondo.setBounds(0, 0, 900, 675);
    	 	g.add(fondo,new Integer(0));
    	 	this.j=ju;
+   	 	m=new EnemyMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
 	    t1=new Thread(this);
 	    t1.start();
@@ -51,14 +53,13 @@ public class mapa2 extends Map{
 		if(!gane){
 			if(horda<2){
 				int act=0;
-				while(act<2){
+				while(act<8){
 					Random r=new Random();
 					int x=r.nextInt(18)+2;
 					int y=r.nextInt(3)+1;
-					if(celdas[x][y].objlist()[1]==null)
+					if(celdas[x][y].objlist()[1]==null&&celdas[x][y].objlist()[0]==null)
 					{
-						enemigo e=new enemigo(celdas[x][y],this,j);
-						lEnemy.add(e);
+						crearEnemigo(celdas[x][y]);
 						act=act+1;
 					}
 					
@@ -70,23 +71,26 @@ public class mapa2 extends Map{
 		if(gane)
 			gane();
 			
-		} 
+		}
 	}
 
 	@Override
 	public void run() {
-	Random aleatorio = new Random(System.currentTimeMillis());
-	int intAleatorio = aleatorio.nextInt(4);
-	crearpowerUP(celdas[5][5],intAleatorio);
-	initSound();
+		initSound();
+		Random aleatorio = new Random(System.currentTimeMillis());
+		int intAleatorio = aleatorio.nextInt(4);
+		crearpowerUP(celdas[5][5],intAleatorio);
+		j.habilitado();	
 	try {
 		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	crearObstaculo();    
 	crearEnemigos();
+	m.play();
 	}
 	
 }

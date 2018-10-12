@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 
 import Player.jugador;
 import enemigos.Boss;
+import enemigos.EnemyMobiler;
 import enemigos.FinalBOSS;
+import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
@@ -45,6 +47,7 @@ public class mapaBoss extends Map{
    	 	fondo.setBounds(0, 0, 900, 675);
    	 	g.add(fondo,new Integer(0));
    	 	this.j=ju;
+   	 	m=new EnemyMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
 	    t1=new Thread(this);
 	    t1.start();
@@ -61,6 +64,7 @@ public class mapaBoss extends Map{
 		int b = aleatorio.nextInt(2);
 		crearpowerUP(celdas[6][6],b);
 		initSound();
+		j.habilitado();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -69,6 +73,7 @@ public class mapaBoss extends Map{
 		}
 		CrearBOSS();
 		crearEnemigos();
+		m.play();
 		while(gane){
 			
 		}
@@ -79,16 +84,23 @@ public class mapaBoss extends Map{
 	@Override
 	protected void crearEnemigos() {
 		if(!gane){
-		enemigoAbstract e=new Boss(celdas[1][2], this, j);
-		lEnemy.add(e);
-		enemigoAbstract e2=new Boss(celdas[2][3], this, j);
-		lEnemy.add(e2);
-		enemigoAbstract e3=new Boss(celdas[18][3], this, j);
-		lEnemy.add(e3);
-		enemigoAbstract e4=new Boss(celdas[19][2], this, j);
-		lEnemy.add(e4);
+		crearEnemigo(celdas[1][2]);
+		crearEnemigo(celdas[2][3]);
+		crearEnemigo(celdas[18][3]);
+		crearEnemigo(celdas[19][2]);
 		}
 	}
+	protected void crearEnemigo(celda c){
+		enemigoAbstract e=new Boss(c,this,j);
+		lEnemy.add(e);
+		m.addEnemy(e);
+	}
+	protected void crearEnemigoBOSS(celda c,int dir){
+		enemigoAbstract e=new FinalBOSS(c,this,dir);
+		lEnemy.add(e);
+		m.addEnemy(e);
+	}
+	
 	
 	public void reducirVida(int n) {
 		vida=vida-n;
@@ -107,31 +119,20 @@ public class mapaBoss extends Map{
 		boss=new JLabel(new ImageIcon(this.getClass().getResource("/resources/BOSS.png")));
 	    boss.setBounds(130, 0, 600, 264);
 	    addgraph(boss,1);
-	    
-	    FinalBOSS b=new FinalBOSS(celdas[3][2],this,Unidad.IZQUIERDA);
-	    lEnemyBOSS.add(b);
-	    FinalBOSS b0=new FinalBOSS(celdas[4][3],this,Unidad.ABAJOIZQUIERDA);
-	    lEnemyBOSS.add(b0);
-	    FinalBOSS b1=new FinalBOSS(celdas[4][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b1);
-	    FinalBOSS b2=new FinalBOSS(celdas[5][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b2);
-	    FinalBOSS b3=new FinalBOSS(celdas[6][5],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b3);
-	    FinalBOSS b4=new FinalBOSS(celdas[7][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b4);
-	    FinalBOSS b5=new FinalBOSS(celdas[8][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b5);
-	    FinalBOSS b6=new FinalBOSS(celdas[9][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b6);
-	    FinalBOSS b7=new FinalBOSS(celdas[10][4],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b7);
-	    FinalBOSS b9=new FinalBOSS(celdas[11][3],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b9);
-	    FinalBOSS b8=new FinalBOSS(celdas[12][3],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b8);
-	    FinalBOSS b10=new FinalBOSS(celdas[13][3],this,Unidad.ABAJO);
-	    lEnemyBOSS.add(b10);
+	    crearEnemigoBOSS(celdas[3][2],Unidad.IZQUIERDA);
+	    crearEnemigoBOSS(celdas[4][3],Unidad.ABAJOIZQUIERDA);
+	    crearEnemigoBOSS(celdas[4][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[5][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[6][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[7][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[8][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[9][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[10][4],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[11][3],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[12][3],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[13][3],Unidad.ABAJO);
+	    crearEnemigoBOSS(celdas[14][3],Unidad.ABAJODERECHA);
+	    crearEnemigoBOSS(celdas[15][2],Unidad.DERECHA);
 	    FinalBOSS b11=new FinalBOSS(celdas[14][3],this,Unidad.ABAJODERECHA);
 	    lEnemyBOSS.add(b11);
 	    FinalBOSS b12=new FinalBOSS(celdas[15][2],this,Unidad.DERECHA);
@@ -154,8 +155,9 @@ public class mapaBoss extends Map{
 			for(FinalBOSS eb:lEnemyBOSS)
 			{	
 				aux2.add(eb);
-				eb.kill();
+				eb.explotar();	
 			}
+			
 			try {
 				Thread.sleep(5500);
 			} catch (InterruptedException e) {

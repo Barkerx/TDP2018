@@ -23,15 +23,16 @@ public class DisparoBoss extends DisparoE{
 		visitor=new visitorDisparoE(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/misilinv.png")));
 		initgraph();
-		new DisparoRun(this);
+		t1=new Thread(this);
+		t1.start();
 	}
 	
 	public void mover(){
 		celda ce = null;
 		if(isRunning){
 	//		while(isRunning){
-			ce=super.mover(dir);
-				if (ce==null)
+			ce=super.mover(Unidad.ABAJO);
+				if (ce.getposy()==m.getmaxY())
 				{	
 					destruir();
 				}

@@ -13,7 +13,7 @@ import disparo.disparoEnemy;
 import gui.Juego;
 
 
-public class enemigo extends enemigoAbstract{
+public class enemigo extends enemigoAbstract {
 	private static final int maxVida=100;
 	/**
 	 * constructor del enemigo, lo crea y pone los graficos.
@@ -21,7 +21,6 @@ public class enemigo extends enemigoAbstract{
 	 * @param m mapa donde va a estar el enemigo
 	 * @param a forma de atacar que tendra el enemigo
 	 */
-		
 	
 	public enemigo(celda c,Map m,Juego j) {
 		profundidad=1;
@@ -31,7 +30,7 @@ public class enemigo extends enemigoAbstract{
 		puntos=300;
 		shieldL=null;
 		vida=maxVida;
-		velocidad=16;
+		velocidad=15;
 		x=c.getposx();
 		y=c.getposy();
 		visitor=new visitorEnemigo(this);
@@ -48,12 +47,28 @@ public class enemigo extends enemigoAbstract{
 		case 2:ataque = new BuscadorTemporal(j,this);		
 				break;	
 		}
-			
 	}
 	public void disparar() {
 		if(isRunning)
 			new disparoEnemy(c,m);
 	}
 
-	
+	@Override
+	public void mover() {
+		if(isRunning){
+			int direccion=ataque.mover();	
+			if(direccion!=-1)
+			{	celda ce=m.mover(c, direccion);
+				if(c!=ce){
+					mover(direccion);
+				}
+				else
+					if(ce.getposy()==14&&direccion==Unidad.ABAJO)
+						restart();
+			}
+				else
+					disparar();
+		
+			}
+		}
 }

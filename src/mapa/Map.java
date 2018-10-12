@@ -7,6 +7,8 @@ import javax.swing.JLayeredPane;
 
 import Player.jugador;
 import PowerUP.*;
+import enemigos.EnemyMobiler;
+import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
@@ -25,8 +27,7 @@ public abstract class Map extends Thread {
 	protected Juego j;
 	protected int horda;
 	protected boolean gane =false;
-	
-	
+	protected EnemyMobiler m;
 	/**
 	 * Metodo que a partir de una celda C y una direccion dir retorna la celda que esta al lado de C
 	 * @param celda celda de origen
@@ -49,7 +50,7 @@ public abstract class Map extends Thread {
 		case Unidad.ABAJODERECHA:x=x+1;y=y+1; break;
 		}
 		if(x==celdas.length || y==celdas[0].length || y<0 || x<0 )	
-			c=null;
+			c=celda;
 			else
 				c=celdas[x][y];
 		return c;
@@ -74,6 +75,7 @@ public abstract class Map extends Thread {
 		
 		lEnemy.remove(enemigoAbstract);
 		j.addpuntos(enemigoAbstract.getpuntos());
+		m.killEnemy(enemigoAbstract);
 		if(!creandoPW){
 		celda c=celdas[enemigoAbstract.getcelda().getposx()][enemigoAbstract.getcelda().getposy()];
 		Random aleatorio = new Random(System.currentTimeMillis());
@@ -151,12 +153,9 @@ public abstract class Map extends Thread {
 		
 	}
 	public void congelatiempo(jugador jugador) {
-		for(enemigoAbstract e:lEnemy){
-			if(e.getIsRunning())
-			e.congelar();
+		m.congelar();
 		}
 		//CONGELAR TIEMPO DEL JUEGO
-	}
 	public void gameover(jugador jugador) {
 		j.gamerover();
 		
@@ -191,6 +190,12 @@ public abstract class Map extends Thread {
 	
 	protected abstract void crearEnemigos();
 	
+	protected void crearEnemigo(celda c){
+		enemigo e=new enemigo(c,this,j);
+		lEnemy.add(e);
+		m.addEnemy(e);
+	}
+	
 	public void stopSound(){
 		cancion.setRepeat(false);
 		cancion.stop();
@@ -202,5 +207,16 @@ public abstract class Map extends Thread {
 	protected void gane(){
 		stopSound();
 		j.win();
+	}
+	public boolean ganado(){
+		return gane;
+	}
+	public int getmaxY() {
+		// TODO Auto-generated method stub
+		return celdas[0].length-1;
+	}
+	public int getminY() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -3,8 +3,9 @@ package disparo;
 
 import misc.*;
 
-public abstract class Disparo extends Unidad{
+public abstract class Disparo extends Unidad implements Runnable{
 	
+	protected Thread t1;
 	protected int damage;
 
 	/**
@@ -25,5 +26,20 @@ public abstract class Disparo extends Unidad{
 		// TODO Auto-generated method stub
 		return velocidad;
 	}
+	
+	public void run(){
+	   	 
+	   	 while(isRunning){
+	          if(isRunning &&!moviendo){
+	 		            mover();
+	 		          
+	 		          try{
+	 		        	Thread.sleep(velocidad*2);
+	 		          }
+	 		          catch (Exception e){;}
+	 		            }
+	          }
+	   	 t1.interrupt();
+	    }
 	
 }

@@ -14,7 +14,7 @@ public  class Juego {
 	private Map m;
 	private int n;
 	private boolean gane=false;
-	private boolean habilitado;
+	private boolean habilitado=false;
 	public static void main(String[] args) {
 		new Juego();
 		
@@ -27,11 +27,10 @@ public Juego(){
 		n=1;
 		j=new jugador(null,null);
 		frame=new gui(this);
-		m=new mapa1(frame,this,j);
+		m=new mapaBoss(frame,this,j);
 		frame.setVisible(true);
 		j.setMap(m);
 		j.initgraph();
-		habilitado=true;
    }
    
    
@@ -83,9 +82,9 @@ public void win() {
 	if(!gane){	
 		if(n==2)
 			Mapa2();
-	/*	if(n==3)
-			MapaBoss();*/
-		if(n==3){
+		if(n==3)
+			MapaBoss();
+		if(n==4){
 			System.out.println("GANASTE n es 3");
 			gane=true;
 		}
@@ -105,7 +104,6 @@ private void MapaBoss(){
 		frame.setVisible(true);
 		j.setMap(m);
 		j.initgraph();
-		habilitado=true;
 	}
 }
 private void Mapa2(){
@@ -120,7 +118,6 @@ private void Mapa2(){
 	frame.setVisible(true);
 	j.setMap(m);
 	j.initgraph();
-	habilitado=true;
 	}
 }
 
@@ -159,7 +156,12 @@ public int getxy(enemigoAbstract e) {
 			
 	return salida;
 }
-
+public void habilitado(){
+	habilitado=true;
+}
+public boolean puedo() {
+	return habilitado;
+}
 
 
 

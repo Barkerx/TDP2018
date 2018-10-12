@@ -29,39 +29,39 @@ public class gui extends JFrame implements Runnable {
        addKeyListener(new KeyAdapter() {
 			
 			public void keyPressed(KeyEvent arg0) {
-				if(arg0.getKeyCode()==KeyEvent.VK_UP){
+				if(arg0.getKeyCode()==KeyEvent.VK_UP &&j.puedo()){
 					keyBoardUpPressed=true;
 				}
 				else
-					if(arg0.getKeyCode()==KeyEvent.VK_DOWN){
+					if(arg0.getKeyCode()==KeyEvent.VK_DOWN&&j.puedo()){
 						keyBoardDownPressed=true;
 					}
 					else
-						if(arg0.getKeyCode()==KeyEvent.VK_LEFT){
+						if(arg0.getKeyCode()==KeyEvent.VK_LEFT&&j.puedo()){
 							keyBoardLeftPressed=true;
 						}
 						else
-							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
+							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT&&j.puedo()){
 								keyBoardRightPressed=true;
 							}
 							else
-								if(arg0.getKeyCode()==KeyEvent.VK_SPACE)
+								if(arg0.getKeyCode()==KeyEvent.VK_SPACE&&j.puedo())
 								j.mover(KeyEvent.VK_SPACE);				
 			}
 			public void keyReleased(KeyEvent arg0){
-				if(arg0.getKeyCode()==KeyEvent.VK_UP){
+				if(arg0.getKeyCode()==KeyEvent.VK_UP&&j.puedo()){
 					keyBoardUpPressed=false;
 				}
 				else
-					if(arg0.getKeyCode()==KeyEvent.VK_DOWN){
+					if(arg0.getKeyCode()==KeyEvent.VK_DOWN&&j.puedo()){
 						keyBoardDownPressed=false;
 					}
 					else
-						if(arg0.getKeyCode()==KeyEvent.VK_LEFT){
+						if(arg0.getKeyCode()==KeyEvent.VK_LEFT&&j.puedo()){
 							keyBoardLeftPressed=false;
 						}
 						else
-							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
+							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT&&j.puedo()){
 								keyBoardRightPressed=false;
 							}
 							
@@ -90,19 +90,19 @@ public class gui extends JFrame implements Runnable {
 	}
 	
 private void mover(){
-	 if(keyBoardLeftPressed){
+	 if(keyBoardLeftPressed&&j.puedo()){
      	  j.mover(KeyEvent.VK_LEFT);
        }
        else
-     	  if(keyBoardRightPressed){
+     	  if(keyBoardRightPressed&&j.puedo()){
      		  j.mover(KeyEvent.VK_RIGHT);
            }
            else
-         	  if(keyBoardDownPressed){
+         	  if(keyBoardDownPressed&&j.puedo()){
          		  j.mover(KeyEvent.VK_DOWN);
                }
                else
-             	  if(keyBoardUpPressed){
+             	  if(keyBoardUpPressed&&j.puedo()){
              		  j.mover(KeyEvent.VK_UP);
                    }
 	 				

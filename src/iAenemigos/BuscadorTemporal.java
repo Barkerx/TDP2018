@@ -8,80 +8,42 @@ import mapa.celda;
 import misc.Unidad;
 
 public class BuscadorTemporal extends FormaDeAtacar{
-
+	
+	protected int dir;
+	protected Buscador p;
 	public BuscadorTemporal(Juego j, enemigo e) {
 		super(j, e);
-		t1=new Thread(this);
-   	 	t1.start();
+		dir=-1;
+		p=new Buscador(j,e);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
 	@Override
-	public void run() {
-		if(e.getIsRunning()){
-			while(e.getIsRunning()){
-				if(waked){
+	public int mover() {
+		int salida=0;
+				if(e.getIsRunning()){
 					if(e.getVida()){
-						Random r=new Random();
-						int dir=r.nextInt(4);
-						switch(dir){
-						case 0:e.mover(Unidad.ARRIBA);
-								e.disparar();
-								break;
-						case 1:e.mover(Unidad.ABAJO);
-								e.disparar();
-								break;
-						case 2:e.mover(Unidad.DERECHA);
-								e.disparar();
-								break;
-						case 3:e.mover(Unidad.IZQUIERDA);
-								e.disparar();
-								break;
-						
-						}
-						try {
-							Thread.sleep(1500);
-						} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-							}
-						
+					dir=dir+1;	
+					switch(dir){
+					case 0:salida=Unidad.ABAJO;break;
+					case 1:salida=Unidad.IZQUIERDA;break;
+					case 2:salida=Unidad.ARRIBA;break;
+					case 3:salida=Unidad.DERECHA;break;
+					}
+					if(dir==3){
+						dir=-1;}
 					}
 					else
-					{		e.disparar();
-						celda c=e.mover(j.getxy(e));
-						if (c==null){
-							e.restart();
-						}
-					try {
-						Thread.sleep(300);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						}
-					}
+					salida=p.mover();	
 				}
-				else
-				{
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					waked=true;
-					}
-				
-				
-				}
-			t1.interrupt();
-			
-		}
-		else
-			t1.interrupt();
-		
+	return salida;
 	}
-			
+			//
+			//nod celda nulo X
+		//un hilo general para todos los disparos X
+		//un hilo general ia con movimiento, iA no es un hilo, X 
+	
 
 		
 }

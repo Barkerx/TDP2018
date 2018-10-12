@@ -23,8 +23,6 @@ public abstract class DisparoP extends Disparo{
 		profundidad=2;
 		visitor=new visitorDisparoP(this,j);
 		pasos=0;
-		x=c.getposx();
-		y=c.getposy();
 	}
 	
 	@Override
@@ -46,7 +44,7 @@ public abstract class DisparoP extends Disparo{
 		//	while(isRunning){
 			celda ce=super.mover(ARRIBA);
 				
-				if (ce==null)
+				if (ce.getposy()==m.getminY())
 				{      
 					destruir();
 				}
@@ -58,6 +56,8 @@ public abstract class DisparoP extends Disparo{
 		if (pasos==3)
 			j.candisparar();
 	}
+	
+	
 
 
 }

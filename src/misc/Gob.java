@@ -17,7 +17,6 @@ public abstract class Gob {
 	     protected int profundidad;
 	     protected  volatile boolean isRunning=true;
 	 	 protected Map m;
-	 	 protected volatile Thread t1;
 	 	 /**
 	 	  * metodo usado para reducir la vida en n del Gob
 	 	  * @param n vida a reducir del Gob
@@ -110,6 +109,7 @@ public abstract class Gob {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}	
+		}
+		grafico.setIcon(null);
 		}	
 }

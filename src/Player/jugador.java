@@ -181,6 +181,7 @@ public class jugador extends nave{
 		if(m!=null)
 			m.supermisil();
 		
+		
 	}
 	public void candisparar() {
 		puede=true;

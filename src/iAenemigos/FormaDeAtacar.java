@@ -2,12 +2,12 @@ package iAenemigos;
 
 import enemigos.enemigoAbstract;
 import gui.Juego;
+import mapa.celda;
 
-public abstract class FormaDeAtacar implements Runnable{
+public abstract class FormaDeAtacar{
 	
 	protected Thread t1;
 	protected Juego j;
-	protected boolean waked=true;
 	protected enemigoAbstract e;
 	
 	protected FormaDeAtacar(Juego j,enemigoAbstract e){
@@ -15,8 +15,8 @@ public abstract class FormaDeAtacar implements Runnable{
 		this.e=e;
 	}
 	
-	public void congelar() {
-		waked=false;
-	}
+	
+	
+	public abstract int mover();
 	
 }

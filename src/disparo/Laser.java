@@ -17,7 +17,8 @@ public class Laser extends DisparoP{
 		visitor=new visitorDisparoP(this,j);
 		moviendo=false;
 		initgraph();
-		new DisparoRun(this);
+		t1=new Thread(this);
+		t1.start();
 	}
 
 }
