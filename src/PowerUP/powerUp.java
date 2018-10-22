@@ -16,13 +16,11 @@ public abstract class powerUp extends Unidad{
 	public powerUp(celda ce, Map m) {
 		c=ce;
 		this.m=m;
-		velocidad=50;
 		shieldL=null;
 		visitor=new visitorPowerUp(this);
 		profundidad=3;
 		x=c.getposx();
 		y=c.getposy();
-		
 	}
 	
 	public boolean Accept(Visitor V){

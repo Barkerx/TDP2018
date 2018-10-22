@@ -1,14 +1,15 @@
 package enemigos;
 
 import iAenemigos.FormaDeAtacar;
+import iAenemigos.IADormido;
+import iAenemigos.IAMareado;
 import mapa.celda;
 import misc.Visitor;
 import misc.nave;
 
 public abstract class enemigoAbstract extends nave{
-	protected FormaDeAtacar ataque;
-	protected boolean waked=true;
-	protected Thread t1;
+	protected FormaDeAtacar IA;
+	
 	public abstract void disparar();
 	
 	@Override
@@ -20,20 +21,13 @@ public abstract class enemigoAbstract extends nave{
 		this.c=c;
 		c.setelem(profundidad,this);
 	}
-	public boolean getVida(){
-		if(vida<50)
-			return true;
-		else 
-			return false;
-	}
-
 	/**
 	 * redefine el metodo eliminar de Gob, lo desrelaciona con el mapa, se desvincula de la IA que lo maneja, y luego se destruye.
 	 */
 	public void destruir(){
 		if(isRunning){
 		m.desligar(this);
-		explotar();
+	//	explotar();
 		super.destruir();
 		}
 	}
@@ -46,13 +40,8 @@ public abstract class enemigoAbstract extends nave{
 		return puntos;
 	}
 
-	public void congelar() {
-		if(waked)
-		waked=false;
-		else
-			waked=true;
-	}
-
+	public abstract void congelar();
+	
 public celda getcelda() {
 	// TODO Auto-generated method stub
 	return c;
@@ -60,9 +49,12 @@ public celda getcelda() {
 
 public void restart() {
 	m.restart(this);
-	
 }
 
 public abstract void mover();
 
+
+public abstract void descongelar();
+
 }
+//crear un enemmigo para cada IA, y que se encargue el enemigo de hacer el movimiento de IA DEBIDO

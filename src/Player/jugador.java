@@ -23,14 +23,14 @@ public class jugador extends nave{
     	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/jugador.gif")));
     	 puntos=0;
     	 vidas=3;
-    	 velocidad=16;
+    	 velocidad=35;
     	 moviendo=false;
     	 shieldL=new JLabel();
     	 shieldL.setIcon(null);
     	 vida=100; 
     	 puede=true;
     	 disparos=1;
-    	 arma=new basico(this); 
+    	 arma=new basico(this);
      }
      
      public void changeRunning(){
@@ -53,15 +53,19 @@ public class jugador extends nave{
     	 }
     	 else{
     		vida=vida-n;
-    		if(vidas==0)
+    		if(vidas==0&&isRunning){
+    			isRunning=false;
+    			grafico.setIcon(null);
     			m.gameover(this);
+    		}
     		else
     			if (vida<=0){
     				vida=100;
     				disparos=1;
     				arma=new basico(this);
-    				vidas=vida-1;
-    				m.resetearJugador(this);
+    				vidas=vidas-1;
+    				if(m!=null)
+    					m.resetearJugador(this);
     		} 
     	 
     	 }
@@ -143,7 +147,7 @@ public class jugador extends nave{
 	 */
 	public void congelatiempo() {
 		if(m!=null)
-			m.congelatiempo(this);
+			m.congelatiempo();
 		puntos=puntos+300;
 		
 	}
@@ -189,7 +193,7 @@ public class jugador extends nave{
 	}
 	public celda getceldaizq() {
 		if(m!=null)
-		return m.mover(c,IZQUIERDA );
+		return m.mover(c,IZQUIERDA);
 		else
 			return null;
 	}

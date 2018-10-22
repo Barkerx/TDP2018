@@ -9,14 +9,16 @@ import mapa.Map;
 import mapa.celda;
 import mapa.mapaBoss;
 
-public class FinalBOSS extends enemigoAbstract {
+public class FinalBOSS extends enemigoAbstract{
 	private int dir;
+	protected int b;
 	public FinalBOSS(celda c,Map m,int dir){
 		profundidad=1;
 		this.c=c;
 		c.setelem(profundidad,this);
 		this.m=m;
 		this.dir=dir;
+		velocidad=30;
 		puntos=300;
 		x=c.getposx();
 		y=c.getposy();
@@ -25,8 +27,8 @@ public class FinalBOSS extends enemigoAbstract {
 		velocidad=16;
 		visitor=new visitorEnemigo(this);
 	}
-	public void disparar(int dir) {
-		new DisparoBoss(c,m,dir);
+	public void disparar() {
+		new DisparoBoss(c,m);
 	}
 	public void reducirVida(int n){
 		mapaBoss ma=(mapaBoss) m;
@@ -38,11 +40,11 @@ public class FinalBOSS extends enemigoAbstract {
 		c=null;
 	}
 		
-	@Override
-	public void disparar() {
-		disparar(dir);
+	
+	public void congelar(){
 		
 	}
+	
 	public void explotar(){
 	int i=0;
 	while(i<12){
@@ -92,7 +94,13 @@ public class FinalBOSS extends enemigoAbstract {
 	}
 	@Override
 	public void mover() {
-		disparar(dir);
+		b=b+1;
+		if(b==5){
+			disparar();
+			b=0; }
+	}
+	@Override
+	public void descongelar() {
 		
 	}
 	

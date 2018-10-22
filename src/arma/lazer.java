@@ -23,16 +23,16 @@ public class lazer extends arma{
 			else
 				if(j.cantDisparos()==2)
 				{	
-					if(j.getceldaizq()!=null)
+					if(j.getceldaizq()!=j.getcelda())
 						new Laser(j.getceldaizq(),j.getmap(),j);
-					if(j.getceldader()!=null)
+					if(j.getceldader()!=j.getcelda())
 						new Laser(j.getceldader(),j.getmap(),j);
 				}
 				else
 					if(j.cantDisparos()==3){
-						if(j.getceldaizq()!=null)
+						if(j.getceldaizq()!=j.getcelda())
 							new Laser(j.getceldaizq(),j.getmap(),j);
-						if(j.getceldader()!=null)
+						if(j.getceldader()!=j.getcelda())
 							new Laser(j.getceldader(),j.getmap(),j);
 						new Laser(j.getcelda(),j.getmap(),j);
 					}

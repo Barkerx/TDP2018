@@ -69,9 +69,9 @@ public class visitorDisparoP extends Visitor {
 
 	@Override
 	public boolean visitPowerUp(powerUp pw) {
+		objeto.destruir(); 
 		pw.accionar(j);
 		pw.destruir();
-		objeto.destruir();
 		return false;
 	}
 

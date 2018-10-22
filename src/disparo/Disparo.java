@@ -1,13 +1,21 @@
 package disparo;
 
 
+import mapa.Map;
+import mapa.celda;
 import misc.*;
 
-public abstract class Disparo extends Unidad implements Runnable{
+public abstract class Disparo extends Unidad{
 	
-	protected Thread t1;
 	protected int damage;
 
+	protected Disparo(celda c, Map m) {
+		this.c=c;
+		this.m=m;
+		shieldL=null;
+		profundidad=2;
+		moviendo=false;
+	}
 	/**
 	 * metodo usado para retornar el daño de un disparo
 	 * @return retorna el daño del disparo.
@@ -27,19 +35,8 @@ public abstract class Disparo extends Unidad implements Runnable{
 		return velocidad;
 	}
 	
-	public void run(){
-	   	 
-	   	 while(isRunning){
-	          if(isRunning &&!moviendo){
-	 		            mover();
-	 		          
-	 		          try{
-	 		        	Thread.sleep(velocidad*2);
-	 		          }
-	 		          catch (Exception e){;}
-	 		            }
-	          }
-	   	 t1.interrupt();
-	    }
-	
+	public void destruir(){
+		//m.killDisparo(this);
+		super.destruir();
+	}
 }

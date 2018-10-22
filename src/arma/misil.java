@@ -22,16 +22,16 @@ public class misil extends arma{
 			else
 				if(j.cantDisparos()==2)
 				{
-					if(j.getceldaizq()!=null)
+					if(j.getceldaizq()!=j.getcelda())
 						new Misil(j.getceldaizq(),j.getmap(),j);
-					if(j.getceldader()!=null)
+					if(j.getceldader()!=j.getcelda())
 						new Misil(j.getceldader(),j.getmap(),j);
 				}
 				else
 					if(j.cantDisparos()==3){
-						if(j.getceldaizq()!=null)
+						if(j.getceldaizq()!=j.getcelda())
 							new Misil(j.getceldaizq(),j.getmap(),j);
-						if(j.getceldader()!=null)
+						if(j.getceldader()!=j.getcelda())
 							new Misil(j.getceldader(),j.getmap(),j);
 						new Misil(j.getcelda(),j.getmap(),j);
 					}

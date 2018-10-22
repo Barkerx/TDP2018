@@ -13,6 +13,7 @@ public class AumentarCantDisparos extends powerUp{
 		super(ce, m);
 		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/aumentarDisparo.png")));
 		initgraph();
+		velocidad=10;
 		new powerUpRun(this);
 		// TODO Auto-generated constructor stub
 	}

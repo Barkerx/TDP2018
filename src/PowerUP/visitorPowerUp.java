@@ -35,18 +35,18 @@ public class visitorPowerUp extends Visitor {
 	@Override
 	public boolean visitPlayer(jugador j) {
 		powerUp p=(powerUp)objeto;
-		p.accionar(j);
 		objeto.destruir();
+		p.accionar(j);
 		return true;
 	}
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
-		
 		powerUp p=(powerUp) objeto;
-		p.accionar(d.get());
-		d.destruir();
+		jugador j=d.get();  
+		d.destruir(); 
 		objeto.destruir();
+		p.accionar(j);
 		return false;
 	}
 

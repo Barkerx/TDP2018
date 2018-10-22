@@ -7,11 +7,17 @@ import javax.swing.JLayeredPane;
 
 import Player.jugador;
 import PowerUP.*;
+import disparo.Disparo;
+import disparo.DisparoMobiler;
+import enemigos.Buscador;
 import enemigos.EnemyMobiler;
+import enemigos.Kamikaze;
+import enemigos.Temporal;
 import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
+import misc.Gob;
 import misc.Unidad;
 import jaco.mp3.player.MP3Player;
 import obstaculos.*;
@@ -22,12 +28,34 @@ public abstract class Map extends Thread {
 	protected Thread t1;
 	private boolean creandoPW=false;
 	protected JLabel fondo;
-//	protected FormaDeAtacar[] EIA;
 	protected LinkedList<enemigoAbstract> lEnemy;
 	protected Juego j;
 	protected int horda;
 	protected boolean gane =false;
 	protected EnemyMobiler m;
+	protected DisparoMobiler d;
+	protected GraphPool dp;
+	protected boolean waked=true;
+	
+	
+	protected void inicializoCeldas(){
+		//inicializo la matriz de celdas
+				int x=20;
+				int y=15;
+				celdas=new celda[x][y];
+				for(int i=0;i<x;i++)
+					for(int j=0;j<y;j++)
+						celdas[i][j]=new celda(i,j,this);
+				
+	}
+	
+	protected void inicializoGui(gui gu,Juego ju){
+		g=gu;
+		g.setResizable(false);
+   	 	g.add(fondo,new Integer(0));
+   	 	this.j=ju;	 
+	}
+	
 	/**
 	 * Metodo que a partir de una celda C y una direccion dir retorna la celda que esta al lado de C
 	 * @param celda celda de origen
@@ -121,7 +149,10 @@ public abstract class Map extends Thread {
 		}
 		creandoPW=false;
 	}
-	public void crearObstaculo() {
+	/**
+	 * Metodo Usado para crear Obstaculos de forma aleatoria
+	 */
+	protected void crearObstaculo() {
 		Random r=new Random();
 		int i=0;
 		while(i<8)
@@ -140,7 +171,9 @@ public abstract class Map extends Thread {
 				}
 			}
 	}
-	
+	/**
+	 * Metodo usado para dañar a todos los enemigos en 30 puntos
+	 */
 	public void supermisil() {
 	// agregar elemento grafico en celdas[5][5] de una bomba
 		LinkedList<enemigoAbstract> eliminar=new LinkedList<enemigoAbstract>();
@@ -152,14 +185,37 @@ public abstract class Map extends Thread {
 		}
 		
 	}
-	public void congelatiempo(jugador jugador) {
-		m.congelar();
-		}
-		//CONGELAR TIEMPO DEL JUEGO
-	public void gameover(jugador jugador) {
-		j.gamerover();
-		
+	/**
+	 * metodo usado para congelar a los enemigos, cambiando su IA por una que no hace nada.
+	 */
+	public void congelatiempo() {
+		for(enemigoAbstract e:lEnemy)
+			e.congelar();
+		waked=false;
 	}
+	/**
+	 * Metodo usado para descongelar los enemigos, cambiando su IA por la Original
+	 */
+	protected void descongelar(){	
+		for(enemigoAbstract e:lEnemy)
+			e.descongelar();
+		waked=true;
+	}
+		//CONGELAR TIEMPO DEL JUEGO
+	/**
+	 * metodo usado para indicar que el juego se termino.
+	 * @param jugador
+	 */
+	public void gameover(jugador jugador) {
+		jugador.changeRunning();
+		jugador.getcelda().setelem(jugador.getProfundidad(),null);
+		jugador.setGrafico(null);
+		j.gamerover();
+	}
+	/**
+	 * metodo usado para reiniciar la posicion del enemigo.
+	 * @param enemigoAbstract enemigo que reiniciara su posicion
+	 */
 	public void restart(enemigoAbstract enemigoAbstract) {
 		celda c=enemigoAbstract.getcelda();
 		Random r= new Random();
@@ -177,37 +233,65 @@ public abstract class Map extends Thread {
 		}
 		
 	}
-	
+	/**
+	 * Al morir el jugador reinicia su posicion en una celda puntual y congela el tiempo para que el jugador tenga tiempo.
+	 * @param j jugador a reiniciar la posicion
+	 */
 	public void resetearJugador(jugador j){
 		j.changeRunning();
 		j.getcelda().setelem(j.getProfundidad(),null);
 		j.setCelda(celdas[10][14]);
 		celdas[10][14].setelem(j.getProfundidad(), j);
-		j.congelatiempo();
 		j.initgraph();
 		j.changeRunning();
+		congelatiempo();
 	}
-	
+	/**
+	 * metodo usado para crear Enemigos en el mapa, cada mapa crea sus enemigos.
+	 */
 	protected abstract void crearEnemigos();
-	
+	/**
+	 * metodo usado para crear un enemigo en la celda c.
+	 * @param c celda donde se insertara el enemigo.
+	 */
 	protected void crearEnemigo(celda c){
-		enemigo e=new enemigo(c,this,j);
+		enemigo e = null;
+		Random r=new Random();
+		int x=r.nextInt(3);
+	switch(x){
+	case 0:e=new Buscador(c,this,j.getJugador());break;
+	case 1:e=new Kamikaze(c,this);break;
+	case 2:e=new Temporal(c,this,j.getJugador());break;
+	}
 		lEnemy.add(e);
 		m.addEnemy(e);
 	}
-	
+	/**
+	 * metodo usado para parar el sonido del mapa.
+	 */
 	public void stopSound(){
 		cancion.setRepeat(false);
 		cancion.stop();
 	}
+	/**
+	 * metodo usado para comenzar el sonido del mapa
+	 */
 	public void initSound(){
 		cancion.play();
 		cancion.setRepeat(true);
 	}
+	/**
+	 * metodo usado para indicar que el mapa fue ganado al juego
+	 */
 	protected void gane(){
 		stopSound();
+		this.interrupt();
 		j.win();
 	}
+	/**
+	 * metodo que retorna el estado del mapa
+	 * @return True si se gano el mapa, False en caso contrario.
+	 */
 	public boolean ganado(){
 		return gane;
 	}
@@ -219,4 +303,14 @@ public abstract class Map extends Thread {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public void addDisparo(Disparo p){
+		d.addDisparo(p);
+	}
+	public void killDisparo(Disparo p){
+		d.killDisparo(p);
+	}
+	public void movegraph(Unidad u) {
+		 dp.add(u);
+	}
+	
 }

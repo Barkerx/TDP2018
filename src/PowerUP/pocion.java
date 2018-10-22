@@ -12,6 +12,7 @@ public class pocion extends powerUp{
 		super(ce, m);
 		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/pocion.png")));
 		initgraph();
+		velocidad=10;
 		new powerUpRun(this);
 		// TODO Auto-generated constructor stub
 	}

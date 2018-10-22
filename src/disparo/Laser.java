@@ -12,13 +12,13 @@ public class Laser extends DisparoP{
 	public Laser(celda c, Map m,jugador j) {
 		super(c,m,j);
 		damage=40;
-		velocidad=18;
+		velocidad=40;
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/lazer.png")));
 		visitor=new visitorDisparoP(this,j);
 		moviendo=false;
 		initgraph();
-		t1=new Thread(this);
-		t1.start();
+		m.addDisparo(this);
+		//new DisparoRun(this,m);
 	}
 
 }

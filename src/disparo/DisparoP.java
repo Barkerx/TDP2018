@@ -16,11 +16,8 @@ public abstract class DisparoP extends Disparo{
 	 * @param j jugador del disparo
 	 */
 	protected DisparoP(celda c, Map m, jugador j) {
-		this.c=c;
-		this.m=m;
+		super(c,m);
 		this.j=j;
-		shieldL=null;
-		profundidad=2;
 		visitor=new visitorDisparoP(this,j);
 		pasos=0;
 	}

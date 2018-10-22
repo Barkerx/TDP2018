@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 
 import mapa.celda;
 
-public abstract class Unidad extends Gob{
+public abstract class Unidad extends Gob implements Runnable{
 
 	public static final int ARRIBA = 4;
 	public static final int ABAJO = 0;
@@ -47,21 +47,26 @@ public abstract class Unidad extends Gob{
 		
 		if(b&&isRunning){	
 		moviendo=true;
+		dir=n;
 		d.setelem(profundidad,this);
 		c.setelem(profundidad,null);
 		c=d;
 		x=d.getposx();
 		y=d.getposy();
-		dir=n;
-		mover();
+		movergrafico();
+		moviendo=false;
 		}
 
 	}
 	
+	private void movergrafico() {
+		m.movegraph(this);
+		
+	}
 	/**
 	 * metodo usado cuando se hace un movimiento( ES EL MOVIMIENTO SUAVE ESTO)
 	 */
-	private void mover(){
+	public void run(){
 		for(int i=0;i<9&&isRunning;i++){
 			  switch(dir){
 			  case ABAJO:
@@ -96,14 +101,13 @@ public abstract class Unidad extends Gob{
 				  break;	  
 			  }
 			  try{
-				  Thread.sleep(velocidad/2);
+				  Thread.sleep(50-velocidad);
 			  }catch(InterruptedException e){
 				  
 			  }
-			 moviendo=false;
 		  }
 	}
-	
+	 
 	
 }
   

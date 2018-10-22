@@ -21,4 +21,5 @@ public class ParedTodos extends obstaculo {
 	 return	V.VisitDestruible(this); 
 	}
 
+
 }

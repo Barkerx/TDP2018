@@ -17,7 +17,7 @@ public abstract class obstaculo extends Gob{
 	
 	public void destruir(){
 		if(isRunning){ 	
-		explotar();
+	//	explotar();
 		super.destruir();
 		}
 	}

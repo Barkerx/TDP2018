@@ -19,16 +19,10 @@ public class mapa1 extends Map{
 
 	protected int horda;
 public mapa1(gui gu,Juego ju,jugador p){
-		int x=20;
-		int y=15;
-		horda=0;
-		g=gu;
-		//inicializo la matriz de celdas
-		celdas=new celda[x][y];
-		for(int i=0;i<x;i++)
-			for(int j=0;j<y;j++)
-				celdas[i][j]=new celda(i,j,this);
 		
+		horda=0;
+		
+		inicializoCeldas();
 		//agrego el personaje a la posicion 5 5
 		p.setCelda(celdas[10][14]);
 		celdas[10][14].setelem(p.getProfundidad(), p);
@@ -36,18 +30,21 @@ public mapa1(gui gu,Juego ju,jugador p){
 		lEnemy=new LinkedList<enemigoAbstract>();
 		//linkeo la libreria mp3 al archivo
 		cancion=new MP3Player(this.getClass().getResource("/resources/mapa1.mp3"));
-		//Inicializo 
-		g.setResizable(false);
+		//Inicializo gui
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo.png")));
    	 	fondo.setBounds(0, 0, 900, 675);
-   	 	g.add(fondo,new Integer(0));
-   	 	this.j=ju;	    
+   	 	inicializoGui(gu,ju);
+   	 	dp=new GraphPool();
    	 	m=new EnemyMobiler(this);
+   	 	d=new DisparoMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
 	    t1=new Thread(this);
 	    t1.start();
 	    
 	}
+
+
+
 public void crearEnemigos(){
 	//creo enemigos
 	if(!gane){
@@ -79,20 +76,35 @@ public void crearEnemigos(){
 	public void run() {
 	initSound();
 	Random aleatorio = new Random(System.currentTimeMillis());
-	int intAleatorio = aleatorio.nextInt(2);
+	int intAleatorio = aleatorio.nextInt(3)+2;
 	crearpowerUP(celdas[10][5],intAleatorio);
-	j.habilitado();
+	//d.play();
 	try {
 		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+	j.habilitado();
 	crearObstaculo();
 	crearEnemigos();
 	m.play();
-	}
 	
+	while(!gane){
+
+		System.out.println(waked);
+		if(!waked){
+			try {
+				Thread.sleep(3000);
+				descongelar();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
+		
+			}
+		}
+	this.interrupt();
+	}
 }
    

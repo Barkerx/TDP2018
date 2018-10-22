@@ -21,7 +21,7 @@ public class gui extends JFrame implements Runnable {
 
 	protected boolean keyBoardRightPressed;
 	
-	protected boolean keyBoardSPACEPressed;
+  	protected boolean keyBoardSPACEPressed;
 	private static Juego j;
 
 	public gui(final Juego j) {	
@@ -113,6 +113,7 @@ private void mover(){
  */
 public void run() {
 	while(true){
+			
               mover();		  
                    
 		try {

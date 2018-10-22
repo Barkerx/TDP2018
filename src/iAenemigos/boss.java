@@ -1,16 +1,17 @@
 package iAenemigos;
 
 import Player.jugador;
+import enemigos.Boss;
 import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import mapa.celda;
 import misc.Unidad;
 
-public class boss extends Buscador {
+public class boss extends IABuscador {
 	protected int x=0;
-	public boss(jugador j, enemigoAbstract e) {
-		super(j, e);
+	public boss(jugador j, enemigoAbstract boss) {
+		super(j,boss);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -20,9 +21,8 @@ public class boss extends Buscador {
 		x=x+1;
 		if(x==2){
 			x=0;
-			salida=-1;
+			e.disparar();
 		}
-		else
 			salida=getxy();
 		return salida;
 	}

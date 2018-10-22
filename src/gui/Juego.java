@@ -82,9 +82,9 @@ public void win() {
 	if(!gane){	
 		if(n==2)
 			Mapa2();
-		if(n==3)
-			MapaBoss();
-		if(n==4){
+		//if(n==3)
+			//MapaBoss();
+		if(n==3){
 			System.out.println("GANASTE n es 3");
 			gane=true;
 		}
@@ -109,10 +109,10 @@ private void MapaBoss(){
 private void Mapa2(){
 	if(n==2){
 	habilitado=false;
-	m=null;
 	j.setCelda(null);
 	j.setMap(null);
 	frame.dispose();
+	m=null;
 	frame=new gui(this);
 	m=new mapa2(frame,this,j);
 	frame.setVisible(true);
@@ -123,7 +123,7 @@ private void Mapa2(){
 
 public void gamerover() {
 	System.out.println("Perdiste");
-	 
+	habilitado=false; 
 }
 
 public void habilitado(){

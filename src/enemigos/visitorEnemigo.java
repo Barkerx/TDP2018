@@ -35,8 +35,8 @@ public class visitorEnemigo extends Visitor {
 	@Override
 	public boolean visitPlayer(jugador j) {
 		if(j.getIsRunning()&&objeto.getIsRunning()){
-		j.reducirVida(50);
 		objeto.destruir();
+		j.reducirVida(50);
 		}
 		return false;
 	}

@@ -13,6 +13,7 @@ public class SuperMisil extends powerUp{
 		super(ce, m);
 		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/superMisil.png")));
 		initgraph();
+		velocidad=20;
 		new powerUpRun(this);
 	}
 	

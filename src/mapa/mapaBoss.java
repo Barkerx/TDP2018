@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
+import disparo.DisparoMobiler;
 import enemigos.Boss;
 import enemigos.EnemyMobiler;
 import enemigos.FinalBOSS;
@@ -23,6 +24,7 @@ public class mapaBoss extends Map{
 	private LinkedList<FinalBOSS> lEnemyBOSS;
 	private JLabel boss;
 	public mapaBoss(gui gu,Juego ju,jugador p){
+		horda=0;
 		int x=20;
 		int y=15;
 		g=gu;
@@ -48,6 +50,8 @@ public class mapaBoss extends Map{
    	 	g.add(fondo,new Integer(0));
    	 	this.j=ju;
    	 	m=new EnemyMobiler(this);
+   	 	dp=new GraphPool();
+   	 	d=new DisparoMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
 	    t1=new Thread(this);
 	    t1.start();
@@ -74,8 +78,7 @@ public class mapaBoss extends Map{
 		CrearBOSS();
 		crearEnemigos();
 		m.play();
-		while(gane){
-			
+		while(!gane){
 		}
 		
 		
@@ -118,7 +121,7 @@ public class mapaBoss extends Map{
 	private void CrearBOSS(){
 		boss=new JLabel(new ImageIcon(this.getClass().getResource("/resources/BOSS.png")));
 	    boss.setBounds(130, 0, 600, 264);
-	    addgraph(boss,1);
+	    addgraph(boss);
 	    crearEnemigoBOSS(celdas[3][2],Unidad.IZQUIERDA);
 	    crearEnemigoBOSS(celdas[4][3],Unidad.ABAJOIZQUIERDA);
 	    crearEnemigoBOSS(celdas[4][4],Unidad.ABAJO);
@@ -155,7 +158,7 @@ public class mapaBoss extends Map{
 			for(FinalBOSS eb:lEnemyBOSS)
 			{	
 				aux2.add(eb);
-				eb.explotar();	
+			// 	eb.explotar();	
 			}
 			
 			try {

@@ -13,6 +13,7 @@ public class CongelaTiempo extends powerUp{
 		super(ce, m);
 		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/detenerTiempo.gif")));
 		initgraph();
+		velocidad=45;
 		new powerUpRun(this);
 		// TODO Auto-generated constructor stub
 	}

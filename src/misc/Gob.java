@@ -58,7 +58,12 @@ public abstract class Gob {
 	         c=null;
 	    	 grafico.setIcon(null);
 	    	 grafico.setBounds(x*45, y*45, 45 , 45);
-	    	 m.addgraph(grafico);
+	    	 try {
+				this.finalize();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    	}
 	     }
 	     
@@ -88,28 +93,29 @@ public abstract class Gob {
 /**
  *Metodo usado para Explotar el gob(mas que nada hace una explosion grafica 
  */
-		public void explotar(){
-		if(isRunning){
-	    c.setelem(profundidad,null);		
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
-		grafico.setBounds(x*45, y*45, 45, 45);
-		m.addgraph(grafico);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	/*	public void explotar(){
+			if(isRunning){
+			    c.setelem(profundidad,null);		
+				grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
+				grafico.setBounds(x*45, y*45, 45, 45);
+				m.addgraph(grafico);
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
+				grafico.setBounds(x*45, y*45, 45, 45);
+				m.addgraph(grafico);
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
+				grafico.setIcon(null);
 		}
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
-		grafico.setBounds(x*45, y*45, 45, 45);
-		m.addgraph(grafico);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		grafico.setIcon(null);
-		}	
+		*/
 }
