@@ -1,7 +1,5 @@
 package PowerUP;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public class powerUpRun implements Runnable {
 

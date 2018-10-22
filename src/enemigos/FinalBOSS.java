@@ -10,14 +10,12 @@ import mapa.celda;
 import mapa.mapaBoss;
 
 public class FinalBOSS extends enemigoAbstract{
-	private int dir;
 	protected int b;
 	public FinalBOSS(celda c,Map m,int dir){
 		profundidad=1;
 		this.c=c;
 		c.setelem(profundidad,this);
 		this.m=m;
-		this.dir=dir;
 		velocidad=30;
 		puntos=300;
 		x=c.getposx();

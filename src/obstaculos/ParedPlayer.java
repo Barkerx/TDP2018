@@ -12,7 +12,7 @@ public class ParedPlayer extends obstaculo {
 	public ParedPlayer(celda ce, Map m) {
 		super(ce, m);
 		visitor=new visitorDestruibleplayer(this);
-		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredplayer.png")));
+		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredplayer.gif")));
 		initgraph();
 	}
 

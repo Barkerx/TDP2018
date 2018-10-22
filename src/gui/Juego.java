@@ -6,7 +6,6 @@ import mapa.*;
 import misc.Unidad;
 import misc.nave;
 import Player.jugador;
-import enemigos.enemigoAbstract;
 
 public  class Juego {
 	private jugador j;
@@ -87,11 +86,13 @@ public void win() {
 		if(n==3){
 			System.out.println("GANASTE n es 3");
 			gane=true;
+			frame.dispose();
+			//hacer un frame de ganaste.
 		}
 	}
 	
 }
-
+/*
 private void MapaBoss(){
 	if(n==3){
 		habilitado=false;
@@ -105,7 +106,7 @@ private void MapaBoss(){
 		j.setMap(m);
 		j.initgraph();
 	}
-}
+}*/
 private void Mapa2(){
 	if(n==2){
 	habilitado=false;
@@ -123,6 +124,8 @@ private void Mapa2(){
 
 public void gamerover() {
 	System.out.println("Perdiste");
+	frame.dispose();
+	//hacer un frame de perdiste.
 	habilitado=false; 
 }
 

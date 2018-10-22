@@ -1,9 +1,6 @@
 package iAenemigos;
 
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
-import gui.Juego;
-import mapa.celda;
 import misc.Unidad;
 
 public class IAKamikaze extends FormaDeAtacar{

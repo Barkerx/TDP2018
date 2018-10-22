@@ -3,8 +3,6 @@ package mapa;
 import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-
 import Player.jugador;
 import PowerUP.*;
 import disparo.Disparo;
@@ -25,7 +23,6 @@ public abstract class Map extends Thread {
 	protected celda[][] celdas; 
 	protected gui g;
 	protected MP3Player cancion;
-	protected Thread t1;
 	private boolean creandoPW=false;
 	protected JLabel fondo;
 	protected LinkedList<enemigoAbstract> lEnemy;
@@ -34,9 +31,9 @@ public abstract class Map extends Thread {
 	protected boolean gane =false;
 	protected EnemyMobiler m;
 	protected DisparoMobiler d;
-	protected GraphPool dp;
+	protected Pool dp;
 	protected boolean waked=true;
-	
+	protected Phantom p;
 	
 	protected void inicializoCeldas(){
 		//inicializo la matriz de celdas
@@ -161,7 +158,7 @@ public abstract class Map extends Thread {
 			int y=r.nextInt(5)+5;
 			if(celdas[x][y].objlist()[0]==null)
 				{	
-				obstaculo p;
+				obstaculo p=null;
 				int c=r.nextInt(2);
 				switch(c){
 					case 0:p=new ParedPlayer(celdas[x][y],this);break;
@@ -191,7 +188,7 @@ public abstract class Map extends Thread {
 	public void congelatiempo() {
 		for(enemigoAbstract e:lEnemy)
 			e.congelar();
-		waked=false;
+		p=new Phantom(3000,this);
 	}
 	/**
 	 * Metodo usado para descongelar los enemigos, cambiando su IA por la Original
@@ -199,7 +196,6 @@ public abstract class Map extends Thread {
 	protected void descongelar(){	
 		for(enemigoAbstract e:lEnemy)
 			e.descongelar();
-		waked=true;
 	}
 		//CONGELAR TIEMPO DEL JUEGO
 	/**
@@ -309,8 +305,8 @@ public abstract class Map extends Thread {
 	public void killDisparo(Disparo p){
 		d.killDisparo(p);
 	}
-	public void movegraph(Unidad u) {
-		 dp.add(u);
+	public void movegraph(Gob g) {
+		 dp.add(g);
 	}
 	
 }

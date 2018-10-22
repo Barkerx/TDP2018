@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 
 import mapa.celda;
 
-public abstract class Unidad extends Gob implements Runnable{
+public abstract class Unidad extends Gob {
 
 	public static final int ARRIBA = 4;
 	public static final int ABAJO = 0;
@@ -101,11 +101,12 @@ public abstract class Unidad extends Gob implements Runnable{
 				  break;	  
 			  }
 			  try{
-				  Thread.sleep(50-velocidad);
+				  Unidad.sleep(50-velocidad);
 			  }catch(InterruptedException e){
 				  
 			  }
 		  }
+	this.interrupt();
 	}
 	 
 	

@@ -14,15 +14,15 @@ public class Buscador extends enemigo{
 	public Buscador(celda c, Map m,jugador j) {
 		super(c, m);
 		vida=100;
-		velocidad=40;
-		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
+		velocidad=45;
+		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/buscador.png")));
 		initgraph();
 		IA=new IABuscador(j,this);
 		this.j=j;
 		
 	}
 	
-
+	public void disparar(){}
 	@Override
 	public void descongelar() {
 		IA=new IABuscador(j,this);	

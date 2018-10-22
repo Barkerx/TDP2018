@@ -1,10 +1,6 @@
 package iAenemigos;
 
-import Player.jugador;
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
-import gui.Juego;
-import mapa.celda;
 
 public abstract class FormaDeAtacar{
 	

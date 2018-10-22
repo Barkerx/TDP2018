@@ -1,6 +1,5 @@
 package mapa;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -12,7 +11,6 @@ import disparo.DisparoMobiler;
 import enemigos.Boss;
 import enemigos.EnemyMobiler;
 import enemigos.FinalBOSS;
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
@@ -50,11 +48,11 @@ public class mapaBoss extends Map{
    	 	g.add(fondo,new Integer(0));
    	 	this.j=ju;
    	 	m=new EnemyMobiler(this);
-   	 	dp=new GraphPool();
+   	 	dp=new Pool();
    	 	d=new DisparoMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
-	    t1=new Thread(this);
-	    t1.start();
+	    new Thread(this);
+	    this.start();
 	}
 	
 	@Override

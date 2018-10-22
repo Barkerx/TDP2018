@@ -1,6 +1,5 @@
 package iAenemigos;
 
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 
 public class IADormido extends FormaDeAtacar{

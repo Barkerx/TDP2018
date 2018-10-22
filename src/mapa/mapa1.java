@@ -1,6 +1,5 @@
 package mapa;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -9,7 +8,6 @@ import javax.swing.JLabel;
 import Player.jugador;
 import disparo.DisparoMobiler;
 import enemigos.EnemyMobiler;
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
@@ -19,9 +17,7 @@ public class mapa1 extends Map{
 
 	protected int horda;
 public mapa1(gui gu,Juego ju,jugador p){
-		
-		horda=0;
-		
+		horda=4;
 		inicializoCeldas();
 		//agrego el personaje a la posicion 5 5
 		p.setCelda(celdas[10][14]);
@@ -34,13 +30,12 @@ public mapa1(gui gu,Juego ju,jugador p){
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo.png")));
    	 	fondo.setBounds(0, 0, 900, 675);
    	 	inicializoGui(gu,ju);
-   	 	dp=new GraphPool();
+   	 	dp=new Pool();
    	 	m=new EnemyMobiler(this);
    	 	d=new DisparoMobiler(this);
 	    //regalo un PowerUp al jugador al comenzar.
-	    t1=new Thread(this);
-	    t1.start();
-	    
+   	 	new Thread(this);
+   	 	this.start();
 	}
 
 
@@ -48,7 +43,7 @@ public mapa1(gui gu,Juego ju,jugador p){
 public void crearEnemigos(){
 	//creo enemigos
 	if(!gane){
-		if(horda<2){
+		if(horda>0){
 			int act=0;
 			while(act<8){
 				Random r=new Random();
@@ -61,7 +56,7 @@ public void crearEnemigos(){
 				}
 				
 			}
-			horda=horda+1;
+			horda=horda-1;
 		}
 		else
 			gane=true;
@@ -73,7 +68,7 @@ public void crearEnemigos(){
 
 
 	@Override
-	public void run() {
+	public void run(){
 	initSound();
 	Random aleatorio = new Random(System.currentTimeMillis());
 	int intAleatorio = aleatorio.nextInt(3)+2;
@@ -89,21 +84,6 @@ public void crearEnemigos(){
 	crearObstaculo();
 	crearEnemigos();
 	m.play();
-	
-	while(!gane){
-
-		System.out.println(waked);
-		if(!waked){
-			try {
-				Thread.sleep(3000);
-				descongelar();
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				}
-		
-			}
-		}
 	this.interrupt();
 	}
 }

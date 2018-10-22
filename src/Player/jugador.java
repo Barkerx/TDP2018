@@ -20,7 +20,7 @@ public class jugador extends nave{
     	 this.m=m;
     	 profundidad=1;
     	 visitor=new visitorPlayer(this);
-    	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/jugador.gif")));
+    	 grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/player.png")));
     	 puntos=0;
     	 vidas=3;
     	 velocidad=35;

@@ -1,6 +1,5 @@
 package mapa;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -10,7 +9,6 @@ import javax.swing.JLabel;
 import Player.jugador;
 import disparo.DisparoMobiler;
 import enemigos.EnemyMobiler;
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
@@ -19,9 +17,7 @@ import jaco.mp3.player.MP3Player;
 public class mapa2 extends Map{
 
 	public mapa2(gui gu,Juego ju,jugador p){
-		
-		horda=0;
-		
+		horda=4;
 		inicializoCeldas();
 		//agrego el personaje a la posicion 5 5
 		p.setCelda(celdas[10][14]);
@@ -34,19 +30,19 @@ public class mapa2 extends Map{
 		fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/fondo2.png")));
    	 	fondo.setBounds(0, 0, 900, 675);
    	 	inicializoGui(gu,ju);
-   	 	//creo el mobiler de enemigos y el pool de disparos
-   	 	dp=new GraphPool();
+   	 	//creo el mobiler de enemigos y de disparos, el pool de grafica
+   	 	dp=new Pool();
    	 	m=new EnemyMobiler(this);
    	 	d=new DisparoMobiler(this);
+   	 	
 	    //regalo un PowerUp al jugador al comenzar.
-	    t1=new Thread(this);
-	    t1.start();
-	    
+   	 	new Thread(this);
+   	 	this.start();
 	}
 	public void crearEnemigos(){
 		//creo enemigos
 		if(!gane){
-			if(horda<2){
+			if(horda>0){
 				int act=0;
 				while(act<8){
 					Random r=new Random();
@@ -59,7 +55,7 @@ public class mapa2 extends Map{
 					}
 					
 				}
-				horda=horda+1;
+				horda=horda-1;
 			}
 			else
 				gane=true;
@@ -86,20 +82,6 @@ public class mapa2 extends Map{
 	crearObstaculo();    
 	crearEnemigos();
 	m.play();
-	while(!gane){
-
-		System.out.println(waked);
-		if(!waked){
-			try {
-				Thread.sleep(3000);
-				descongelar();
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				}
-		
-			}
-		}
 	this.interrupt();
 	}
 	

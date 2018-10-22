@@ -1,7 +1,6 @@
 package gui;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLayeredPane;

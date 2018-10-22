@@ -6,11 +6,12 @@ import mapa.celda;
 import misc.Unidad;
 
 public class IABuscador extends FormaDeAtacar{
-
+	private int n;
 	protected jugador j;	
 	public IABuscador(jugador j, enemigoAbstract e) {
 		this.e=e;
 		this.j=j;
+		n=0;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,6 +22,11 @@ public class IABuscador extends FormaDeAtacar{
 	}
 	
 	public int getxy() {
+		n++;
+		if(n==3){
+			n=0;
+			e.disparar();
+		}
 		int salida=Unidad.ABAJO;
 		celda c=j.getcelda();
 		celda c2=e.getcelda();

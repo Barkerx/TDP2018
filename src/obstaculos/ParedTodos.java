@@ -12,7 +12,7 @@ public class ParedTodos extends obstaculo {
 	public ParedTodos(celda ce, Map m) {
 		super(ce, m);
 		visitor=new visitorDestruibleTodos(this);
-		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredtodos.png")));
+		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredtodos.gif")));
 		initgraph();
 	}
 

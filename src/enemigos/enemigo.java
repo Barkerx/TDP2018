@@ -4,13 +4,7 @@ import iAenemigos.*;
 import mapa.Map;
 import mapa.celda;
 import misc.Unidad;
-
-import java.util.Random;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import disparo.disparoEnemy;
-import gui.Juego;
 
 
 public abstract class enemigo extends enemigoAbstract {
@@ -33,10 +27,7 @@ public abstract class enemigo extends enemigoAbstract {
 		visitor=new visitorEnemigo(this);
 
 	}
-	public void disparar() {
-		if(isRunning)
-			new disparoEnemy(c,m);
-	}
+	public abstract void disparar();
 	public void congelar() {
 		IA=new IADormido(this);
 	}

@@ -1,8 +1,6 @@
 package enemigos;
 
 import iAenemigos.FormaDeAtacar;
-import iAenemigos.IADormido;
-import iAenemigos.IAMareado;
 import mapa.celda;
 import misc.Visitor;
 import misc.nave;
@@ -27,7 +25,6 @@ public abstract class enemigoAbstract extends nave{
 	public void destruir(){
 		if(isRunning){
 		m.desligar(this);
-	//	explotar();
 		super.destruir();
 		}
 	}
@@ -56,5 +53,6 @@ public abstract void mover();
 
 public abstract void descongelar();
 
-}
 //crear un enemmigo para cada IA, y que se encargue el enemigo de hacer el movimiento de IA DEBIDO
+
+}

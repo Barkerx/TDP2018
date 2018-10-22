@@ -3,6 +3,7 @@ package enemigos;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import disparo.disparoEnemy;
 import iAenemigos.IAKamikaze;
 import mapa.Map;
 import mapa.celda;
@@ -13,7 +14,7 @@ public class Kamikaze extends enemigo {
 		super(c, m);
 		vida=150;
 		velocidad=30;
-		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/enemigo.png")));
+		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/kamikaze.png")));
 		initgraph();
 		IA=new IAKamikaze(this);
 		
@@ -24,6 +25,10 @@ public class Kamikaze extends enemigo {
 	public void descongelar() {
 		IA=new IAKamikaze(this);
 
+	}
+	public void disparar() {
+		if(isRunning)
+			new disparoEnemy(c,m);
 	}
 
 }

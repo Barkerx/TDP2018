@@ -1,14 +1,11 @@
 package misc;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-
 import misc.Visitor;
 import mapa.Map;
 import mapa.celda;
 
-public abstract class Gob {
+public abstract class Gob extends Thread{
 		 protected Visitor visitor;
 	  	 protected JLabel grafico;
 	     protected celda c;
@@ -50,7 +47,7 @@ public abstract class Gob {
 	      * Metodo usado para eliminar un Gob(tanto logica como graficamente)
 	      */
 	     public void destruir(){
-	    	 if(isRunning&&c!=null){
+	    	 if(isRunning){
 	         isRunning=false;
 	         int x=c.getposx();
 	    	 int y=c.getposy();
@@ -90,32 +87,5 @@ public abstract class Gob {
 	     }
 		
 		//grafico.getVisibleRect().intersects(arg0)
-/**
- *Metodo usado para Explotar el gob(mas que nada hace una explosion grafica 
- */
-	/*	public void explotar(){
-			if(isRunning){
-			    c.setelem(profundidad,null);		
-				grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
-				grafico.setBounds(x*45, y*45, 45, 45);
-				m.addgraph(grafico);
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
-				grafico.setBounds(x*45, y*45, 45, 45);
-				m.addgraph(grafico);
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				}
-				grafico.setIcon(null);
-		}
-		*/
+		
 }

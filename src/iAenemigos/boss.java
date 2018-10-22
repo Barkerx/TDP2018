@@ -1,12 +1,7 @@
 package iAenemigos;
 
 import Player.jugador;
-import enemigos.Boss;
-import enemigos.enemigo;
 import enemigos.enemigoAbstract;
-import gui.Juego;
-import mapa.celda;
-import misc.Unidad;
 
 public class boss extends IABuscador {
 	protected int x=0;
