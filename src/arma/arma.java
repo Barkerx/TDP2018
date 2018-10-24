@@ -4,6 +4,8 @@ import Player.jugador;
 
 public abstract class arma {
 	protected jugador j;
+	protected int disparos;
+	protected int maxDisparos;
 	/**
 	 * constructor de arma
 	 * @param j jugador al que va a estar asociado
@@ -22,4 +24,9 @@ public abstract class arma {
 	 */
 	
 	public abstract void getDisparo();
+
+	public void aumentarDisparos(){
+		if(disparos<maxDisparos)
+			disparos++;
+	}
 }

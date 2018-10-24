@@ -1,12 +1,15 @@
 package arma;
 
 import Player.jugador;
+import disparo.Basico;
 import disparo.Laser;
 
 public class lazer extends arma{
 
 	public lazer(jugador j) {
 		super(j);
+		disparos=1;
+		maxDisparos=3;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -18,25 +21,21 @@ public class lazer extends arma{
 
 	@Override
 	public void getDisparo() {
-		if(j.cantDisparos()==1)
+		switch(disparos){
+		case 1:new Laser(j.getcelda(),j.getmap(),j);break;
+		case 2:{
+			if(j.getceldaizq()!=j.getcelda())
+			new Laser(j.getceldaizq(),j.getmap(),j);
+			if(j.getceldader()!=j.getcelda())
+			new Laser(j.getceldader(),j.getmap(),j);
+			}break;
+		case 3:{
+			if(j.getceldaizq()!=j.getcelda())
+			new Laser(j.getceldaizq(),j.getmap(),j);
+			if(j.getceldader()!=j.getcelda())
+			new Laser(j.getceldader(),j.getmap(),j);
 			new Laser(j.getcelda(),j.getmap(),j);
-			else
-				if(j.cantDisparos()==2)
-				{	
-					if(j.getceldaizq()!=j.getcelda())
-						new Laser(j.getceldaizq(),j.getmap(),j);
-					if(j.getceldader()!=j.getcelda())
-						new Laser(j.getceldader(),j.getmap(),j);
-				}
-				else
-					if(j.cantDisparos()==3){
-						if(j.getceldaizq()!=j.getcelda())
-							new Laser(j.getceldaizq(),j.getmap(),j);
-						if(j.getceldader()!=j.getcelda())
-							new Laser(j.getceldader(),j.getmap(),j);
-						new Laser(j.getcelda(),j.getmap(),j);
-					}
-		
+			}break;
 		}
-
+	}
 }
