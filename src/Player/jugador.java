@@ -131,9 +131,6 @@ public class jugador extends nave{
 		// TODO Auto-generated method stub
 		return m;
 	}
-	public int cantDisparos() {
-		return disparos;
-	}
 	//POWERUPS
 	/**
 	 * pocion
@@ -165,9 +162,7 @@ public class jugador extends nave{
 	 * aumenta la cantidad de disparos del jugador(maximo 3)
 	 */
 	public void aumentar() {
-		if(disparos<3)
-		disparos++;
-		
+		arma.aumentarDisparos();
 		puntos=puntos+300;
 	}
 	
@@ -179,7 +174,7 @@ public class jugador extends nave{
 		puntos=puntos+300;
 	}
 	/**
-	 * metodo que daña a todos los enemigos del mapa.
+	 * metodo que daÃ±a a todos los enemigos del mapa.
 	 */
 	public void supermisil() {
 		if(m!=null)
@@ -197,13 +192,40 @@ public class jugador extends nave{
 		else
 			return null;
 	}
+	
 	public celda getceldader() {
 		if(m!=null)
 		return m.mover(c,DERECHA);
 		else
 			return null;
 	}
-
+	
+	public celda getceldaizqizq() {
+		if(m!=null){
+			if(c!=m.mover(c,IZQUIERDA)){
+				celda c1=m.mover(c,IZQUIERDA);
+				return m.mover(c1, IZQUIERDA);
+				}
+				else
+					return c;
+			}
+		else
+			return null;
+	}
+	
+	public celda getceldaderder() {
+		if(m!=null){
+			if(c!=m.mover(c,DERECHA)){
+				celda c1=m.mover(c,DERECHA);
+				return m.mover(c1, DERECHA);
+				}
+				else
+					return c;
+			}
+		else
+			return null;
+	}
+	
 	public void setCelda(celda celda) {
 		c=celda;
 	}
