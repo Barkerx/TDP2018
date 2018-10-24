@@ -1,13 +1,17 @@
 package enemigos;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import iAenemigos.FormaDeAtacar;
 import mapa.celda;
+import misc.Unidad;
 import misc.Visitor;
 import misc.nave;
 
 public abstract class enemigoAbstract extends nave{
 	protected FormaDeAtacar IA;
-	
+	protected boolean mori=false;
 	public abstract void disparar();
 	
 	@Override
@@ -23,12 +27,32 @@ public abstract class enemigoAbstract extends nave{
 	 * redefine el metodo eliminar de Gob, lo desrelaciona con el mapa, se desvincula de la IA que lo maneja, y luego se destruye.
 	 */
 	public void destruir(){
-		if(isRunning){
+	if(isRunning&&!mori){
+		mori=true;
 		m.desligar(this);
+		explotar();
 		super.destruir();
 		}
 	}
+	public void explotar(){
+		m.movegraph(this);
+	}
 	
+	public void run(){
+		if(mori){
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/2kvacl.gif")));
+		grafico.setBounds(x*45, y*45, 45, 45);
+		m.addgraph(grafico);
+		try {
+			enemigoAbstract.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		grafico.setIcon(null);
+		}else
+			super.run();
+	}
 /**
  * retorna la cantidad de puntos asociada al enemigo
  * @return puntos del enemigo

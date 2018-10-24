@@ -29,28 +29,19 @@ public abstract class obstaculo extends Gob{
 	public void run(){
 		if(isRunning){
 		    c.setelem(profundidad,null);		
-			grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp1.png")));
+			grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/explotion.gif")));
 			grafico.setBounds(x*45, y*45, 45, 45);
 			m.addgraph(grafico);
 			try {
-				obstaculo.sleep(200);
+				obstaculo.sleep(300);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/exp2.png")));
-			grafico.setBounds(x*45, y*45, 45, 45);
-			m.addgraph(grafico);
-			try {
-				obstaculo.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			}
 			grafico.setIcon(null);
 			this.interrupt();
 			super.destruir();
+		}
 	}
 
 }
