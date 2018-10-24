@@ -104,7 +104,7 @@ public abstract class Map extends Thread {
 		if(!creandoPW){
 		celda c=celdas[enemigoAbstract.getcelda().getposx()][enemigoAbstract.getcelda().getposy()];
 		Random aleatorio = new Random(System.currentTimeMillis());
-		int intAleatorio = aleatorio.nextInt(7);
+		int intAleatorio = aleatorio.nextInt(6);
 		int haypowerUp = aleatorio.nextInt(11)+1;
 		
 		if(haypowerUp%4==0){

@@ -71,7 +71,7 @@ public void crearEnemigos(){
 	public void run(){
 	initSound();
 	Random aleatorio = new Random(System.currentTimeMillis());
-	int intAleatorio = aleatorio.nextInt(3)+2;
+	int intAleatorio = aleatorio.nextInt(4);
 	crearpowerUP(celdas[10][5],intAleatorio);
 	//d.play();
 	try {

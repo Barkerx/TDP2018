@@ -1,11 +1,8 @@
 package enemigos;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import iAenemigos.FormaDeAtacar;
 import mapa.celda;
-import misc.Unidad;
 import misc.Visitor;
 import misc.nave;
 

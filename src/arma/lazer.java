@@ -1,7 +1,6 @@
 package arma;
 
 import Player.jugador;
-import disparo.Basico;
 import disparo.Laser;
 
 public class lazer extends arma{

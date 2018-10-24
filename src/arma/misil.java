@@ -1,7 +1,6 @@
 package arma;
 
 import Player.jugador;
-import disparo.Basico;
 import disparo.Misil;
 
 public class misil extends arma{

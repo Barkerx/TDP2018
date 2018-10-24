@@ -4,12 +4,6 @@ import iAenemigos.*;
 import mapa.Map;
 import mapa.celda;
 import misc.Unidad;
-import obstaculos.obstaculo;
-
-import javax.swing.ImageIcon;
-
-import disparo.disparoEnemy;
-
 
 public abstract class enemigo extends enemigoAbstract {
 	/**

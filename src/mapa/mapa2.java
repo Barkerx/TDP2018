@@ -70,15 +70,14 @@ public class mapa2 extends Map{
 		initSound();
 		Random aleatorio = new Random(System.currentTimeMillis());
 		int intAleatorio = aleatorio.nextInt(4);
-		crearpowerUP(celdas[5][5],intAleatorio);
-		j.habilitado();	
+		crearpowerUP(celdas[10][5],intAleatorio);	
 	try {
 		Thread.sleep(5000);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+	j.habilitado();
 	crearObstaculo();    
 	crearEnemigos();
 	m.play();
