@@ -1,0 +1,37 @@
+
+EN LA CLASE MAP, AGREGA ESTOS ATRIBUTOS DE INSTANCIA:
+
+	private JLabel imggameover;
+	private JLabel imggamewin;
+	
+	
+	
+	
+
+AGREGA TAMBIEN EN LA CLASE MAP ÉSTOS MÉTODOS:
+	
+	public void gameoverimage() {
+		imggameover=new JLabel(new ImageIcon(this.getClass().getResource("/resources/gameover.png")));
+		imggameover.setBounds(0, 0, 900, 675);
+		addgraph(imggameover,1);
+		
+	}
+	
+	public void gamewinimage() {
+		imggamewin=new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.png")));
+		imggamewin.setBounds(0, 0, 900, 675);
+		addgraph(imggamewin,1);
+	}
+	
+	
+	
+	
+	
+	AGREGA EN LA CLASE JUEGO ESTAS LINEAS:
+		- En el metodo win() luego de gane=true, y donde comentaste //hacer un frame de ganaste , pone ésta linea:
+			m.gamewinimage();
+			
+		- En el metodo gameover() luego de donde comentaste //hacer un frame de perdiste. y antes de frame.dispose(); pone:	
+			m.gameoverimage();
+			
+			Nota: Yo sacaria el frame.dispose() para que no se autocierre, y aparezca la imagen hasta que el usuario cierre la ventana
