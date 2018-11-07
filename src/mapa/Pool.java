@@ -9,7 +9,7 @@ import misc.Gob;
 public class Pool{
 	private ExecutorService pool; 
 	public Pool(){
-	     pool = Executors.newFixedThreadPool(80);
+	     pool = Executors.newFixedThreadPool(100);
 	}
 	
 	public void add(Gob p){

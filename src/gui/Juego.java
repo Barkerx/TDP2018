@@ -1,7 +1,10 @@
 package gui;
 
-
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import mapa.*;
 import misc.Unidad;
 import misc.nave;
@@ -10,7 +13,7 @@ import Player.jugador;
 public  class Juego {
 	private jugador j;
 	private static gui frame;
-	private Map m;
+	private Mapa m;
 	private int n;
 	private boolean gane=false;
 	private boolean habilitado=false;
@@ -70,7 +73,7 @@ public void mover(int dir){
  * @param getpuntos puntos a sumar en el jugador
  */
 public void addpuntos(int getpuntos) {
-	j.sumarEnemigo(getpuntos);
+	j.sumarPuntaje(getpuntos);
 	
 }
 /**
@@ -85,9 +88,11 @@ public void win() {
 			//MapaBoss();
 		if(n==3){
 			System.out.println("GANASTE n es 3");
+			
 			gane=true;
-			frame.dispose();
-			//hacer un frame de ganaste.
+			JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.png")));
+			stat.setBounds(0, 0, 900, 675);
+			frame.add(stat, new Integer(1));	//hacer un frame de ganaste.
 		}
 	}
 	
@@ -95,7 +100,6 @@ public void win() {
 /*
 private void MapaBoss(){
 	if(n==3){
-		habilitado=false;
 		m=null;
 		j.setCelda(null);
 		j.setMap(null);
@@ -109,7 +113,6 @@ private void MapaBoss(){
 }*/
 private void Mapa2(){
 	if(n==2){
-	habilitado=false;
 	j.setCelda(null);
 	j.setMap(null);
 	frame.dispose();
@@ -124,13 +127,18 @@ private void Mapa2(){
 
 public void gamerover() {
 	System.out.println("Perdiste");
-	frame.dispose();
+	JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.jpg")));
+	stat.setBounds(0, 0, 900, 675);
+	frame.add(stat, new Integer(1));
 	//hacer un frame de perdiste.
 	habilitado=false; 
 }
 
 public void habilitado(){
 	habilitado=true;
+}
+public void deshabilitado(){
+	habilitado=false;
 }
 public boolean puedo() {
 	return habilitado;

@@ -15,17 +15,18 @@ import enemigos.enemigoAbstract;
 import gui.Juego;
 import gui.gui;
 import jaco.mp3.player.MP3Player;
-import misc.Unidad;
 
-public class mapaBoss extends Map{
+public class mapaBoss extends Mapa{
 	private int vida;
 	private LinkedList<FinalBOSS> lEnemyBOSS;
 	private JLabel boss;
+	private jugador s;
 	public mapaBoss(gui gu,Juego ju,jugador p){
 		horda=0;
 		int x=20;
 		int y=15;
 		g=gu;
+		s=p;
 		//inicializo la matriz de celdas
 		celdas=new celda[x][y];
 		for(int i=0;i<x;i++)
@@ -76,9 +77,6 @@ public class mapaBoss extends Map{
 		CrearBOSS();
 		crearEnemigos();
 		m.play();
-		while(!gane){
-		}
-		
 		
 	}
 
@@ -96,10 +94,12 @@ public class mapaBoss extends Map{
 		lEnemy.add(e);
 		m.addEnemy(e);
 	}
-	protected void crearEnemigoBOSS(celda c,int dir){
-		enemigoAbstract e=new FinalBOSS(c,this,dir);
+	protected FinalBOSS crearEnemigoBOSS(celda c,JLabel l){
+		enemigoAbstract e=new FinalBOSS(c,this,s,l);
 		lEnemy.add(e);
-		m.addEnemy(e);
+		if(l!=null)
+			m.addEnemy(e);
+		return (FinalBOSS)e;
 	}
 	
 	
@@ -117,29 +117,13 @@ public class mapaBoss extends Map{
 	}
 	
 	private void CrearBOSS(){
-		boss=new JLabel(new ImageIcon(this.getClass().getResource("/resources/BOSS.png")));
-	    boss.setBounds(130, 0, 600, 264);
-	    addgraph(boss);
-	    crearEnemigoBOSS(celdas[3][2],Unidad.IZQUIERDA);
-	    crearEnemigoBOSS(celdas[4][3],Unidad.ABAJOIZQUIERDA);
-	    crearEnemigoBOSS(celdas[4][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[5][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[6][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[7][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[8][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[9][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[10][4],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[11][3],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[12][3],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[13][3],Unidad.ABAJO);
-	    crearEnemigoBOSS(celdas[14][3],Unidad.ABAJODERECHA);
-	    crearEnemigoBOSS(celdas[15][2],Unidad.DERECHA);
-	    FinalBOSS b11=new FinalBOSS(celdas[14][3],this,Unidad.ABAJODERECHA);
-	    lEnemyBOSS.add(b11);
-	    FinalBOSS b12=new FinalBOSS(celdas[15][2],this,Unidad.DERECHA);
-	    lEnemyBOSS.add(b12);
-	
-		
+		boss=new JLabel(new ImageIcon(this.getClass().getResource("/resources/leviathan.png")));
+	    boss.setBounds(0, 0, 170, 260);
+	    FinalBOSS e1=crearEnemigoBOSS(celdas[8][2],null);
+	    FinalBOSS e2=crearEnemigoBOSS(celdas[10][2],null);
+	    FinalBOSS e3=crearEnemigoBOSS(celdas[9][4],boss);
+	    e3.setPartner(e2);
+	    e3.setPartner(e1);
 	}
 	private void eliminarBoss(){
 			LinkedList<enemigoAbstract> aux=new LinkedList<enemigoAbstract>();
@@ -176,4 +160,5 @@ public class mapaBoss extends Map{
 			j.win();
 		
 	}
+
 }

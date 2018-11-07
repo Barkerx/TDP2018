@@ -2,6 +2,7 @@ package enemigos;
 
 import javax.swing.ImageIcon;
 import iAenemigos.FormaDeAtacar;
+import iAenemigos.IADormido;
 import mapa.celda;
 import misc.Visitor;
 import misc.nave;
@@ -57,8 +58,6 @@ public abstract class enemigoAbstract extends nave{
 	public int getpuntos() {
 		return puntos;
 	}
-
-	public abstract void congelar();
 	
 public celda getcelda() {
 	// TODO Auto-generated method stub
@@ -71,8 +70,13 @@ public void restart() {
 
 public abstract void mover();
 
+public FormaDeAtacar getIA() {
+	return IA;
+}
 
-public abstract void descongelar();
+public void setIA(FormaDeAtacar ia) {
+	IA=ia;
+}
 
 //crear un enemmigo para cada IA, y que se encargue el enemigo de hacer el movimiento de IA DEBIDO
 

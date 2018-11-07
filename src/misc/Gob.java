@@ -2,7 +2,7 @@ package misc;
 
 import javax.swing.JLabel;
 import misc.Visitor;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public abstract class Gob extends Thread{
@@ -13,7 +13,7 @@ public abstract class Gob extends Thread{
 	     protected int vida;
 	     protected int profundidad;
 	     protected  volatile boolean isRunning=true;
-	 	 protected Map m;
+	 	 protected Mapa m;
 	 	 /**
 	 	  * metodo usado para reducir la vida en n del Gob
 	 	  * @param n vida a reducir del Gob

@@ -1,23 +1,53 @@
 package mapa;
 
-public class Phantom extends Thread{
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import javax.swing.Timer;
+
+import enemigos.enemigoAbstract;
+import iAenemigos.FormaDeAtacar;
+import iAenemigos.IADormido;
+
+public class Phantom {
 
 	private int time;
-	private Map m;
-	public Phantom(int n,Map m){
+	private Mapa m;
+	public Phantom(int n,Mapa m){
 		time=n;
 		this.m=m;
-		new Thread(this);
-		this.start();
+		start();
 	}
-	public void run(){
-		try {
-			Phantom.sleep(time);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void start(){
+		LinkedList<enemigoAbstract> l= new LinkedList<enemigoAbstract>();
+		for(enemigoAbstract e:m.getEnemigos()){
+			if(e.getIsRunning())
+				l.add(e);
+		} 
+		Map<enemigoAbstract,FormaDeAtacar> k=new HashMap<enemigoAbstract,FormaDeAtacar>();
+		for(enemigoAbstract e:l){
+			if(e.getIsRunning()){
+				k.put(e, e.getIA());
+			}
 		}
-		m.descongelar();
-		this.interrupt();
+		for(enemigoAbstract e:l){
+			if(e.getIsRunning()){
+				e.setIA(new IADormido(e));
+			}
+		}
+		int delay = time; 
+		  ActionListener taskPerformer = new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	  for(enemigoAbstract e:l){
+		  			if(e.getIsRunning()){
+		  				e.setIA(k.get(e));
+		  			}
+		  		}
+		      }
+		  };
+		  new Timer(delay, taskPerformer).start(); 
 	}
 }

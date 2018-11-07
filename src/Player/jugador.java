@@ -10,12 +10,11 @@ import mapa.*;
 import misc.*;
 
 public class jugador extends nave{
-     protected int disparos;
-     protected int shield;
      protected arma arma;
      protected int vidas;
+     protected shield escudo;
      protected boolean puede;
-     public jugador(celda c,Map m) {
+     public jugador(celda c,Mapa m) {
     	 this.c=c;
     	 this.m=m;
     	 profundidad=1;
@@ -25,11 +24,10 @@ public class jugador extends nave{
     	 vidas=3;
     	 velocidad=35;
     	 moviendo=false;
-    	 shieldL=new JLabel();
-    	 shieldL.setIcon(null);
-    	 vida=100; 
+    	 escudo=new Basico(this);
+    	 shieldL=null;
+    	 vida=150; 
     	 puede=true;
-    	 disparos=1;
     	 arma=new basico(this);
      }
      
@@ -43,46 +41,23 @@ public class jugador extends nave{
       * metodo que redefine al reducirVida de Gob, ya que aplica el escudo.
       */
      public void reducirVida(int n){
-    	 if(shieldL.getIcon()!=null){
-    		 shield=shield-1;
-    		 if (shield==0){
-        		 shieldL.setIcon(null);
-        		 m.addgraph(shieldL,2);
-    		 }
-        	
-    	 }
-    	 else{
-    		vida=vida-n;
-    		if(vidas==0&&isRunning){
-    			isRunning=false;
-    			grafico.setIcon(null);
-    			m.gameover(this);
-    		}
-    		else
-    			if (vida<=0){
-    				vida=100;
-    				disparos=1;
-    				arma=new basico(this);
-    				vidas=vidas-1;
-    				if(m!=null)
-    					m.resetearJugador(this);
-    		} 
-    	 
-    	 }
+    	 escudo.reducirVida(n);
     }
      public void initgraph(){
     	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
          m.addgraph(grafico);
-         if(shieldL.getIcon()!=null){
-         shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
-         m.addgraph(shieldL,2);}
+ 		 if(escudo.getImage()!=null){
+ 			 shieldL=escudo.getImage();
+ 			 shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+ 			 m.addgraph(shieldL,2);
+ 		 }
      }
      /**
       * metodo para sumar puntos al player usado por el juego
       * @param n puntaje a sumar
       */
-     public void sumarEnemigo(int n){
-    	 puntos=puntos+n;      
+     public void sumarPuntaje(int n){
+    	 puntos=puntos+n;   
      }
      /**
       * metodo que redefine el mover de unidad ya que tiene en cuenta el disparo
@@ -111,7 +86,7 @@ public class jugador extends nave{
 			puede=false;
 			}
 	}
-	public void setMap(Map map) {
+	public void setMap(Mapa map) {
 		m=map;	
 	}
 	
@@ -127,43 +102,57 @@ public class jugador extends nave{
 		return puntos;
 	}
 	
-	public Map getmap() {
+	public Mapa getmap() {
 		// TODO Auto-generated method stub
 		return m;
 	}
-	//POWERUPS
-	/**
-	 * pocion
-	 */
-	public void pocion() {
-		vida=vida+30;
-		puntos = puntos+300;
-	}
-	/**
-	 * congela la IA de los enemigos.
-	 */
-	public void congelatiempo() {
-		if(m!=null)
-			m.congelatiempo();
-		puntos=puntos+300;
+	public void setVida(int n){
+		vida=n;
+			if (vida<=0){
+				if(vidas==0&&isRunning){
+					c.setelem(profundidad,null);
+					isRunning=false;
+					grafico.setIcon(null);
+					m.gameover(this);
+				}
+				else{
+				vida=150;
+				arma=new basico(this);
+				vidas=vidas-1;
+				if(m!=null)
+					m.resetearJugador(this);//mover a la celda de reseteo XXX
+					}
+			}
 		
 	}
+	public int getVida(){
+		return vida;
+	}
+	
 	/**
 	 * setea un escudo en el jugador, con el cual evita 2 golpes
+	 * @param basico 
 	 */
-	public void setshield() {
-		if(shieldL.getIcon()==null)
-		{shieldL.setIcon(new ImageIcon(this.getClass().getResource("/resources/shield.png")));
-		m.addgraph(shieldL,2);}
-		shield=3;
-		puntos=puntos+300;
+	public void setShield(shield b) {
+		escudo=b;
+		if(escudo.getImage()!=null && shieldL==null){
+	 		 shieldL=escudo.getImage();
+	 		 shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
+	         m.addgraph(shieldL,2);
+	 		 }
+			else{
+				if(shieldL!=null && escudo.getImage()==null){
+				shieldL.setIcon(null);
+				m.addgraph(shieldL,2);
+				shieldL=null;
+				}
+			}
 	}
 	/**
 	 * aumenta la cantidad de disparos del jugador(maximo 3)
 	 */
 	public void aumentar() {
 		arma.aumentarDisparos();
-		puntos=puntos+300;
 	}
 	
 	/**
@@ -171,17 +160,10 @@ public class jugador extends nave{
 	 */
 	public void mejorarDisparo() {
 		arma=arma.levelUP();
-		puntos=puntos+300;
 	}
 	/**
 	 * metodo que daña a todos los enemigos del mapa.
 	 */
-	public void supermisil() {
-		if(m!=null)
-			m.supermisil();
-		
-		
-	}
 	public void candisparar() {
 		puede=true;
 		

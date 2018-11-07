@@ -5,12 +5,12 @@ import javax.swing.JLabel;
 
 import disparo.disparoEnemy;
 import iAenemigos.IAKamikaze;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public class Kamikaze extends enemigo {
 
-	public Kamikaze(celda c, Map m) {
+	public Kamikaze(celda c, Mapa m) {
 		super(c, m);
 		vida=150;
 		velocidad=30;
@@ -21,11 +21,6 @@ public class Kamikaze extends enemigo {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void descongelar() {
-		IA=new IAKamikaze(this);
-
-	}
 	public void disparar() {
 		if(isRunning)
 			new disparoEnemy(c,m);

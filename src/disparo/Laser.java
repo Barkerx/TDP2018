@@ -4,12 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public class Laser extends DisparoP{
 
-	public Laser(celda c, Map m,jugador j) {
+	public Laser(celda c, Mapa m,jugador j) {
 		super(c,m,j);
 		damage=40;
 		velocidad=40;

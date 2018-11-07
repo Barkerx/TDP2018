@@ -4,12 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public class Basico extends DisparoP{
 
-	public Basico(celda c, Map m,jugador j) {
+	public Basico(celda c, Mapa m,jugador j) {
 		super(c,m,j);
 		damage=30;
 		velocidad=35;

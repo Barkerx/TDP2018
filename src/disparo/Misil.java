@@ -4,12 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Player.jugador;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public class Misil extends DisparoP{
 
-	public Misil(celda c, Map m,jugador j) {
+	public Misil(celda c, Mapa m,jugador j) {
 		super(c,m,j);
 		damage=50;
 		velocidad=35;

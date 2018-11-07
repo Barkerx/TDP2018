@@ -13,7 +13,7 @@ import gui.Juego;
 import gui.gui;
 import jaco.mp3.player.MP3Player;
 
-public class mapa1 extends Map{
+public class mapa1 extends Mapa{
 
 	protected int horda;
 public mapa1(gui gu,Juego ju,jugador p){

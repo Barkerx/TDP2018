@@ -5,14 +5,14 @@ import misc.Gob;
 
 public class celda {
 	protected Gob objects[];
-	protected Map m;
+	protected Mapa m;
 	protected int x,y;
 	/**
 	 * Crea una celda con todos sus elementos en nulo
 	 * @param x posicion x de la celda
 	 * @param y posicion y de la celda
 	 */
-	public celda(int x,int y,Map m){
+	public celda(int x,int y,Mapa m){
 		this.x=x;
 		this.y=y;
 		this.m=m;

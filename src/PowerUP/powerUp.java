@@ -1,19 +1,20 @@
 package PowerUP;
 
 import Player.jugador;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Unidad;
 import misc.Visitor;
 
 public abstract class powerUp extends Unidad{
+	protected int puntos;
 	/**
 	 * constructor de powerUp
 	 * @param ce celda donde se encuntra el powerUP
 	 * @param m Mapa donde se encuentra el PowerUP
 	 */
 	
-	public powerUp(celda ce, Map m) {
+	public powerUp(celda ce, Mapa m) {
 		c=ce;
 		this.m=m;
 		shieldL=null;

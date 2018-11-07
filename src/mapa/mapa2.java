@@ -14,7 +14,7 @@ import gui.Juego;
 import gui.gui;
 import jaco.mp3.player.MP3Player;
 
-public class mapa2 extends Map{
+public class mapa2 extends Mapa{
 
 	public mapa2(gui gu,Juego ju,jugador p){
 		horda=4;

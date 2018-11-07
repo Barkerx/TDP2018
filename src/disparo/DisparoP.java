@@ -1,7 +1,7 @@
 package disparo;
 
 import Player.jugador;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Visitor;
 
@@ -15,7 +15,7 @@ public abstract class DisparoP extends Disparo{
 	 * @param m mapa donde estara el disparo
 	 * @param j jugador del disparo
 	 */
-	protected DisparoP(celda c, Map m, jugador j) {
+	protected DisparoP(celda c, Mapa m, jugador j) {
 		super(c,m);
 		this.j=j;
 		visitor=new visitorDisparoP(this,j);

@@ -3,12 +3,12 @@ package disparo;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 
 public class disparoEnemy extends DisparoE{
 
-	public disparoEnemy(celda c, Map m) {
+	public disparoEnemy(celda c, Mapa m) {
 		super(c,m);
 		velocidad=35;
 		damage=30;

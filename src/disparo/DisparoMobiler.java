@@ -2,17 +2,17 @@ package disparo;
 
 import java.util.LinkedList;
 
-import mapa.Map;
+import mapa.Mapa;
 
 public class DisparoMobiler implements Runnable{
-	private Map m;
+	private Mapa m;
 	private LinkedList<Disparo> d;
 	private Thread t;
 	private boolean eliminado=false;
 	private boolean agregado=false;
 	private LinkedList<Disparo> elim;
 	private LinkedList<Disparo> l;
-	public DisparoMobiler(Map m){
+	public DisparoMobiler(Mapa m){
 		this.m=m;
 		d=new LinkedList<Disparo>();
 		l=new LinkedList<Disparo>();

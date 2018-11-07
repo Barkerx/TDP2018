@@ -7,14 +7,14 @@ import Player.jugador;
 import disparo.disparoEnemy;
 import gui.Juego;
 import iAenemigos.boss;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Unidad;
 
 public class Boss extends enemigo{
 
 	private jugador j;
-	public Boss(celda c, Map m, Juego j) {
+	public Boss(celda c, Mapa m, Juego j) {
 		super(c,m);
 		puntos=300;
 		shieldL=null;
@@ -44,12 +44,6 @@ public class Boss extends enemigo{
 						if(ce.getposy()==14&&direccion==Unidad.ABAJO)
 							restart();
 				}
-			
-				}
-
-		@Override
-		public void descongelar() {
-			IA=new boss(j,this);
 			
 		}
 }

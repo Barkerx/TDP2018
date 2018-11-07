@@ -2,14 +2,14 @@ package disparo;
 
 
 
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Unidad;
 import misc.Visitor;
 
 public abstract class DisparoE extends Disparo{
 	
-	protected DisparoE(celda c,Map m){
+	protected DisparoE(celda c,Mapa m){
 		super(c,m);
 		visitor=new visitorDisparoE(this);
 		

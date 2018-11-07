@@ -3,12 +3,12 @@ package disparo;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Unidad;
 
 public class DisparoBoss extends DisparoE{
-	public DisparoBoss(celda c, Map m) {
+	public DisparoBoss(celda c, Mapa m) {
 		super(c,m);
 		velocidad=35;
 		damage=50;

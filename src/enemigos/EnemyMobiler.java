@@ -2,15 +2,15 @@ package enemigos;
 
 import java.util.LinkedList;
 
-import mapa.Map;
+import mapa.Mapa;
 
 public class EnemyMobiler implements Runnable{
 
-	private Map m;
+	private Mapa m;
 	private LinkedList<enemigoAbstract> enemigos;
 	private LinkedList<enemigoAbstract>	aux;
 	private Thread t;
-	public EnemyMobiler(Map m){
+	public EnemyMobiler(Mapa m){
 		this.m=m;
 		enemigos=new LinkedList<enemigoAbstract>();
 		t=new Thread(this);

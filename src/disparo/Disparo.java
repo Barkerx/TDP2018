@@ -1,7 +1,7 @@
 package disparo;
 
 
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.*;
 
@@ -9,7 +9,7 @@ public abstract class Disparo extends Unidad{
 	
 	protected int damage;
 
-	protected Disparo(celda c, Map m) {
+	protected Disparo(celda c, Mapa m) {
 		this.c=c;
 		this.m=m;
 		shieldL=null;

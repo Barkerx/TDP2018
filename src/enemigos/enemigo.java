@@ -1,7 +1,6 @@
 package enemigos;
 
-import iAenemigos.*;
-import mapa.Map;
+import mapa.Mapa;
 import mapa.celda;
 import misc.Unidad;
 
@@ -13,7 +12,7 @@ public abstract class enemigo extends enemigoAbstract {
 	 * @param a forma de atacar que tendra el enemigo
 	 */
 	
-	protected enemigo(celda c,Map m) {
+	protected enemigo(celda c,Mapa m) {
 		profundidad=1;
 		this.c=c;
 		c.setelem(profundidad,this);
@@ -26,9 +25,6 @@ public abstract class enemigo extends enemigoAbstract {
 
 	}
 	public abstract void disparar();
-	public void congelar() {
-		IA=new IADormido(this);
-	}
 	
 
 	@Override
