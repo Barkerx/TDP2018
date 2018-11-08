@@ -68,6 +68,7 @@ public abstract class Unidad extends Gob {
 	 */
 	public void run(){
 		for(int i=0;i<9&&isRunning;i++){
+			
 			  switch(dir){
 			  case ABAJO:
 				  grafico.setBounds(grafico.getX(), grafico.getY()+5, 45, 45);

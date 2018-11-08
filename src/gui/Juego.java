@@ -80,54 +80,23 @@ public void addpuntos(int getpuntos) {
  * Metodo usado cuando se gana el juego
  */
 public void win() {
-		n=n+1;
-	if(!gane){	
-		if(n==2)
-			Mapa2();
-		//if(n==3)
-			//MapaBoss();
-		if(n==3){
-			System.out.println("GANASTE n es 3");
-			
-			gane=true;
-			JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.png")));
-			stat.setBounds(0, 0, 900, 675);
-			frame.add(stat, new Integer(1));	//hacer un frame de ganaste.
-		}
-	}
 	
-}
-/*
-private void MapaBoss(){
-	if(n==3){
-		m=null;
-		j.setCelda(null);
-		j.setMap(null);
-		frame.dispose();
-		frame=new gui(this);
-		m=new mapaBoss(frame,this,j);
-		frame.setVisible(true);
-		j.setMap(m);
-		j.initgraph();
-	}
-}*/
-private void Mapa2(){
-	if(n==2){
 	j.setCelda(null);
 	j.setMap(null);
 	frame.dispose();
-	m=null;
 	frame=new gui(this);
-	m=new mapa2(frame,this,j);
+	Mapa m2=m.nextMap(j,frame);
+	m=null;
+	m=m2;
 	frame.setVisible(true);
 	j.setMap(m);
 	j.initgraph();
-	}
+	
 }
 
 public void gamerover() {
 	System.out.println("Perdiste");
-	JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.jpg")));
+	JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/gamerover.png")));
 	stat.setBounds(0, 0, 900, 675);
 	frame.add(stat, new Integer(1));
 	//hacer un frame de perdiste.

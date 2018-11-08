@@ -86,5 +86,13 @@ public void crearEnemigos(){
 	m.play();
 	this.interrupt();
 	}
+
+
+
+	@Override
+	public Mapa nextMap(jugador ju,gui gu) {
+		// TODO Auto-generated method stub
+		return  new mapa2(gu,j,ju);
+	}
 }
    

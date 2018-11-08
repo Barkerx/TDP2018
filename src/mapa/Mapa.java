@@ -105,9 +105,9 @@ public abstract class Mapa extends Thread {
 		celda c=celdas[enemigoAbstract.getcelda().getposx()][enemigoAbstract.getcelda().getposy()];
 		Random aleatorio = new Random(System.currentTimeMillis());
 		int intAleatorio = aleatorio.nextInt(6);
-		int haypowerUp = aleatorio.nextInt(11)+1;
+		int haypowerUp = aleatorio.nextInt(12)+1;
 		
-		if(haypowerUp%4==0){
+		if(haypowerUp%3==0){
 			creandoPW=true;
 			crearpowerUP(c,intAleatorio);
 			}
@@ -168,20 +168,7 @@ public abstract class Mapa extends Thread {
 				}
 			}
 	}
-	/**
-	 * Metodo usado para dañar a todos los enemigos en 30 puntos
-	 */
-	public void supermisil() {
-	// agregar elemento grafico en celdas[5][5] de una bomba
-		LinkedList<enemigoAbstract> eliminar=new LinkedList<enemigoAbstract>();
-		for(enemigoAbstract e:lEnemy)
-			eliminar.add(e);
-				
-		for(enemigoAbstract e:eliminar){
-				e.reducirVida(30);
-		}
-		
-	}
+	
 	/**
 	 * metodo usado para congelar a los enemigos, cambiando su IA por una que no hace nada.
 	 * @param congelaTiempo 
@@ -306,5 +293,7 @@ public abstract class Mapa extends Thread {
 		// TODO Auto-generated method stub
 		return lEnemy;
 	}
+	
+	public abstract Mapa nextMap(jugador ju,gui gu);
 	
 }

@@ -16,13 +16,14 @@ public abstract class shield {
 		puntos--;
 		if (puntos==0)
 			j.setShield(new Basico(j));
-			
 		}
 		else
 		{
 			j.setVida(j.getVida()-n);
 		}
 }
+	
+	// XXX hacer visitor para el escudo y hacer el visitor del kamikaze XXX
 	
 	public JLabel getImage(){
 		return image;

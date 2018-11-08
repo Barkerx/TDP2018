@@ -161,4 +161,10 @@ public class mapaBoss extends Mapa{
 		
 	}
 
+	@Override
+	public Mapa nextMap(jugador j,gui gu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

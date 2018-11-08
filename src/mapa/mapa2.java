@@ -83,5 +83,10 @@ public class mapa2 extends Mapa{
 	m.play();
 	this.interrupt();
 	}
+	@Override
+	public Mapa nextMap(jugador ju,gui gu) {
+		// TODO Auto-generated method stub
+		return new mapaBoss(gu,j,ju);
+	}
 	
 }

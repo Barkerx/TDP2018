@@ -13,14 +13,10 @@ public class gui extends JFrame implements Runnable {
 	private JLayeredPane contentPane;
     private Thread t;
 	protected boolean keyBoardUpPressed;
-
 	protected boolean keyBoardDownPressed;
-
 	protected boolean keyBoardLeftPressed;
-
 	protected boolean keyBoardRightPressed;
 	
-  	protected boolean keyBoardSPACEPressed;
 	private static Juego j;
 
 	public gui(final Juego j) {	
@@ -45,7 +41,7 @@ public class gui extends JFrame implements Runnable {
 							}
 							else
 								if(arg0.getKeyCode()==KeyEvent.VK_SPACE&&j.puedo())
-									keyBoardSPACEPressed=true;				
+									j.mover(KeyEvent.VK_SPACE);				
 			}
 			public void keyReleased(KeyEvent arg0){
 				if(arg0.getKeyCode()==KeyEvent.VK_UP&&j.puedo()){
@@ -63,10 +59,6 @@ public class gui extends JFrame implements Runnable {
 							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT&&j.puedo()){
 								keyBoardRightPressed=false;
 							}
-							else
-								if(arg0.getKeyCode()==KeyEvent.VK_SPACE&&j.puedo())
-									keyBoardSPACEPressed=false;
-							
 							
 			}
 			
@@ -107,9 +99,6 @@ private void mover(){
              	  if(keyBoardUpPressed&&j.puedo()){
              		  j.mover(KeyEvent.VK_UP);
                    }
-             	  else
-             		  if(keyBoardSPACEPressed&&j.puedo())
-             			  j.mover(KeyEvent.VK_SPACE);
 }
 /**
  * Metodo que se ejecutara siempre al crear la gui.

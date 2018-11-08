@@ -1,5 +1,7 @@
 package Player;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -12,6 +14,9 @@ import misc.*;
 public class jugador extends nave{
      protected arma arma;
      protected int vidas;
+     protected JLabel puntosLabel;
+     protected JLabel vidaLabel;
+     protected JLabel vidasLabel;
      protected shield escudo;
      protected boolean puede;
      public jugador(celda c,Mapa m) {
@@ -26,11 +31,28 @@ public class jugador extends nave{
     	 moviendo=false;
     	 escudo=new Basico(this);
     	 shieldL=null;
-    	 vida=150; 
+    	 vida=15000000; 
     	 puede=true;
     	 arma=new basico(this);
+    	 vidaLabel=new JLabel();
+    	 vidaLabel.setBounds(50, 590, 100, 40);
+    	 vidaLabel.setForeground(Color.WHITE);
+    	 puntosLabel=new JLabel();
+    	 puntosLabel.setBounds(450, 0, 100, 40);
+    	 puntosLabel.setForeground(Color.WHITE);
+    	 vidasLabel=new JLabel();
+    	 vidasLabel.setBounds(50, 0, 100, 40);
+    	 vidasLabel.setForeground(Color.WHITE);
      }
-     
+     private void updatePuntos(){
+    	 puntosLabel.setText("Puntos:"+puntos);
+     }
+     private void updateVida(){
+    	 vidaLabel.setText("vida:"+vida);
+     }
+     private void updateVidas(){
+    	 vidasLabel.setText("vidas:"+vidas);
+     }
      public void changeRunning(){
     	 if(isRunning)
     		 isRunning=false;
@@ -42,7 +64,10 @@ public class jugador extends nave{
       */
      public void reducirVida(int n){
     	 escudo.reducirVida(n);
+    	 updateVida();
+    	 
     }
+     
      public void initgraph(){
     	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
          m.addgraph(grafico);
@@ -51,13 +76,20 @@ public class jugador extends nave{
  			 shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
  			 m.addgraph(shieldL,2);
  		 }
+ 		 updatePuntos();
+ 		 m.addgraph(puntosLabel,2);
+ 		 updateVida();
+ 		 m.addgraph(vidaLabel,2);
+ 		 updateVidas();
+ 		 m.addgraph(vidasLabel,2);
      }
      /**
       * metodo para sumar puntos al player usado por el juego
       * @param n puntaje a sumar
       */
      public void sumarPuntaje(int n){
-    	 puntos=puntos+n;   
+    	 puntos=puntos+n; 
+    	 updatePuntos();
      }
      /**
       * metodo que redefine el mover de unidad ya que tiene en cuenta el disparo
@@ -119,6 +151,7 @@ public class jugador extends nave{
 				vida=150;
 				arma=new basico(this);
 				vidas=vidas-1;
+				updateVidas();
 				if(m!=null)
 					m.resetearJugador(this);//mover a la celda de reseteo XXX
 					}
