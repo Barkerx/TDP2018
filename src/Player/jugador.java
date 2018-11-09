@@ -31,7 +31,7 @@ public class jugador extends nave{
     	 moviendo=false;
     	 escudo=new Basico(this);
     	 shieldL=null;
-    	 vida=15000000; 
+    	 vida=150; 
     	 puede=true;
     	 arma=new basico(this);
     	 vidaLabel=new JLabel();
