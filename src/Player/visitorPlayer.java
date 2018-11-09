@@ -3,6 +3,7 @@ package Player;
 import PowerUP.powerUp;
 import disparo.DisparoE;
 import disparo.DisparoP;
+import enemigos.Buscador;
 import enemigos.enemigoAbstract;
 import misc.*;
 import obstaculos.ParedPlayer;
@@ -54,7 +55,7 @@ public class visitorPlayer extends Visitor{
 			d.destruir();
 			jugador j=(jugador) objeto;
 			j.reducirVida(d.getdamage());}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -62,8 +63,23 @@ public class visitorPlayer extends Visitor{
 		jugador j=(jugador) objeto;
 		pw.accionar(j);
 		pw.destruir();
-		
 		return true;
+	}
+
+	@Override
+	public boolean visitMejorado(jugador j) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean visitBuscador(Buscador e) {
+		if(e.getIsRunning()&&objeto.getIsRunning()){
+			e.destruir();
+			jugador j=(jugador) objeto;
+			j.reducirVida(50);
+			}
+		return false;
 	}
 
 }

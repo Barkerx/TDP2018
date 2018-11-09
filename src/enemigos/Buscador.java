@@ -6,6 +6,7 @@ import Player.jugador;
 import iAenemigos.IABuscador;
 import mapa.Mapa;
 import mapa.celda;
+import misc.Visitor;
 
 public class Buscador extends enemigo{
 	
@@ -17,11 +18,17 @@ public class Buscador extends enemigo{
 		velocidad=45;
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/buscador.png")));
 		initgraph();
+		visitor=new visitorBuscador(this);
 		IA=new IABuscador(j,this);
 		this.j=j;
 		
 	}
 	
 	public void disparar(){}
-
+	
+	
+	public boolean accept(Visitor v){
+		return v.visitBuscador(this);
+	}
+	
 }

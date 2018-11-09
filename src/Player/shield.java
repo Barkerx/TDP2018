@@ -1,8 +1,11 @@
 package Player;
 import javax.swing.JLabel;
 
+import misc.Visitor;
+
 public abstract class shield {
 	
+	protected Visitor v;
 	protected JLabel image;
 	protected jugador j;
 	protected int puntos;
@@ -29,4 +32,8 @@ public abstract class shield {
 		return image;
 	}
 	public abstract void levelUp();
+	public abstract Visitor getVisitor();
+	public abstract boolean accept(Visitor v);
+	public abstract void destruir();
+
 }

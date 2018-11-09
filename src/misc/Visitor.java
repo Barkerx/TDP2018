@@ -1,6 +1,8 @@
 package misc;
 import disparo.*;
+import enemigos.Buscador;
 import enemigos.enemigoAbstract;
+import Player.Mejorado;
 import Player.jugador;
 import obstaculos.*;
 import PowerUP.*;
@@ -17,4 +19,6 @@ public abstract  class Visitor {
    public abstract boolean visitDisparoPlayer(DisparoP d);
    public abstract boolean visitDisparoEnemigo(DisparoE d);
    public abstract boolean visitPowerUp(powerUp pw);
+   public abstract boolean visitMejorado(jugador j);
+   public abstract boolean visitBuscador(Buscador e);
 }

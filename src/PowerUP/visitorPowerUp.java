@@ -1,8 +1,10 @@
 package PowerUP;
 
+import Player.Mejorado;
 import Player.jugador;
 import disparo.DisparoE;
 import disparo.DisparoP;
+import enemigos.Buscador;
 import enemigos.enemigoAbstract;
 import misc.Visitor;
 import obstaculos.ParedPlayer;
@@ -60,6 +62,20 @@ public class visitorPowerUp extends Visitor {
 	public boolean visitPowerUp(powerUp pw) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean visitMejorado(jugador j) {
+		powerUp p=(powerUp)objeto;
+		objeto.destruir();
+		p.accionar(j);
+		return true;
+	}
+
+	@Override
+	public boolean visitBuscador(Buscador e) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

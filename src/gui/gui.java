@@ -3,6 +3,9 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.swing.JLayeredPane;
 import javax.swing.*;
 
@@ -12,51 +15,52 @@ public class gui extends JFrame implements Runnable {
 
 	private JLayeredPane contentPane;
     private Thread t;
-	protected boolean keyBoardUpPressed;
-	protected boolean keyBoardDownPressed;
-	protected boolean keyBoardLeftPressed;
-	protected boolean keyBoardRightPressed;
+	protected volatile boolean keyBoardUpPressed=false; 
+	protected volatile boolean keyBoardDownPressed=false;
+	protected volatile boolean keyBoardLeftPressed=false;
+	protected volatile boolean keyBoardRightPressed=false;
 	
 	private static Juego j;
 
-	public gui(final Juego j) {	
+	public gui(final Juego j) {
 		super("galaga");
+		
        addKeyListener(new KeyAdapter() {
 			
 			public void keyPressed(KeyEvent arg0) {
-				if(arg0.getKeyCode()==KeyEvent.VK_UP &&j.puedo()){
+				if(arg0.getKeyCode()==KeyEvent.VK_UP ){
 					keyBoardUpPressed=true;
 				}
 				else
-					if(arg0.getKeyCode()==KeyEvent.VK_DOWN&&j.puedo()){
+					if(arg0.getKeyCode()==KeyEvent.VK_DOWN){
 						keyBoardDownPressed=true;
 					}
 					else
-						if(arg0.getKeyCode()==KeyEvent.VK_LEFT&&j.puedo()){
+						if(arg0.getKeyCode()==KeyEvent.VK_LEFT){
 							keyBoardLeftPressed=true;
 						}
 						else
-							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT&&j.puedo()){
+							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
 								keyBoardRightPressed=true;
 							}
 							else
-								if(arg0.getKeyCode()==KeyEvent.VK_SPACE&&j.puedo())
+								if(arg0.getKeyCode()==KeyEvent.VK_SPACE)
 									j.mover(KeyEvent.VK_SPACE);				
 			}
 			public void keyReleased(KeyEvent arg0){
-				if(arg0.getKeyCode()==KeyEvent.VK_UP&&j.puedo()){
+				if(arg0.getKeyCode()==KeyEvent.VK_UP){
 					keyBoardUpPressed=false;
 				}
 				else
-					if(arg0.getKeyCode()==KeyEvent.VK_DOWN&&j.puedo()){
+					if(arg0.getKeyCode()==KeyEvent.VK_DOWN){
 						keyBoardDownPressed=false;
 					}
 					else
-						if(arg0.getKeyCode()==KeyEvent.VK_LEFT&&j.puedo()){
+						if(arg0.getKeyCode()==KeyEvent.VK_LEFT){
 							keyBoardLeftPressed=false;
 						}
 						else
-							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT&&j.puedo()){
+							if(arg0.getKeyCode()==KeyEvent.VK_RIGHT){
 								keyBoardRightPressed=false;
 							}
 							
@@ -84,19 +88,19 @@ public class gui extends JFrame implements Runnable {
 	}
 	
 private void mover(){
-	 if(keyBoardLeftPressed&&j.puedo()){
+	 if(keyBoardLeftPressed){
      	  j.mover(KeyEvent.VK_LEFT);
        }
        else
-     	  if(keyBoardRightPressed&&j.puedo()){
+     	  if(keyBoardRightPressed){
      		  j.mover(KeyEvent.VK_RIGHT);
            }
            else
-         	  if(keyBoardDownPressed&&j.puedo()){
+         	  if(keyBoardDownPressed){
          		  j.mover(KeyEvent.VK_DOWN);
                }
                else
-             	  if(keyBoardUpPressed&&j.puedo()){
+             	  if(keyBoardUpPressed){
              		  j.mover(KeyEvent.VK_UP);
                    }
 }
@@ -105,8 +109,8 @@ private void mover(){
  */
 public void run() {
 	while(true){
-			
-              mover();		  
+			if(j.puedo())
+				mover();		  
                    
 		try {
 			Thread.sleep(150);

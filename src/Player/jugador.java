@@ -31,7 +31,7 @@ public class jugador extends nave{
     	 moviendo=false;
     	 escudo=new Basico(this);
     	 shieldL=null;
-    	 vida=150; 
+    	 vida=15000000; 
     	 puede=true;
     	 arma=new basico(this);
     	 vidaLabel=new JLabel();
@@ -96,6 +96,7 @@ public class jugador extends nave{
       */
      public celda mover(int n){ 	
     	celda c2=null;
+    	if(isRunning){
     	 if(n!=-1){
     		c2=super.mover(n);
     		puede=true; // al moverse uno habilita el disparo
@@ -104,6 +105,7 @@ public class jugador extends nave{
     		moviendo=false;
     		disparar();
     		moviendo=false;
+    		}
     	}
     	return c2;
     	
@@ -124,7 +126,7 @@ public class jugador extends nave{
 	
 	@Override
 	public boolean Accept(Visitor V) {
-		return V.visitPlayer(this);
+		return escudo.accept(V);
 	}
 	/**
 	 * metodo usado para recuperar el puntaje del jugador y de esa forma escribirlo en la gui
@@ -143,7 +145,6 @@ public class jugador extends nave{
 			if (vida<=0){
 				if(vidas==0&&isRunning){
 					c.setelem(profundidad,null);
-					isRunning=false;
 					grafico.setIcon(null);
 					m.gameover(this);
 				}
@@ -180,6 +181,7 @@ public class jugador extends nave{
 				shieldL=null;
 				}
 			}
+		visitor=b.getVisitor();
 	}
 	/**
 	 * aumenta la cantidad de disparos del jugador(maximo 3)
@@ -243,6 +245,10 @@ public class jugador extends nave{
 	
 	public void setCelda(celda celda) {
 		c=celda;
+	}
+	public shield getShield() {
+		// TODO Auto-generated method stub
+		return escudo;
 	}
      
 }

@@ -1,9 +1,11 @@
 package obstaculos;
 
+import Player.Mejorado;
 import Player.jugador;
 import PowerUP.powerUp;
 import disparo.DisparoE;
 import disparo.DisparoP;
+import enemigos.Buscador;
 import enemigos.enemigoAbstract;
 import misc.Visitor;
 
@@ -28,7 +30,7 @@ public class visitorDestruibleTodos extends Visitor {
 	@Override
 	public boolean visitenemigo(enemigoAbstract p) {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
@@ -59,6 +61,18 @@ public class visitorDestruibleTodos extends Visitor {
 	public boolean visitPowerUp(powerUp pw) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean visitMejorado(jugador j) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean visitBuscador(Buscador e) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

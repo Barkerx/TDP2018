@@ -1,7 +1,9 @@
 package disparo;
 
+import Player.Mejorado;
 import Player.jugador;
 import PowerUP.powerUp;
+import enemigos.Buscador;
 import enemigos.enemigoAbstract;
 import misc.Visitor;
 import obstaculos.ParedPlayer;
@@ -44,7 +46,7 @@ public class visitorDisparoP extends Visitor {
 			objeto.destruir();
 			p.reducirVida(t);
 			}
-		return true;
+		return false;
 	}
 
 	@Override
@@ -72,6 +74,23 @@ public class visitorDisparoP extends Visitor {
 		objeto.destruir(); 
 		pw.accionar(j);
 		pw.destruir();
+		return false;
+	}
+
+	@Override
+	public boolean visitMejorado(jugador j) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean visitBuscador(Buscador e) {
+		if(objeto.getIsRunning()&&e.getIsRunning()){
+			DisparoP aux=(DisparoP) objeto;
+			int t=aux.getdamage();
+			objeto.destruir();
+			e.reducirVida(t);
+			}
 		return false;
 	}
 

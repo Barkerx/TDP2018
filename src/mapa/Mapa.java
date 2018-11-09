@@ -185,6 +185,7 @@ public abstract class Mapa extends Thread {
 	 */
 	public void gameover(jugador jugador) {
 		stopSound();
+		jugador.changeRunning();
 		this.interrupt();
 		j.gamerover();
 	}

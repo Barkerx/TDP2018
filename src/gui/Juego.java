@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,7 +20,6 @@ public  class Juego {
 	private boolean habilitado=false;
 	public static void main(String[] args) {
 		new Juego();
-		
 	
 }
 /**
@@ -80,18 +80,32 @@ public void addpuntos(int getpuntos) {
  * Metodo usado cuando se gana el juego
  */
 public void win() {
-	
+	frame.enableInputMethods(false);
 	j.setCelda(null);
 	j.setMap(null);
+	j.changeRunning();
 	frame.dispose();
 	frame=new gui(this);
+	frame.enableInputMethods(false);
 	Mapa m2=m.nextMap(j,frame);
-	m=null;
-	m=m2;
 	frame.setVisible(true);
-	j.setMap(m);
-	j.initgraph();
-	
+	if(m2==null){
+		System.out.println("Ganaste");
+		JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/winimage.jpg")));
+		stat.setBounds(0, 0, 900, 675);
+		frame.add(stat, new Integer(1));
+		//hacer un frame de perdiste.
+		habilitado=false;
+		}
+		else{
+			m=null;
+			m=m2;
+			frame.setVisible(true);
+			j.setMap(m);
+			j.initgraph();
+			frame.enableInputMethods(true);
+			j.changeRunning();
+		}
 }
 
 public void gamerover() {
@@ -99,7 +113,6 @@ public void gamerover() {
 	JLabel stat =new JLabel(new ImageIcon(this.getClass().getResource("/resources/gamerover.png")));
 	stat.setBounds(0, 0, 900, 675);
 	frame.add(stat, new Integer(1));
-	//hacer un frame de perdiste.
 	habilitado=false; 
 }
 
