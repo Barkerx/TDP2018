@@ -112,11 +112,6 @@ public class jugador extends nave{
     		c2=super.mover(n);
     		puede=true; // al moverse uno habilita el disparo
     	 }
-    	else{
-    		moviendo=false;
-    		disparar();
-    		moviendo=false;
-    		}
     	}
     	return c2;
     	

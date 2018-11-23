@@ -21,4 +21,10 @@ public abstract  class Visitor {
    public abstract boolean visitPowerUp(powerUp pw);
    public abstract boolean visitMejorado(jugador j);
    public abstract boolean visitBuscador(Buscador e);
+   public boolean areRunning(Gob o){
+	   if(objeto.getIsRunning()&& o.getIsRunning())
+		   return true;
+	   else 
+		   return false;
+   }
 }
