@@ -37,8 +37,8 @@ public class visitorPowerUp extends Visitor {
 	@Override
 	public boolean visitPlayer(jugador j) {
 		powerUp p=(powerUp)objeto;
-		objeto.destruir();
 		p.accionar(j);
+		objeto.destruir();
 		return true;
 	}
 
@@ -46,9 +46,9 @@ public class visitorPowerUp extends Visitor {
 	public boolean visitDisparoPlayer(DisparoP d) {
 		powerUp p=(powerUp) objeto;
 		jugador j=d.get();  
+		p.accionar(j);
 		d.destruir(); 
 		objeto.destruir();
-		p.accionar(j);
 		return false;
 	}
 
@@ -67,8 +67,8 @@ public class visitorPowerUp extends Visitor {
 	@Override
 	public boolean visitMejorado(jugador j) {
 		powerUp p=(powerUp)objeto;
-		objeto.destruir();
 		p.accionar(j);
+		objeto.destruir();
 		return true;
 	}
 

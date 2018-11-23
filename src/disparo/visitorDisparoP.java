@@ -5,6 +5,7 @@ import Player.jugador;
 import PowerUP.powerUp;
 import enemigos.Buscador;
 import enemigos.enemigoAbstract;
+import misc.Gob;
 import misc.Visitor;
 import obstaculos.ParedPlayer;
 import obstaculos.ParedTodos;
@@ -12,7 +13,7 @@ import obstaculos.ParedTodos;
 public class visitorDisparoP extends Visitor {
 	private jugador j;
 	
-	public visitorDisparoP(DisparoP o,jugador j) {
+	public visitorDisparoP(Gob o,jugador j) {
 		objeto=o;
 		this.j=j;
 	}

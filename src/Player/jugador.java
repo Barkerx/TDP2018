@@ -31,7 +31,7 @@ public class jugador extends nave{
     	 moviendo=false;
     	 escudo=new Basico(this);
     	 shieldL=null;
-    	 vida=15000000; 
+    	 vida=150; 
     	 puede=true;
     	 arma=new basico(this);
     	 vidaLabel=new JLabel();
@@ -44,12 +44,21 @@ public class jugador extends nave{
     	 vidasLabel.setBounds(50, 0, 100, 40);
     	 vidasLabel.setForeground(Color.WHITE);
      }
+     /**
+      * metodo usado para actualizar la grafica de los puntos actuales del jugador
+      */
      private void updatePuntos(){
     	 puntosLabel.setText("Puntos:"+puntos);
      }
+     /**
+      * metodo usado para actualizar la grafica de la vida actual del jugador
+      */
      private void updateVida(){
     	 vidaLabel.setText("vida:"+vida);
      }
+     /**
+      * metodo usado para actualizar la grafica de la vidas actuales del jugador
+      */
      private void updateVidas(){
     	 vidasLabel.setText("vidas:"+vidas);
      }
@@ -67,7 +76,9 @@ public class jugador extends nave{
     	 updateVida();
     	 
     }
-     
+     /**
+      * metodo usado para inicializar la grafica del jugador en el mapa
+      */
      public void initgraph(){
     	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
          m.addgraph(grafico);
@@ -137,7 +148,7 @@ public class jugador extends nave{
 	}
 	
 	public Mapa getmap() {
-		// TODO Auto-generated method stub
+		
 		return m;
 	}
 	public void setVida(int n){
@@ -183,18 +194,20 @@ public class jugador extends nave{
 			}
 		visitor=b.getVisitor();
 	}
-	/**
-	 * aumenta la cantidad de disparos del jugador(maximo 3)
-	 */
-	public void aumentar() {
-		arma.aumentarDisparos();
-	}
 	
 	/**
-	 * mejora el disparo a el siguiente(el maximo es el misil)
+	 * Metodo que retorna el arma del jugador
+	 * @return el arma del jugador
 	 */
-	public void mejorarDisparo() {
-		arma=arma.levelUP();
+	public arma getArma() {
+		return arma;
+	}
+	/**
+	 * Metodo usado para setear el arma del jugador
+	 * @param a El arma que tendra el jugador
+	 */
+	public void setArma(arma a){
+		arma=a;
 	}
 	/**
 	 * metodo que daña a todos los enemigos del mapa.
@@ -247,7 +260,6 @@ public class jugador extends nave{
 		c=celda;
 	}
 	public shield getShield() {
-		// TODO Auto-generated method stub
 		return escudo;
 	}
      

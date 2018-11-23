@@ -22,7 +22,7 @@ public class MejorarDisparo extends powerUp{
 	@Override
 	public void accionar(jugador j) {
 		j.sumarPuntaje(puntos);
-		j.mejorarDisparo();
+		j.setArma(j.getArma().levelUP());
 		
 	}
 
