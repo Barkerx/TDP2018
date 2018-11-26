@@ -25,7 +25,9 @@ public class Buscador extends Enemigo{
 		
 	}
 	
-	public void disparar(){}
+	public void disparar(){
+		//Como el Enemigo Buscador no puede disparar, su disparar no hace nada.
+	}
 	
 	@Override
 	public boolean Accept(Visitor v){

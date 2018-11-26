@@ -37,14 +37,14 @@ public abstract class Unidad extends Gob {
 	 * @param d celda a la cual nos deseamos mover
 	 */
 	private void intercambiarceldas(Celda d,int n){	
+		//Si la variable Boolean b es verdadera al salir del loop, quiere decir que recorri todas los objetos que tenia la celda
+		//y el visitor de cada uno de ellos devuelve true al visitarlo
 		boolean b=true;
 		for(int i=0;i<4&&b&&isRunning;i++){
-			if( d.objlist()[i]!=null){
-				if (!d.objlist()[i].Accept(visitor))
+			if( d.objlist()[i]!=null && !d.objlist()[i].Accept(visitor))
 					b=false;
-				}
 		}
-		
+		//si aun existo y b es verdadera hago el cambio de celda tanto logico como grafico.
 		if(b&&isRunning){	
 		moviendo=true;
 		dir=n;
@@ -100,6 +100,7 @@ public abstract class Unidad extends Gob {
 				  if(shieldL!=null)
 					  shieldL.setBounds(grafico.getX()+5, grafico.getY()+5, 45, 45);
 				  break;	  
+			  default:break;
 			  }
 			  try{
 				  Unidad.sleep(50-velocidad);

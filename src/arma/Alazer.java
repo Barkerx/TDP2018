@@ -34,6 +34,7 @@ public class Alazer extends Arma{
 			new Dlazer(j.getceldader(),j.getmap(),j);
 			new Dlazer(j.getcelda(),j.getmap(),j);
 			}break;
+		default:break;	
 		}
 	}
 }

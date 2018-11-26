@@ -19,7 +19,7 @@ import misc.Unidad;
 import jaco.mp3.player.MP3Player;
 import obstaculos.*;
 import player.Jugador;
-import powerUP.*;
+import powerup.*;
 public abstract class Mapa extends Thread {
 	protected Celda[][] celdas; 
 	protected Gui g;
@@ -67,11 +67,10 @@ public abstract class Mapa extends Thread {
 		case Unidad.ABAJO:y=y+1; break;
 		case Unidad.ABAJOIZQUIERDA:x=x-1;y=y+1; break;
 		case Unidad.IZQUIERDA:x=x-1; break;
-	//	case 3:x=x-1;y=y-1; break;
 		case Unidad.ARRIBA:y=y-1; break;
-//		case 5:x=x+1;y=y-1; break;
 		case Unidad.DERECHA:x=x+1;break;
 		case Unidad.ABAJODERECHA:x=x+1;y=y+1; break;
+		default:break;
 		}
 		if(x==celdas.length || y==celdas[0].length || y<0 || x<0 )	
 			c=celda;
@@ -142,6 +141,7 @@ public abstract class Mapa extends Thread {
 		case 5: po=new SuperMisil(c,this);
 		c.setelem(po.getProfundidad(), po);
 			break;
+		default:break;	
 		}
 		creandoPW=false;
 	}
@@ -157,11 +157,12 @@ public abstract class Mapa extends Thread {
 			int y=r.nextInt(5)+5;
 			if(celdas[x][y].objlist()[0]==null)
 				{	
-				obstaculo p=null;
+				Obstaculo p;
 				int c=r.nextInt(2);
 				switch(c){
 					case 0:p=new ParedPlayer(celdas[x][y],this);break;
 					case 1:p=new ParedTodos(celdas[x][y],this);break;
+					default:break;
 					}
 				i++;
 				}
@@ -227,6 +228,7 @@ public abstract class Mapa extends Thread {
 	case 0:e=new Buscador(c,this,j.getJugador());break;
 	case 1:e=new Kamikaze(c,this);break;
 	case 2:e=new Temporal(c,this,j.getJugador());break;
+	default:break;
 	}
 		lEnemy.add(e);
 		m.addEnemy(e);

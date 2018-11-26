@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import mapa.*;
 import misc.Unidad;
 import player.Jugador;
-import misc.Nave;
 
 public  class Juego {
 	private Jugador j;
@@ -57,6 +56,7 @@ public void mover(int dir){
 		case KeyEvent.VK_SPACE : //Espacio
 			j.disparar();
 			break;
+		default:break;	
 	}
 	if(direccion!=-1)
 		j.mover(direccion);

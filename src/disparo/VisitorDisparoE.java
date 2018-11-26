@@ -6,9 +6,8 @@ import misc.Gob;
 import misc.Visitor;
 import obstaculos.ParedPlayer;
 import obstaculos.ParedTodos;
-import player.Mejorado;
-import powerUP.PowerUp;
 import player.Jugador;
+import powerup.PowerUp;
 
 public class VisitorDisparoE extends Visitor{
 	

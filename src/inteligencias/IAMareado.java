@@ -20,7 +20,8 @@ public class IAMareado extends Inteligencia{
 			case 1:salida=Unidad.IZQUIERDA;break;
 			case 2:salida=Unidad.ARRIBA;break;
 			case 3:salida=Unidad.DERECHA;break;
-			  }
+			default:break;  
+				}
 			if(dir==3){
 				dir=-1;}
 			}

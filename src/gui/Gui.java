@@ -1,11 +1,7 @@
 package gui;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.swing.JLayeredPane;
 import javax.swing.*;
 

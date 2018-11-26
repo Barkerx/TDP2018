@@ -7,11 +7,11 @@ import mapa.Mapa;
 import mapa.Celda;
 import misc.Visitor;
 
-public class ParedTodos extends obstaculo {
+public class ParedTodos extends Obstaculo {
 
 	public ParedTodos(Celda ce, Mapa m) {
 		super(ce, m);
-		visitor=new visitorDestruibleTodos(this);
+		visitor=new VisitorDestruibleTodos(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredtodos.gif")));
 		initgraph();
 	}

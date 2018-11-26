@@ -59,6 +59,7 @@ public class Abasico extends Arma{
 			new Dbasico(j.getceldaderder(),j.getmap(),j);
 			new Dbasico(j.getcelda(),j.getmap(),j);
 			break;
+		default:break;
 		}
 	
 	}

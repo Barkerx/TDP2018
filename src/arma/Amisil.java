@@ -33,6 +33,7 @@ public class Amisil extends Arma{
 			new Dmisil(j.getceldader(),j.getmap(),j);
 			new Dmisil(j.getcelda(),j.getmap(),j);
 			}break;
+		default:break;	
 		}
 	}
 

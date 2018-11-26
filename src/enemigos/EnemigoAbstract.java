@@ -1,8 +1,6 @@
 package enemigos;
 
 import javax.swing.ImageIcon;
-
-import inteligencias.IADormido;
 import inteligencias.Inteligencia;
 import mapa.Celda;
 import misc.Visitor;

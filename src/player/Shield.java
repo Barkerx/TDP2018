@@ -24,9 +24,7 @@ public abstract class Shield {
 		{
 			j.setVida(j.getVida()-n);
 		}
-}
-	
-	// XXX hacer visitor para el escudo y hacer el visitor del kamikaze XXX
+	}
 	
 	public JLabel getImage(){
 		return image;
@@ -34,6 +32,9 @@ public abstract class Shield {
 	public abstract void levelUp();
 	public abstract Visitor getVisitor();
 	public abstract boolean accept(Visitor v);
+	/**
+	 * Metodo usado para destruir el escudo 
+	 */
 	public abstract void destruir();
 
 }

@@ -27,10 +27,9 @@ public class Ebasico extends Shield{
 		
 		return v.visitPlayer(j);
 	}
-	/**
-	 * Metodo usado para destruir el escudo, debido a que es un escudo basico el escudo basico no se destruye. 
-	 */
+
 	public void destruir() {
+		// debido a que es un escudo basico el escudo basico no se destruye.
 	}
 	
 }

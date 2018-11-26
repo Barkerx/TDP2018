@@ -3,9 +3,8 @@ import disparo.*;
 import enemigos.Buscador;
 import enemigos.EnemigoAbstract;
 import obstaculos.*;
-import player.Mejorado;
-import powerUP.*;
 import player.Jugador;
+import powerup.*;
 public abstract  class Visitor {
 	/**
 	 * objeto asociado al visitor

@@ -7,7 +7,7 @@ import enemigos.EnemigoAbstract;
 import misc.*;
 import obstaculos.ParedPlayer;
 import obstaculos.ParedTodos;
-import powerUP.PowerUp;
+import powerup.PowerUp;
 
 public class VisitorPlayer extends Visitor{
 	

@@ -7,11 +7,11 @@ import mapa.Mapa;
 import mapa.Celda;
 import misc.Visitor;
 
-public class ParedPlayer extends obstaculo {
+public class ParedPlayer extends Obstaculo {
 
 	public ParedPlayer(Celda ce, Mapa m) {
 		super(ce, m);
-		visitor=new visitorDestruibleplayer(this);
+		visitor=new VisitorDestruibleplayer(this);
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/paredplayer.gif")));
 		initgraph();
 	}

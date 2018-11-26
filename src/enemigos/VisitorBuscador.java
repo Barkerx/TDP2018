@@ -1,7 +1,6 @@
 package enemigos;
 
 import misc.Gob;
-import player.Mejorado;
 import player.Jugador;
 
 public class VisitorBuscador extends VisitorEnemigo{
