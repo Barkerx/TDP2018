@@ -3,15 +3,15 @@ package disparo;
 
 
 import mapa.Mapa;
-import mapa.celda;
+import mapa.Celda;
 import misc.Unidad;
 import misc.Visitor;
 
 public abstract class DisparoE extends Disparo{
 	
-	protected DisparoE(celda c,Mapa m){
+	protected DisparoE(Celda c,Mapa m){
 		super(c,m);
-		visitor=new visitorDisparoE(this);
+		visitor=new VisitorDisparoE(this);
 		
 	}
 	@Override
@@ -20,7 +20,7 @@ public abstract class DisparoE extends Disparo{
 		return V.visitDisparoEnemigo(this);
 	}
 	public void mover(){
-		celda ce=c;
+		Celda ce=c;
 		if(isRunning){
 	//		while(isRunning){
 			ce=super.mover(Unidad.ABAJO);

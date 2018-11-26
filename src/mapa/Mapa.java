@@ -3,29 +3,30 @@ package mapa;
 import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.JLabel;
-import Player.jugador;
-import PowerUP.*;
+
 import disparo.Disparo;
 import disparo.DisparoMobiler;
 import enemigos.Buscador;
 import enemigos.EnemyMobiler;
 import enemigos.Kamikaze;
 import enemigos.Temporal;
-import enemigos.enemigo;
-import enemigos.enemigoAbstract;
+import enemigos.Enemigo;
+import enemigos.EnemigoAbstract;
 import gui.Juego;
-import gui.gui;
+import gui.Gui;
 import misc.Gob;
 import misc.Unidad;
 import jaco.mp3.player.MP3Player;
 import obstaculos.*;
+import player.Jugador;
+import powerUP.*;
 public abstract class Mapa extends Thread {
-	protected celda[][] celdas; 
-	protected gui g;
+	protected Celda[][] celdas; 
+	protected Gui g;
 	protected MP3Player cancion;
 	private boolean creandoPW=false;
 	protected JLabel fondo;
-	protected LinkedList<enemigoAbstract> lEnemy;
+	protected LinkedList<EnemigoAbstract> lEnemy;
 	protected Juego j;
 	protected int horda;
 	protected boolean gane =false;
@@ -38,14 +39,14 @@ public abstract class Mapa extends Thread {
 		//inicializo la matriz de celdas
 				int x=20;
 				int y=15;
-				celdas=new celda[x][y];
+				celdas=new Celda[x][y];
 				for(int i=0;i<x;i++)
 					for(int j=0;j<y;j++)
-						celdas[i][j]=new celda(i,j,this);
+						celdas[i][j]=new Celda(i,j,this);
 				
 	}
 	
-	protected void inicializoGui(gui gu,Juego ju){
+	protected void inicializoGui(Gui gu,Juego ju){
 		g=gu;
 		g.setResizable(false);
    	 	g.add(fondo,new Integer(0));
@@ -58,9 +59,9 @@ public abstract class Mapa extends Thread {
 	 * @param dir direccion a la cual se desea mover
 	 * @return La celda a moverse, si es una celda permitida, null si es invalida.
 	 */
-	public celda mover(celda celda, int dir) {
+	public Celda mover(Celda celda, int dir) {
 		// TODO Auto-generated method stub
-		celda c;
+		Celda c;
 		int x=celda.getposx();
 		int y=celda.getposy();
 		switch (dir){
@@ -95,13 +96,13 @@ public abstract class Mapa extends Thread {
 	 * Separa el enemigo del mapa, asi ya no hay mas relacion entre ellos, es usado al eliminar un enemigo.
 	 * @param enemigoAbstract enemigo al que se desea separar del mapa.
 	 */
-	public void desligar(enemigoAbstract enemigoAbstract) {
+	public void desligar(EnemigoAbstract enemigoAbstract) {
 		
 		lEnemy.remove(enemigoAbstract);
 		j.addpuntos(enemigoAbstract.getpuntos());
 		m.killEnemy(enemigoAbstract);
 		if(!creandoPW){
-		celda c=celdas[enemigoAbstract.getcelda().getposx()][enemigoAbstract.getcelda().getposy()];
+		Celda c=celdas[enemigoAbstract.getcelda().getposx()][enemigoAbstract.getcelda().getposy()];
 		Random aleatorio = new Random(System.currentTimeMillis());
 		int intAleatorio = aleatorio.nextInt(6);
 		int haypowerUp = aleatorio.nextInt(12)+1;
@@ -121,22 +122,22 @@ public abstract class Mapa extends Thread {
 	 * @param n n a partir del cual se creara un powerUP
 	 */
 	
-	protected void crearpowerUP(celda c,int n) {
-		powerUp po;
+	protected void crearpowerUP(Celda c,int n) {
+		PowerUp po;
 		switch (n){
-		case 0:po=new AumentarCantDisparos(c,this);
+		case 0:po=new Aumentar(c,this);
 		c.setelem(po.getProfundidad(), po);
 		break;
-		case 1: po=new MejorarDisparo(c,this);
+		case 1: po=new Mejorar(c,this);
 		c.setelem(po.getProfundidad(), po);
 		break;
-		case 2: po=new pocion(c,this);
+		case 2: po=new Pocion(c,this);
 		c.setelem(po.getProfundidad(), po);
 		break;
-		case 3: po=new campoDeProteccion(c,this);
+		case 3: po=new Escudo(c,this);
 		c.setelem(po.getProfundidad(), po);
 			break;
-		case 4: po=new CongelaTiempo(c,this);
+		case 4: po=new Congelar(c,this);
 		c.setelem(po.getProfundidad(), po);
 		break; 
 		case 5: po=new SuperMisil(c,this);
@@ -172,7 +173,7 @@ public abstract class Mapa extends Thread {
 	 * metodo usado para indicar que el juego se termino.
 	 * @param jugador
 	 */
-	public void gameover(jugador jugador) {
+	public void gameover(Jugador jugador) {
 		stopSound();
 		jugador.changeRunning();
 		this.interrupt();
@@ -182,8 +183,8 @@ public abstract class Mapa extends Thread {
 	 * metodo usado para reiniciar la posicion del enemigo.
 	 * @param enemigoAbstract enemigo que reiniciara su posicion
 	 */
-	public void restart(enemigoAbstract enemigoAbstract) {
-		celda c=enemigoAbstract.getcelda();
+	public void restart(EnemigoAbstract enemigoAbstract) {
+		Celda c=enemigoAbstract.getcelda();
 		Random r= new Random();
 		boolean b=true;
 		while(b){
@@ -203,7 +204,7 @@ public abstract class Mapa extends Thread {
 	 * Al morir el jugador reinicia su posicion en una celda puntual y congela el tiempo para que el jugador tenga tiempo.
 	 * @param j jugador a reiniciar la posicion
 	 */
-	public void resetearJugador(jugador j){
+	public void resetearJugador(Jugador j){
 		j.changeRunning();
 		j.getcelda().setelem(j.getProfundidad(),null);
 		j.setCelda(celdas[10][14]);
@@ -219,8 +220,8 @@ public abstract class Mapa extends Thread {
 	 * metodo usado para crear un enemigo en la celda c.
 	 * @param c celda donde se insertara el enemigo.
 	 */
-	protected void crearEnemigo(celda c){
-		enemigo e = null;
+	protected void crearEnemigo(Celda c){
+		Enemigo e = null;
 		Random r=new Random();
 		int x=r.nextInt(3);
 	switch(x){
@@ -279,11 +280,11 @@ public abstract class Mapa extends Thread {
 		 dp.add(g);
 	}
 
-	public LinkedList<enemigoAbstract> getEnemigos() {
+	public LinkedList<EnemigoAbstract> getEnemigos() {
 		// TODO Auto-generated method stub
 		return lEnemy;
 	}
 	
-	public abstract Mapa nextMap(jugador ju,gui gu);
+	public abstract Mapa nextMap(Jugador ju,Gui gu);
 	
 }

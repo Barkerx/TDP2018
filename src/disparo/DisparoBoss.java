@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import mapa.celda;
+import mapa.Celda;
 import misc.Unidad;
 
 public class DisparoBoss extends DisparoE{
-	public DisparoBoss(celda c, Mapa m) {
+	public DisparoBoss(Celda c, Mapa m) {
 		super(c,m);
 		velocidad=35;
 		damage=50;
@@ -21,7 +21,7 @@ public class DisparoBoss extends DisparoE{
 	}
 	
 	public void mover(){
-		celda ce = null;
+		Celda ce = null;
 		if(isRunning){
 	//		while(isRunning){
 			ce=super.mover(Unidad.ABAJO);

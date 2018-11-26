@@ -3,12 +3,12 @@ package misc;
 import javax.swing.JLabel;
 import misc.Visitor;
 import mapa.Mapa;
-import mapa.celda;
+import mapa.Celda;
 
 public abstract class Gob extends Thread{
 		 protected Visitor visitor;
 	  	 protected JLabel grafico;
-	     protected celda c;
+	     protected Celda c;
 	     protected int x,y;
 	     protected int vida;
 	     protected int profundidad;

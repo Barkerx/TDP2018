@@ -1,18 +1,19 @@
-package obstaculos;
+package enemigos;
 
 import disparo.DisparoE;
 import disparo.DisparoP;
-import enemigos.Buscador;
-import enemigos.EnemigoAbstract;
+import misc.Gob;
 import misc.Visitor;
+import obstaculos.ParedPlayer;
+import obstaculos.ParedTodos;
 import player.Mejorado;
 import powerUP.PowerUp;
 import player.Jugador;
 
-public class visitorDestruibleTodos extends Visitor {
+public class VisitorEnemigo extends Visitor {
 
-	public visitorDestruibleTodos(ParedTodos paredTodos) {
-		objeto=paredTodos;
+	public VisitorEnemigo(Gob o) {
+		objeto=o;
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class visitorDestruibleTodos extends Visitor {
 	@Override
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -35,7 +36,10 @@ public class visitorDestruibleTodos extends Visitor {
 
 	@Override
 	public boolean visitPlayer(Jugador j) {
-		// TODO Auto-generated method stub
+		if(areRunning(j)){
+		objeto.destruir();
+		j.reducirVida(50);
+		}
 		return false;
 	}
 
@@ -45,17 +49,14 @@ public class visitorDestruibleTodos extends Visitor {
 			int t=d.getdamage();
 			d.destruir();
 			objeto.reducirVida(t);}
-			return false;
+		return true;
 	}
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		if(areRunning(d)){
-			int t=d.getdamage();
-			d.destruir();
-			objeto.reducirVida(t);}
-			return false;
-		}
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 	@Override
 	public boolean visitPowerUp(PowerUp pw) {
@@ -65,8 +66,11 @@ public class visitorDestruibleTodos extends Visitor {
 
 	@Override
 	public boolean visitMejorado(Jugador j) {
-		// TODO Auto-generated method stub
-		return false;
+		if(areRunning(j)){
+			objeto.destruir();
+			j.reducirVida(50);
+			}
+			return false;
 	}
 
 	@Override

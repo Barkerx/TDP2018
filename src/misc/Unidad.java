@@ -2,7 +2,7 @@ package misc;
 
 import javax.swing.JLabel;
 
-import mapa.celda;
+import mapa.Celda;
 
 public abstract class Unidad extends Gob {
 
@@ -22,8 +22,8 @@ public abstract class Unidad extends Gob {
  * @param n la direccion a la cual moverse
  * @return la celda a d onde se movera(si no se puede mover retorna null y no hace el cambio de celdas)(usado para metodos que lo redefinen)
  */
-	public celda mover(int n){
-		celda w=c;	
+	public Celda mover(int n){
+		Celda w=c;	
 		if(!moviendo){
 			w=m.mover(c,n);
 		if(w!=c)
@@ -36,7 +36,7 @@ public abstract class Unidad extends Gob {
 	 * realiza la colision en el caso que hallan haciendo el accept aca objeto existente en la celda y tambien el intercambio de celdas.
 	 * @param d celda a la cual nos deseamos mover
 	 */
-	private void intercambiarceldas(celda d,int n){	
+	private void intercambiarceldas(Celda d,int n){	
 		boolean b=true;
 		for(int i=0;i<4&&b&&isRunning;i++){
 			if( d.objlist()[i]!=null){

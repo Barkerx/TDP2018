@@ -1,78 +1,83 @@
-package obstaculos;
+package disparo;
 
-import disparo.DisparoE;
-import disparo.DisparoP;
 import enemigos.Buscador;
 import enemigos.EnemigoAbstract;
+import misc.Gob;
 import misc.Visitor;
+import obstaculos.ParedPlayer;
+import obstaculos.ParedTodos;
 import player.Mejorado;
 import powerUP.PowerUp;
 import player.Jugador;
 
-public class visitorDestruibleTodos extends Visitor {
-
-	public visitorDestruibleTodos(ParedTodos paredTodos) {
-		objeto=paredTodos;
+public class VisitorDisparoE extends Visitor{
+	
+	public VisitorDisparoE(Gob o){
+		objeto=o;
 	}
 
 	@Override
 	public boolean VisitDestruible(ParedTodos r) {
-		// TODO Auto-generated method stub
+		if(areRunning(r)){
+		DisparoE aux=(DisparoE) objeto;
+		int t=aux.getdamage();
+		objeto.destruir();
+		r.reducirVida(t);}
 		return false;
 	}
 
 	@Override
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
-		// TODO Auto-generated method stub
+		if(areRunning(w)){
+		objeto.destruir();}
 		return false;
 	}
 
 	@Override
 	public boolean visitenemigo(EnemigoAbstract p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean visitPlayer(Jugador j) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
 		if(areRunning(d)){
-			int t=d.getdamage();
-			d.destruir();
-			objeto.reducirVida(t);}
-			return false;
+		d.destruir();
+		objeto.destruir();}
+		return false;
 	}
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		if(areRunning(d)){
-			int t=d.getdamage();
-			d.destruir();
-			objeto.reducirVida(t);}
-			return false;
-		}
+		return true;
+	}
 
 	@Override
 	public boolean visitPowerUp(PowerUp pw) {
-		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean visitPlayer(Jugador j) {
+		if(areRunning(j)){
+		DisparoE aux=(DisparoE) objeto;
+		j.reducirVida(aux.getdamage());
+		objeto.destruir();}
 		return true;
 	}
 
 	@Override
 	public boolean visitMejorado(Jugador j) {
-		// TODO Auto-generated method stub
-		return false;
+		if(areRunning(j)){
+			DisparoE aux=(DisparoE) objeto;
+			j.reducirVida(aux.getdamage());
+			objeto.destruir();}
+			return false;
 	}
 
 	@Override
 	public boolean visitBuscador(Buscador e) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

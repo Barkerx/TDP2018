@@ -2,23 +2,24 @@ package enemigos;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import Player.jugador;
-import iAenemigos.IABuscador;
-import mapa.Mapa;
-import mapa.celda;
-import misc.Visitor;
 
-public class Buscador extends enemigo{
+import inteligencias.IABuscador;
+import mapa.Mapa;
+import mapa.Celda;
+import misc.Visitor;
+import player.Jugador;
+
+public class Buscador extends Enemigo{
 	
-	protected jugador j;
+	protected Jugador j;
 	
-	public Buscador(celda c, Mapa m,jugador j) {
+	public Buscador(Celda c, Mapa m,Jugador j) {
 		super(c, m);
 		vida=100;
 		velocidad=45;
 		grafico =new JLabel(new ImageIcon(this.getClass().getResource("/resources/buscador.png")));
 		initgraph();
-		visitor=new visitorBuscador(this);
+		visitor=new VisitorBuscador(this);
 		IA=new IABuscador(j,this);
 		this.j=j;
 		

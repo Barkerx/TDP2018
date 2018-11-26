@@ -1,18 +1,18 @@
-package obstaculos;
+package player;
 
 import disparo.DisparoE;
 import disparo.DisparoP;
 import enemigos.Buscador;
 import enemigos.EnemigoAbstract;
-import misc.Visitor;
-import player.Mejorado;
+import misc.*;
+import obstaculos.ParedPlayer;
+import obstaculos.ParedTodos;
 import powerUP.PowerUp;
-import player.Jugador;
 
-public class visitorDestruibleTodos extends Visitor {
-
-	public visitorDestruibleTodos(ParedTodos paredTodos) {
-		objeto=paredTodos;
+public class VisitorPlayer extends Visitor{
+	
+	public VisitorPlayer(Gob o){
+		objeto=o;
 	}
 
 	@Override
@@ -29,49 +29,56 @@ public class visitorDestruibleTodos extends Visitor {
 
 	@Override
 	public boolean visitenemigo(EnemigoAbstract p) {
-		// TODO Auto-generated method stub
+		if(areRunning(p)){
+		p.destruir();
+		Jugador j=(Jugador) objeto;
+		j.reducirVida(50);
+		}
 		return false;
 	}
 
 	@Override
 	public boolean visitPlayer(Jugador j) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
-		if(areRunning(d)){
-			int t=d.getdamage();
-			d.destruir();
-			objeto.reducirVida(t);}
-			return false;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
 		if(areRunning(d)){
-			int t=d.getdamage();
 			d.destruir();
-			objeto.reducirVida(t);}
-			return false;
-		}
+			Jugador j=(Jugador) objeto;
+			j.reducirVida(d.getdamage());}
+		return true;
+	}
 
 	@Override
 	public boolean visitPowerUp(PowerUp pw) {
-		// TODO Auto-generated method stub
+		Jugador j=(Jugador) objeto;
+		pw.accionar(j);
+		pw.destruir();
 		return true;
 	}
 
 	@Override
 	public boolean visitMejorado(Jugador j) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean visitBuscador(Buscador e) {
-		// TODO Auto-generated method stub
+		if(areRunning(e)){
+			e.destruir();
+			Jugador j=(Jugador) objeto;
+			j.reducirVida(50);
+			}
 		return false;
 	}
 

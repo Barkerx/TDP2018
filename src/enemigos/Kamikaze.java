@@ -3,14 +3,14 @@ package enemigos;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import disparo.disparoEnemy;
-import iAenemigos.IAKamikaze;
+import disparo.DisparoEnemy;
+import inteligencias.IAKamikaze;
 import mapa.Mapa;
-import mapa.celda;
+import mapa.Celda;
 
-public class Kamikaze extends enemigo {
+public class Kamikaze extends Enemigo {
 
-	public Kamikaze(celda c, Mapa m) {
+	public Kamikaze(Celda c, Mapa m) {
 		super(c, m);
 		vida=150;
 		velocidad=30;
@@ -23,7 +23,7 @@ public class Kamikaze extends enemigo {
 
 	public void disparar() {
 		if(isRunning)
-			new disparoEnemy(c,m);
+			new DisparoEnemy(c,m);
 	}
 
 }

@@ -1,11 +1,11 @@
 package misc;
 import disparo.*;
 import enemigos.Buscador;
-import enemigos.enemigoAbstract;
-import Player.Mejorado;
-import Player.jugador;
+import enemigos.EnemigoAbstract;
 import obstaculos.*;
-import PowerUP.*;
+import player.Mejorado;
+import powerUP.*;
+import player.Jugador;
 public abstract  class Visitor {
 	/**
 	 * objeto asociado al visitor
@@ -14,12 +14,12 @@ public abstract  class Visitor {
    
    public abstract boolean VisitDestruible(ParedTodos r);
    public abstract boolean VisitDestruiblePlayer(ParedPlayer w);
-   public abstract boolean visitenemigo(enemigoAbstract p);
-   public abstract boolean visitPlayer(jugador j);
+   public abstract boolean visitenemigo(EnemigoAbstract p);
+   public abstract boolean visitPlayer(Jugador j);
    public abstract boolean visitDisparoPlayer(DisparoP d);
    public abstract boolean visitDisparoEnemigo(DisparoE d);
-   public abstract boolean visitPowerUp(powerUp pw);
-   public abstract boolean visitMejorado(jugador j);
+   public abstract boolean visitPowerUp(PowerUp pw);
+   public abstract boolean visitMejorado(Jugador j);
    public abstract boolean visitBuscador(Buscador e);
    public boolean areRunning(Gob o){
 	   return objeto.getIsRunning()&& o.getIsRunning();

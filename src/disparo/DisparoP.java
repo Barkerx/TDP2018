@@ -1,12 +1,12 @@
 package disparo;
 
-import Player.jugador;
 import mapa.Mapa;
-import mapa.celda;
+import mapa.Celda;
 import misc.Visitor;
+import player.Jugador;
 
 public abstract class DisparoP extends Disparo{
-	protected jugador j;
+	protected Jugador j;
 	protected int pasos;
 	/**
 	 * Variable PASOS, usada para que el jugador pueda disparar despues de que el disparo el ultimo disparo realize 3 pasos
@@ -15,10 +15,10 @@ public abstract class DisparoP extends Disparo{
 	 * @param m mapa donde estara el disparo
 	 * @param j jugador del disparo
 	 */
-	protected DisparoP(celda c, Mapa m, jugador j) {
+	protected DisparoP(Celda c, Mapa m, Jugador j) {
 		super(c,m);
 		this.j=j;
-		visitor=new visitorDisparoP(this,j);
+		visitor=new VisitorDisparoP(this,j);
 		pasos=0;
 	}
 	
@@ -27,7 +27,7 @@ public abstract class DisparoP extends Disparo{
 		return V.visitDisparoPlayer(this);
 	}
 	
-	public jugador get(){
+	public Jugador get(){
 		return j;
 	}
 	public void destruir(){
@@ -39,7 +39,7 @@ public abstract class DisparoP extends Disparo{
 	public void mover(){
 		if(isRunning){
 		//	while(isRunning){
-			celda ce=super.mover(ARRIBA);
+			Celda ce=super.mover(ARRIBA);
 				
 				if (ce.getposy()==m.getminY())
 				{      

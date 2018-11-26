@@ -5,12 +5,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import mapa.*;
 import misc.Unidad;
-import misc.nave;
-import Player.jugador;
+import player.Jugador;
+import misc.Nave;
 
 public  class Juego {
-	private jugador j;
-	private static gui frame;
+	private Jugador j;
+	private static Gui frame;
 	private Mapa m;
 	private boolean habilitado=false;
 	public static void main(String[] args) {
@@ -21,9 +21,9 @@ public  class Juego {
  * constructor de juego, crea el jugador en nulo crea el mapa y pone la gui visible.	
  */
 public Juego(){
-		j=new jugador(null,null);
-		frame=new gui(this);
-		m=new mapa1(frame,this,j);
+		j=new Jugador(null,null);
+		frame=new Gui(this);
+		m=new Mapa1(frame,this,j);
 		frame.setVisible(true);
 		j.setMap(m);
 		j.initgraph();
@@ -79,7 +79,7 @@ public void win() {
 	j.setMap(null);
 	j.changeRunning();
 	frame.dispose();
-	frame=new gui(this);
+	frame=new Gui(this);
 	frame.enableInputMethods(false);
 	Mapa m2=m.nextMap(j,frame);
 	frame.setVisible(true);
@@ -129,7 +129,7 @@ public boolean puedo() {
 	return habilitado;
 }
 
-public jugador getJugador(){
+public Jugador getJugador(){
 	return j;
 }
 

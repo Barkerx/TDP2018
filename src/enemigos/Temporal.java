@@ -3,19 +3,19 @@ package enemigos;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import Player.jugador;
-import disparo.disparoEnemy;
-import iAenemigos.IABuscador;
-import iAenemigos.IAMareado;
+import disparo.DisparoEnemy;
+import inteligencias.IABuscador;
+import inteligencias.IAMareado;
 import mapa.Mapa;
-import mapa.celda;
+import player.Jugador;
+import mapa.Celda;
 
-public class Temporal extends enemigo {
+public class Temporal extends Enemigo {
 	private static final int vidaMax=130;
 	protected int n;
-	protected jugador j;
+	protected Jugador j;
 	protected boolean cambio=false;
-	public Temporal(celda c, Mapa m, jugador j) {
+	public Temporal(Celda c, Mapa m, Jugador j) {
 		super(c, m);
 		vida=vidaMax;
 		velocidad=40;
@@ -37,7 +37,7 @@ public class Temporal extends enemigo {
 	
 	public void disparar() {
 		if(isRunning)
-			new disparoEnemy(c,m);
+			new DisparoEnemy(c,m);
 	}
 	
 }

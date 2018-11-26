@@ -7,7 +7,7 @@ import misc.*;
 
 public abstract class obstaculo extends Gob{
 
-	public obstaculo(celda c,Mapa m){
+	public obstaculo(Celda c,Mapa m){
 		this.c=c;
 		this.m=m;
 		profundidad=0;
