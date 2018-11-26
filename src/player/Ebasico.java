@@ -18,13 +18,13 @@ public class Ebasico extends Shield{
 
 	@Override
 	public Visitor getVisitor() {
-		// TODO Auto-generated method stub
+		
 		return v;
 	}
 
 	@Override
 	public boolean accept(Visitor v) {
-		// TODO Auto-generated method stub
+		
 		return v.visitPlayer(j);
 	}
 	/**

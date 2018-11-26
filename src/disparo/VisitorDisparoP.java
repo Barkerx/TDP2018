@@ -52,13 +52,13 @@ public class VisitorDisparoP extends Visitor {
 
 	@Override
 	public boolean visitPlayer(Jugador j) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
@@ -80,7 +80,6 @@ public class VisitorDisparoP extends Visitor {
 
 	@Override
 	public boolean visitMejorado(Jugador j) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

@@ -16,7 +16,6 @@ public abstract class DisparoE extends Disparo{
 	}
 	@Override
 	public boolean Accept(Visitor V) {
-		// TODO Auto-generated method stub
 		return V.visitDisparoEnemigo(this);
 	}
 	public void mover(){

@@ -85,7 +85,7 @@ public class Mapa2 extends Mapa{
 	}
 	@Override
 	public Mapa nextMap(Jugador ju,Gui gu) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

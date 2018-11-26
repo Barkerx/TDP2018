@@ -31,7 +31,7 @@ public class Mejorado extends Shield{
 
 	@Override
 	public Visitor getVisitor() {
-		// TODO Auto-generated method stub
+		
 		return v;
 	}
 

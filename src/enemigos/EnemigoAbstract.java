@@ -61,7 +61,6 @@ public abstract class EnemigoAbstract extends Nave{
 	}
 	
 public Celda getcelda() {
-	// TODO Auto-generated method stub
 	return c;
 }
 

@@ -9,7 +9,7 @@ public abstract class Nave extends Unidad{
 	public abstract void disparar();
 	
 	public Celda getcelda() {
-		// TODO Auto-generated method stub
+		
 		return c;
 	}
 	

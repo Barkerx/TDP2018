@@ -18,19 +18,19 @@ public class VisitorPowerUP extends Visitor {
 
 	@Override
 	public boolean VisitDestruible(ParedTodos r) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean visitenemigo(EnemigoAbstract p) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
@@ -54,13 +54,13 @@ public class VisitorPowerUP extends Visitor {
 
 	@Override
 	public boolean visitDisparoEnemigo(DisparoE d) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean visitPowerUp(PowerUp pw) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -74,7 +74,7 @@ public class VisitorPowerUP extends Visitor {
 
 	@Override
 	public boolean visitBuscador(Buscador e) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

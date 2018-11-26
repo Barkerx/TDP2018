@@ -31,7 +31,6 @@ public abstract class Disparo extends Unidad{
 	 * metodo que se va a ejecutar al crear un disparo.
 	 */
 	public int getvelocidad() {
-		// TODO Auto-generated method stub
 		return velocidad;
 	}
 	

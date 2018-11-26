@@ -13,7 +13,6 @@ public class Amisil extends Arma{
 
 	@Override
 	public Arma levelUP() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 

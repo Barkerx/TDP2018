@@ -76,7 +76,6 @@ public class VisitorDisparoE extends Visitor{
 
 	@Override
 	public boolean visitBuscador(Buscador e) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

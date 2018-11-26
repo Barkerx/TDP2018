@@ -91,7 +91,7 @@ public void crearEnemigos(){
 
 	@Override
 	public Mapa nextMap(Jugador ju,Gui gu) {
-		// TODO Auto-generated method stub
+		
 		return  new Mapa2(gu,j,ju);
 	}
 }

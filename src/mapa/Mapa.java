@@ -33,7 +33,6 @@ public abstract class Mapa extends Thread {
 	protected EnemyMobiler m;
 	protected DisparoMobiler d;
 	protected Pool dp;
-	protected boolean waked=true;
 	
 	protected void inicializoCeldas(){
 		//inicializo la matriz de celdas
@@ -60,7 +59,7 @@ public abstract class Mapa extends Thread {
 	 * @return La celda a moverse, si es una celda permitida, null si es invalida.
 	 */
 	public Celda mover(Celda celda, int dir) {
-		// TODO Auto-generated method stub
+		
 		Celda c;
 		int x=celda.getposx();
 		int y=celda.getposy();
@@ -209,7 +208,7 @@ public abstract class Mapa extends Thread {
 		j.getcelda().setelem(j.getProfundidad(),null);
 		j.setCelda(celdas[10][14]);
 		celdas[10][14].setelem(j.getProfundidad(), j);
-		j.initgraph();
+		j.initgraph(false);
 		j.changeRunning();
 	}
 	/**
@@ -263,11 +262,11 @@ public abstract class Mapa extends Thread {
 		return gane;
 	}
 	public int getmaxY() {
-		// TODO Auto-generated method stub
+		
 		return celdas[0].length-1;
 	}
 	public int getminY() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	public void addDisparo(Disparo p){
@@ -281,7 +280,7 @@ public abstract class Mapa extends Thread {
 	}
 
 	public LinkedList<EnemigoAbstract> getEnemigos() {
-		// TODO Auto-generated method stub
+		
 		return lEnemy;
 	}
 	

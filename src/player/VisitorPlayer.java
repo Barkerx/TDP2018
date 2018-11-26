@@ -17,13 +17,13 @@ public class VisitorPlayer extends Visitor{
 
 	@Override
 	public boolean VisitDestruible(ParedTodos r) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean VisitDestruiblePlayer(ParedPlayer w) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -39,13 +39,13 @@ public class VisitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitPlayer(Jugador j) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean visitDisparoPlayer(DisparoP d) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -68,7 +68,7 @@ public class VisitorPlayer extends Visitor{
 
 	@Override
 	public boolean visitMejorado(Jugador j) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

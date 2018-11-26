@@ -14,7 +14,6 @@ public class Alazer extends Arma{
 
 	@Override
 	public Arma levelUP() {
-		// TODO Auto-generated method stub
 		return new Amisil(j);
 	}
 

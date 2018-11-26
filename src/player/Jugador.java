@@ -78,7 +78,7 @@ public class Jugador extends Nave{
      /**
       * metodo usado para inicializar la grafica del jugador en el mapa
       */
-     public void initgraph(){
+     public void initgraph(boolean t){
     	 grafico.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
          m.addgraph(grafico);
  		 if(escudo.getImage()!=null){
@@ -86,13 +86,15 @@ public class Jugador extends Nave{
  			 shieldL.setBounds(c.getposx()*45, c.getposy()*45, 45 , 45);
  			 m.addgraph(shieldL,2);
  		 }
+ 		 if(t){
  		 updatePuntos();
  		 m.addgraph(puntosLabel,2);
  		 updateVida();
  		 m.addgraph(vidaLabel,2);
  		 updateVidas();
  		 m.addgraph(vidasLabel,2);
-     }
+ 		 }
+ 	}
      /**
       * metodo para sumar puntos al player usado por el juego
       * @param n puntaje a sumar
@@ -157,7 +159,6 @@ public class Jugador extends Nave{
 					c.setelem(profundidad,null);
 					grafico.setIcon(null);
 					m.gameover(this);
-					updateVida();
 				}
 				else{
 				vida=150;
@@ -165,9 +166,6 @@ public class Jugador extends Nave{
 				vidas=vidas-1;
 				if(m!=null)
 						m.resetearJugador(this);//mover a la celda de reseteo XXX
-						updatePuntos();
-						updateVidas();
-						updateVida();
 					}
 				}
 			}

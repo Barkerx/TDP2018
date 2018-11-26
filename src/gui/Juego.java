@@ -26,7 +26,7 @@ public Juego(){
 		m=new Mapa1(frame,this,j);
 		frame.setVisible(true);
 		j.setMap(m);
-		j.initgraph();
+		j.initgraph(true);
    }
    
    
@@ -96,7 +96,7 @@ public void win() {
 			m=m2;
 			frame.setVisible(true);
 			j.setMap(m);
-			j.initgraph();
+			j.initgraph(true);
 			frame.enableInputMethods(true);
 			j.changeRunning();
 		}
