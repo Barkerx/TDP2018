@@ -38,7 +38,7 @@ public abstract class PowerUp extends Unidad{
 		//	while(isRunning){
 			Celda d=c;
 			Celda ce=super.mover(ABAJO);
-				if (ce==d)
+				if (ce.equals(d))
 				{	
 					destruir();
 				}
