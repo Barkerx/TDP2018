@@ -109,10 +109,8 @@ public class Jugador extends Nave{
      public Celda mover(int n){ 	
     	Celda c2=null;
     	if(isRunning){
-    	 if(n!=-1){
     		c2=super.mover(n);
     		puede=true; // al moverse uno habilita el disparo
-    	 }
     	}
     	return c2;
     	
