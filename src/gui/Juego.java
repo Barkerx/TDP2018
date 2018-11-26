@@ -1,11 +1,8 @@
 package gui;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import mapa.*;
 import misc.Unidad;
 import misc.nave;
@@ -15,8 +12,6 @@ public  class Juego {
 	private jugador j;
 	private static gui frame;
 	private Mapa m;
-	private int n;
-	private boolean gane=false;
 	private boolean habilitado=false;
 	public static void main(String[] args) {
 		new Juego();
@@ -26,7 +21,6 @@ public  class Juego {
  * constructor de juego, crea el jugador en nulo crea el mapa y pone la gui visible.	
  */
 public Juego(){
-		n=1;
 		j=new jugador(null,null);
 		frame=new gui(this);
 		m=new mapa1(frame,this,j);
@@ -45,7 +39,7 @@ public Juego(){
 
 public void mover(int dir){
 	
-   int direccion = 0;
+   int direccion = -1;
    if(j.getIsRunning()&&habilitado){
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
@@ -61,11 +55,11 @@ public void mover(int dir){
 			direccion = Unidad.DERECHA;
 			break;
 		case KeyEvent.VK_SPACE : //Espacio
-			direccion= nave.DISPARAR;
+			j.disparar();
 			break;
 	}
-	
-	j.mover(direccion);
+	if(direccion!=-1)
+		j.mover(direccion);
    }
 }
 /**
@@ -115,19 +109,28 @@ public void gamerover() {
 	frame.add(stat, new Integer(1));
 	habilitado=false; 
 }
-
+/**
+ * Metodo usado para habilitar el input(es usado por la gui)
+ */
 public void habilitado(){
 	habilitado=true;
 }
+/**
+ * Metodo usado para deshabilitar el input(es usado por la gui)
+ */
 public void deshabilitado(){
 	habilitado=false;
 }
+/**
+ * Metodo usado para consultar si el input esta habilitado
+ * @return True en caso de que el input este habilitado, false en caso contrario
+ */
 public boolean puedo() {
 	return habilitado;
 }
+
 public jugador getJugador(){
 	return j;
 }
-
 
 }

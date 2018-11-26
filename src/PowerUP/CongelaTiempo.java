@@ -9,6 +9,7 @@ import mapa.celda;
 
 public class CongelaTiempo extends powerUp{
 
+	
 	public CongelaTiempo(celda ce, Mapa m) {
 		super(ce, m);
 		grafico=new JLabel(new ImageIcon(this.getClass().getResource("/resources/detenerTiempo.gif")));
@@ -22,8 +23,7 @@ public class CongelaTiempo extends powerUp{
 	@Override
 	public void accionar(jugador j) {
 		j.sumarPuntaje(puntos);
-		 m.congelatiempo(this);
-		
+		Phantom.getInstance(3000, m);
 	}
 
 }

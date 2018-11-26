@@ -27,8 +27,9 @@ public class Basico extends shield{
 		// TODO Auto-generated method stub
 		return v.visitPlayer(j);
 	}
-
-	@Override
+	/**
+	 * Metodo usado para destruir el escudo, debido a que es un escudo basico el escudo basico no se destruye. 
+	 */
 	public void destruir() {
 	}
 	

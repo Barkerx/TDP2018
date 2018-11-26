@@ -5,6 +5,7 @@ import mapa.celda;
 import misc.Unidad;
 
 public abstract class enemigo extends enemigoAbstract {
+	
 	/**
 	 * constructor del enemigo, lo crea y pone los graficos.
 	 * @param c celda donde va a estar el enemigo

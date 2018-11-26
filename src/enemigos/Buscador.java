@@ -26,8 +26,8 @@ public class Buscador extends enemigo{
 	
 	public void disparar(){}
 	
-	
-	public boolean accept(Visitor v){
+	@Override
+	public boolean Accept(Visitor v){
 		return v.visitBuscador(this);
 	}
 	

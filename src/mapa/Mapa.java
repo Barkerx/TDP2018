@@ -33,7 +33,6 @@ public abstract class Mapa extends Thread {
 	protected DisparoMobiler d;
 	protected Pool dp;
 	protected boolean waked=true;
-	protected Phantom p;
 	
 	protected void inicializoCeldas(){
 		//inicializo la matriz de celdas
@@ -169,16 +168,6 @@ public abstract class Mapa extends Thread {
 			}
 	}
 	
-	/**
-	 * metodo usado para congelar a los enemigos, cambiando su IA por una que no hace nada.
-	 * @param congelaTiempo 
-	 */
-	public void congelatiempo(CongelaTiempo congelaTiempo) {
-		if(p==null){
-		p=new Phantom(3000,this);
-		p=null;
-			}	
-		}
 	/**
 	 * metodo usado para indicar que el juego se termino.
 	 * @param jugador
