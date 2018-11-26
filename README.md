@@ -1,4 +1,7 @@
 # TDP2018
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/026a9701c0284bf090032a8280f9119c)](https://app.codacy.com/app/Barkerx/TDP2018?utm_source=github.com&utm_medium=referral&utm_content=Barkerx/TDP2018&utm_campaign=Badge_Grade_Dashboard)
+
 Proyecto TDP 2018 
 
 AVISO IMPORTANTE:
