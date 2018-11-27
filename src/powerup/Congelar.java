@@ -17,7 +17,6 @@ public class Congelar extends PowerUp{
 		velocidad=45;
 		puntos=250;
 		new PowerUpRun(this);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
