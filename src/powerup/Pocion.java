@@ -16,7 +16,6 @@ public class Pocion extends PowerUp{
 		pocion=30;
 		puntos=300;
 		new PowerUpRun(this);
-		// TODO Auto-generated constructor stub
 	}
 	public void accionar(Jugador j){
 		j.sumarPuntaje(puntos);
