@@ -17,7 +17,6 @@ public class Escudo extends PowerUp{
 		puntos=200;
 		velocidad=20;
 		new PowerUpRun(this);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
