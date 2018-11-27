@@ -16,7 +16,6 @@ public class Mejorar extends PowerUp{
 		velocidad=40;
 		puntos=300;
 		new PowerUpRun(this);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
