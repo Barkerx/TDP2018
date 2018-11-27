@@ -16,7 +16,6 @@ public class Aumentar extends PowerUp{
 		puntos=200;
 		velocidad=10;
 		new PowerUpRun(this);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
