@@ -1,7 +1,7 @@
 package mapa;
 
 
-import misc.Gob;
+import gob.Gob;
 
 public class Celda {
 	protected Gob objects[];

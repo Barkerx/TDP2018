@@ -1,7 +1,7 @@
 package arma;
 
 import disparo.Dbasico;
-import player.Jugador;
+import nave.player.Jugador;
 
 public class Abasico extends Arma{
 

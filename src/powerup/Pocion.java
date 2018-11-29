@@ -4,8 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Jugador;
+import nave.player.Jugador;
 import mapa.Celda;
+
 public class Pocion extends PowerUp{
 	private int pocion;
 	public Pocion(Celda ce, Mapa m) {
@@ -15,7 +16,8 @@ public class Pocion extends PowerUp{
 		velocidad=10;
 		pocion=30;
 		puntos=300;
-		new PowerUpRun(this);
+		new PowerUpRun(this,m);
+		// TODO Auto-generated constructor stub
 	}
 	public void accionar(Jugador j){
 		j.sumarPuntaje(puntos);

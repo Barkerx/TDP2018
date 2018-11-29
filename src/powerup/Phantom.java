@@ -8,9 +8,9 @@ import java.util.Map;
 
 import javax.swing.Timer;
 
-import enemigos.EnemigoAbstract;
-import inteligencias.IADormido;
-import inteligencias.Inteligencia;
+import nave.enemigos.EnemigoAbstract;
+import nave.enemigos.inteligencias.IADormido;
+import nave.enemigos.inteligencias.Inteligencia;
 import mapa.Mapa;
 
 public class Phantom {

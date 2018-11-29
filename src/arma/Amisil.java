@@ -1,7 +1,7 @@
 package arma;
 
 import disparo.Dmisil;
-import player.Jugador;
+import nave.player.Jugador;
 
 public class Amisil extends Arma{
 

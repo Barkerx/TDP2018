@@ -6,20 +6,20 @@ import javax.swing.JLabel;
 
 import disparo.Disparo;
 import disparo.DisparoMobiler;
-import enemigos.Buscador;
-import enemigos.EnemyMobiler;
-import enemigos.Kamikaze;
-import enemigos.Temporal;
-import enemigos.Enemigo;
-import enemigos.EnemigoAbstract;
+import nave.enemigos.Buscador;
+import nave.enemigos.EnemyMobiler;
+import nave.enemigos.Kamikaze;
+import nave.enemigos.Temporal;
+import nave.enemigos.Enemigo;
+import nave.enemigos.EnemigoAbstract;
 import gui.Juego;
 import gui.Gui;
-import misc.Gob;
-import misc.Unidad;
+import unidad.Unidad;
 import jaco.mp3.player.MP3Player;
 import obstaculos.*;
-import player.Jugador;
+import nave.player.Jugador;
 import powerup.*;
+
 public abstract class Mapa extends Thread {
 	protected Celda[][] celdas; 
 	protected Gui g;
@@ -34,6 +34,14 @@ public abstract class Mapa extends Thread {
 	protected DisparoMobiler d;
 	protected Pool dp;
 	
+	protected void initMap(){
+		//creo la lista de enemigos 
+   		lEnemy=new LinkedList<EnemigoAbstract>();
+   	 	dp=new Pool();
+   	 	m=new EnemyMobiler(this);
+   	 	d=new DisparoMobiler(this);
+	}
+	
 	protected void inicializoCeldas(){
 		//inicializo la matriz de celdas
 				int x=20;
@@ -42,7 +50,6 @@ public abstract class Mapa extends Thread {
 				for(int i=0;i<x;i++)
 					for(int j=0;j<y;j++)
 						celdas[i][j]=new Celda(i,j,this);
-				
 	}
 	
 	protected void inicializoGui(Gui gu,Juego ju){
@@ -134,13 +141,13 @@ public abstract class Mapa extends Thread {
 		break;
 		case 3: po=new Escudo(c,this);
 		c.setelem(po.getProfundidad(), po);
-			break;
+		break;
 		case 4: po=new Congelar(c,this);
 		c.setelem(po.getProfundidad(), po);
 		break; 
 		case 5: po=new SuperMisil(c,this);
 		c.setelem(po.getProfundidad(), po);
-			break;
+		break;
 		default:break;	
 		}
 		creandoPW=false;
@@ -277,7 +284,7 @@ public abstract class Mapa extends Thread {
 	public void killDisparo(Disparo p){
 		d.killDisparo(p);
 	}
-	public void movegraph(Gob g) {
+	public void activate(Thread g) {
 		 dp.add(g);
 	}
 

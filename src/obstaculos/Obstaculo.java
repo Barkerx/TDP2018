@@ -3,7 +3,7 @@ package obstaculos;
 import javax.swing.ImageIcon;
 
 import mapa.*;
-import misc.*;
+import gob.Gob;
 
 public abstract class Obstaculo extends Gob{
 
@@ -24,7 +24,7 @@ public abstract class Obstaculo extends Gob{
 			}
 	}
 	public void explotar(){
-		m.movegraph(this);
+		m.activate(this);
 	}
 	public void run(){
 		if(isRunning){

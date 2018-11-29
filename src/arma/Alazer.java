@@ -1,7 +1,7 @@
 package arma;
 
 import disparo.Dlazer;
-import player.Jugador;
+import nave.player.Jugador;
 
 public class Alazer extends Arma{
 

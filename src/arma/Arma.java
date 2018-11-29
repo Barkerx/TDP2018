@@ -1,6 +1,6 @@
 package arma;
 
-import player.Jugador;
+import nave.player.Jugador;
 
 public abstract class Arma {
 	protected Jugador j;

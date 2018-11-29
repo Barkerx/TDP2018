@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Jugador;
+import nave.player.Jugador;
 import mapa.Celda;
 
 public class Dbasico extends DisparoP{

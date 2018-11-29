@@ -4,9 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Mejorado;
-import player.Jugador;
 import mapa.Celda;
+import nave.player.Jugador;
+import nave.player.escudo.*;
 
 public class Escudo extends PowerUp{
 
@@ -16,7 +16,8 @@ public class Escudo extends PowerUp{
 		initgraph();
 		puntos=200;
 		velocidad=20;
-		new PowerUpRun(this);
+		new PowerUpRun(this,m);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -5,7 +5,8 @@ import javax.swing.JLabel;
 
 import mapa.Mapa;
 import mapa.Celda;
-import misc.Visitor;
+import visitor.Visitor;
+import visitor.VisitorDestruibleTodos;
 
 public class ParedTodos extends Obstaculo {
 

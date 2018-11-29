@@ -5,10 +5,11 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import enemigos.EnemigoAbstract;
+import nave.enemigos.EnemigoAbstract;
 import mapa.Mapa;
-import player.Jugador;
+import nave.player.Jugador;
 import mapa.Celda;
+
 
 public class SuperMisil extends PowerUp{
 
@@ -18,7 +19,7 @@ public class SuperMisil extends PowerUp{
 		initgraph();
 		velocidad=20;
 		puntos=200;
-		new PowerUpRun(this);
+		new PowerUpRun(this,m);
 	}
 	
 	@Override

@@ -3,7 +3,7 @@ package disparo;
 
 import mapa.Mapa;
 import mapa.Celda;
-import misc.*;
+import unidad.Unidad;
 
 public abstract class Disparo extends Unidad{
 	

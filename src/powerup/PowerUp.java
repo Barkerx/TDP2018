@@ -2,9 +2,10 @@ package powerup;
 
 import mapa.Mapa;
 import mapa.Celda;
-import misc.Unidad;
-import misc.Visitor;
-import player.Jugador;
+import unidad.Unidad;
+import visitor.Visitor;
+import visitor.VisitorPowerUP;
+import nave.player.Jugador;
 
 public abstract class PowerUp extends Unidad{
 	protected int puntos;
@@ -27,6 +28,7 @@ public abstract class PowerUp extends Unidad{
 	public boolean Accept(Visitor V){
 		return V.visitPowerUp(this);
 	}
+	
 	/**
 	 * metodo usado para afectar al jugador dependiendo del powerUP que sea. 
 	 * @param j
@@ -43,5 +45,4 @@ public abstract class PowerUp extends Unidad{
 				}	
 		}
 	}
-
 }

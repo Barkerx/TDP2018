@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Jugador;
+import nave.player.Jugador;
 import mapa.Celda;
 
 public class Congelar extends PowerUp{
@@ -16,7 +16,8 @@ public class Congelar extends PowerUp{
 		initgraph();
 		velocidad=45;
 		puntos=250;
-		new PowerUpRun(this);
+		new PowerUpRun(this,m);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -25,5 +26,4 @@ public class Congelar extends PowerUp{
 		Phantom.getInstance(3000, m);
 		Phantom.resetInstance();
 	}
-
 }

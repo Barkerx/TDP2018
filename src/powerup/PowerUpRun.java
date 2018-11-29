@@ -1,35 +1,29 @@
 package powerup;
 
+import mapa.Mapa;
 
-public class PowerUpRun implements Runnable {
+public class PowerUpRun extends Thread {
 
 	private PowerUp d;
-    private Thread t;
-    private boolean moviendo=false;
-    public PowerUpRun(PowerUp d){
+	
+    public PowerUpRun(PowerUp d,Mapa m){
    	 this.d=d;
-   	 t=new Thread(this);
-   	 t.start();
+   	 m.activate(this);
     }
     
     public void run(){
    	 
    	 boolean isRunnable=d.getIsRunning();
    	 while(isRunnable){
-   		 
          isRunnable=d.getIsRunning();
           if(isRunnable){
-       	   if (!moviendo){
  		            d.mover();
  		          try{
- 		        	Thread.sleep(1000);
+ 		        	Thread.sleep(600);
  		          }
  		          catch (Exception e){;}
- 		            }
           }
-           	   
  	   }
-   	  		t.interrupt();
-   	 
+   	  this.interrupt();
     }
 }

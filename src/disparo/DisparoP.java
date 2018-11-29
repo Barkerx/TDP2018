@@ -2,8 +2,9 @@ package disparo;
 
 import mapa.Mapa;
 import mapa.Celda;
-import misc.Visitor;
-import player.Jugador;
+import visitor.Visitor;
+import visitor.VisitorDisparoP;
+import nave.player.Jugador;
 
 public abstract class DisparoP extends Disparo{
 	protected Jugador j;

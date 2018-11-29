@@ -4,8 +4,9 @@ package disparo;
 
 import mapa.Mapa;
 import mapa.Celda;
-import misc.Unidad;
-import misc.Visitor;
+import unidad.Unidad;
+import visitor.Visitor;
+import visitor.VisitorDisparoE;
 
 public abstract class DisparoE extends Disparo{
 	

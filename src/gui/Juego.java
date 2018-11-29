@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import mapa.*;
-import misc.Unidad;
-import player.Jugador;
+import unidad.Unidad;
+import nave.player.Jugador;
 
 public  class Juego {
 	private Jugador j;

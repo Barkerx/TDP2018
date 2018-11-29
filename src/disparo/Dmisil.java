@@ -4,7 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Jugador;
+import nave.player.Jugador;
+import visitor.VisitorDisparoP;
 import mapa.Celda;
 
 public class Dmisil extends DisparoP{

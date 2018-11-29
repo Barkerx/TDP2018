@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import mapa.Mapa;
-import player.Jugador;
 import mapa.Celda;
+import nave.player.Jugador;
 
 public class Mejorar extends PowerUp{
 
@@ -15,7 +15,8 @@ public class Mejorar extends PowerUp{
 		initgraph();
 		velocidad=40;
 		puntos=300;
-		new PowerUpRun(this);
+		new PowerUpRun(this,m);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
